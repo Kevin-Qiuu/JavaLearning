@@ -13,7 +13,12 @@ public class Test {
     如果当前元素大于堆顶元素，则替换堆顶元素，并将堆顶元素放到堆底，并向上调整
     最后返回整个堆的元素即可
      */
-    //int [] arr = new int[]{100,2,34,45,67,102,23,11,-1,3,108,109,12,33,11,127};
+    /*
+    建立了大小为 K 的小根堆，如果新遍历的元素比堆顶元素大，可以肯定的是堆顶元素一定不是 TopK 的元素
+    同时可以认为这个新遍历的元素在当前所有遍历的元素中是 TopK 的一员
+    所以将其 poll 掉，重新 offer 这个元素
+    思想就是时刻保持小根堆是已遍历元素的 TopK 序列
+     */
     public static TestHeap topK(int[] arr, int k){
         if (arr == null || arr.length == 0 || k < 0 || k > arr.length)
             throw new IllegalArgumentException();
@@ -28,6 +33,10 @@ public class Test {
         return myHeap;
     }
 
+    public static void TestTopK(){
+        int [] arr = new int[]{100,2,34,45,67,102,23,11,-1,3,108,109,12,33,11,127,-3,22,206,36,72};
+        System.out.println(topK(arr,5));
+    }
 
     public static void mapTest(){
         // 如果需要使用某一个工具来存放以后会查找的对象，可以使用 map 来存放
@@ -92,7 +101,6 @@ public class Test {
     public static void main(String[] args) {
 //        mapTest();
 //        TestMyHeap();
-        int [] arr = new int[]{100,2,34,45,67,102,23,11,-1,3,108,109,12,33,11,127};
-        System.out.println(topK(arr,4));
+        TestTopK();
     }
 }
