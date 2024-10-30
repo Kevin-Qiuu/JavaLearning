@@ -227,6 +227,7 @@ Map<String, int> myMap = new TreeMap<>(); // 显然这里使用了类型推导�
 
 ```java
 Set<String> set = new TreeSet<>(); // TreeSet类的底层就是 TreeMap，是一个二叉搜索树
+Set<String> set = new HashSet<>();
 ```
 
 ![image-20241030113911716](JavaSE 学习笔记_markdown_img/image-20241030113911716.png)

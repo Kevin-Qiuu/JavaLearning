@@ -6,6 +6,11 @@ import java.util.Set;
 import java.util.TreeMap;
 
 public class Test {
+
+    class Node{
+        public int a;
+        public float b;
+    }
     // top-k 问题 通过堆来解决
     /*
     创建大小为 K 的小根堆
@@ -98,9 +103,33 @@ public class Test {
         System.out.println(myHeap);
     }
 
+    public static void TestNode(){
+        Node[] arr = new Node[5]; // 创建了 5 个 null 引用变量
+        System.out.println(arr.length);
+        int ret = 0;
+    }
+
+    public static void TestHashBuck(){
+        HashBucket hb = new HashBucket();
+
+        hb.put(1,120);
+        hb.put(6,230);
+        hb.put(11,10);
+        hb.put(4,250);
+        hb.put(5,40);
+        hb.put(15,50);
+        hb.put(7,60);
+
+
+        System.out.println(hb.find(15));
+        System.out.println(hb.find(11));
+
+    }
     public static void main(String[] args) {
 //        mapTest();
 //        TestMyHeap();
-        TestTopK();
+//        TestTopK();
+//        TestNode();
+        TestHashBuck();
     }
 }
