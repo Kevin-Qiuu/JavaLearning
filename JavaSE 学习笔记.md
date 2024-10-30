@@ -95,6 +95,12 @@
 
 
 
+## 泛型
+
+对于泛型的理解。如果说 Java 引入了面向对象，是对具体事物的一次抽象，那么泛型就是对所有的类别又进行了一次抽象。在编写 Java 代码时，就是对具体业务或事物进行向上的抽象变成类、泛型、接口等语法，随后再重复的进行实例化（具体），把每一次的抽象都具体化。 
+
+
+
 ## 异常
 
 ### 受检查异常
@@ -147,6 +153,10 @@ public class ThrowsDemo {
 
 非常详细的异常内容讲解文章：https://zhuanlan.zhihu.com/p/696348474
 
+## 比较器
+
+
+
 ## Some tips
 
 ### `final` 修饰符
@@ -175,11 +185,120 @@ arr[0] = 1; // 没有问题，因为这是修改的另外一个没有被 final �
 
 ---
 
-## Java 数据结构
+# Java 数据结构
 
-### 装箱和拆箱
+## 装箱和拆箱
 
 显示（装拆箱） or 隐示（装拆箱）
+
+
+
+
+
+## 用栈实现队列 
+
+![image-20241028122006372](JavaSE 学习笔记_markdown_img/image-20241028122006372.png)
+
+
+
+## Map & Set
+
+![image-20241030113449335](JavaSE 学习笔记_markdown_img/image-20241030113449335.png)
+
+### Map
+
+```java
+Map<String, int> myMap = new TreeMap<>(); // 显然这里使用了类型推导，编译器根据前面的泛型退出 TreeMap 的泛型
+```
+
+![image-20241030113420881](JavaSE 学习笔记_markdown_img/image-20241030113420881.png)
+
+- Map 是一个接口，不能直接实例化对象，如果要实例化对象只能实例化其实现类 TreeMap 或者 HashMap2 . 
+- Map 中存放键值对的Key是唯一的，value 是可以重复的
+- 在 TreeMap 中插入键值对时，key 不能为空，否则就会抛 NullPointerException 异常，value 可以为空。但是 HashMap 的 key 和value 都可以为空。
+- Map 中的 Key 可以全部分离出来，存储到 Set 中来进行访问(因为 Key 不能重复)。
+- Map 中的 value 可以全部分离出来，存储在 Collection 的任何一个子集合中(value可能有重复)。
+- Map 中键值对的 Key 不能直接修改，value 可以修改，如果要修改 key，只能先将该 key 删除掉，然后再来进行重新插入。
+- TreeMap 和 HashMap 的区别
+
+![image-20241030113532416](JavaSE 学习笔记_markdown_img/image-20241030113532416.png)
+
+### Set
+
+```java
+Set<String> set = new TreeSet<>(); // TreeSet类的底层就是 TreeMap，是一个二叉搜索树
+```
+
+![image-20241030113911716](JavaSE 学习笔记_markdown_img/image-20241030113911716.png)
+
+- Set是继承自Collection的一个接口类
+- Set中只存储了key，并且要求key一定要唯一
+- TreeSet的底层是使用Map来实现的，其使用 key 与 **Object 的一个默认对象**作为键值对插入到Map中的
+- Set最大的功能就是对集合中的元素进行去重 
+- 实现Set接口的常用类有TreeSet和HashSet，还有一个LinkedHashSet，LinkedHashSet是在HashSet的基础上维护了一个双向链表来记录元素的插入次序。
+- Set中的Key不能修改，如果要修改，先将原来的删除掉，然后再重新插入
+- TreeSet中不能插入null的key，HashSet可以。
+- TreeSet和HashSet的区别【HashSet在课件最后会讲到】
+
+![image-20241030113933370](JavaSE 学习笔记_markdown_img/image-20241030113933370.png)
+
+## 哈希表
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
