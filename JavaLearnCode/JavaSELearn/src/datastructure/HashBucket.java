@@ -82,6 +82,8 @@ public class HashBucket {
         return -1;
     }
 
+    // 这一个方法需要理解的是 Java 中除了基础类型变量，其他都是引用变量
+    // 而引用变量直接操作的
     private void Resize() {
         Node[] newArr = new Node[arr.length * 2];
         // 重新二次哈希

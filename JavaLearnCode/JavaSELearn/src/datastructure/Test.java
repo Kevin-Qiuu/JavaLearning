@@ -66,6 +66,8 @@ public class Test {
         System.out.println(map.containsValue(456));
         // 查找所有的 Key
         System.out.println(map.keySet());
+        // map 的底层存储方式是分为两种，一个是二叉排序树，一个是 Hash 函数
+        // 为此在定义 map 对象时，需要指明选用的底层存储结构是哪一个
         // 在 Map 中，每一个键值对视为一个 Entry 对象
         // 通过使用 map.entrySet() 方法可以获取到所有的 Entry 对象
         // 然后使用 Set 来存放这些 Entry 对象
