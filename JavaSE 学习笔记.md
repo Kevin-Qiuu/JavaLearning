@@ -213,7 +213,7 @@ Map<String, int> myMap = new TreeMap<>(); // 显然这里使用了类型推导�
 
 ![image-20241030113420881](JavaSE 学习笔记_markdown_img/image-20241030113420881.png)
 
-- Map 是一个接口，不能直接实例化对象，如果要实例化对象只能实例化其实现类 TreeMap 或者 HashMap2 . 
+- Map 是一个**接口**，不能直接实例化对象，如果要实例化对象只能实例化其实现类 TreeMap 或者 HashMap . 
 - Map 中存放键值对的Key是唯一的，value 是可以重复的
 - 在 TreeMap 中插入键值对时，key 不能为空，否则就会抛 NullPointerException 异常，value 可以为空。但是 HashMap 的 key 和value 都可以为空。
 - Map 中的 Key 可以全部分离出来，存储到 Set 中来进行访问(因为 Key 不能重复)。
@@ -222,6 +222,10 @@ Map<String, int> myMap = new TreeMap<>(); // 显然这里使用了类型推导�
 - TreeMap 和 HashMap 的区别
 
 ![image-20241030113532416](JavaSE 学习笔记_markdown_img/image-20241030113532416.png)
+
+Map 在底层无论在构造函数中传递的是一个怎样的长度，都会生成一个与传递的数最接近的 2 的 n 次幂的长度作为 Map 的初始长度。
+
+
 
 ### Set
 
@@ -243,9 +247,46 @@ Set<String> set = new HashSet<>();
 
 ![image-20241030113933370](JavaSE 学习笔记_markdown_img/image-20241030113933370.png)
 
-## 哈希表
+### `Map` 与 `Set` 联系
+
+```Java
+// map 的底层存储方式是分为两种，一个是二叉排序树，一个是 Hash 函数
+// 为此在定义 map 对象时，需要指明选用的底层存储结构是哪一个
+// 在 Map 中，每一个键值对视为一个 Entry 对象
+// 通过使用 map.entrySet() 方法可以获取到所有的 Entry 对象
+// 然后使用 Set 来存放这些 Entry 对象
+// Set 的本质就是一个 Map，所以存放的所有元素都是一个键值对（Key + 默认的 Object 对象）
+// 在这里 Set 存放的元素类型是 Map.Entry<String, Integer>，也就是 Map 中的 Key
+// 同样可以理解为将 Map 的映射关系存放到了 Set 中
+// 上面是本质性理解
+// 实际在使用时，可以直接将 Set 视为一个集合，是一个不允许存放相同元素的集合，这是因为 Map 的 Key 要唯一
+// 所以当需要存放不同元素时，或者需要过滤重复元素时，可以使用 Set 来存放
+```
+
+## 通配符
+
+```Java
+ 
+void func2(Set<?> mySet);
+```
 
 
+
+### 通配符的上界
+
+```Java
+<? extends Food>
+// 表示最高继承的类只能到 Food，不可以是 Food 的父类，但可以是 Food 的子类
+```
+
+### 通配符的下界
+
+```Java
+<? super Fruit>
+// 表示最低继承的类只能到 Fruit，不可以是 Fruit 的子类，但可以是 Fruit 的父类
+```
+
+## 反射
 
 
 

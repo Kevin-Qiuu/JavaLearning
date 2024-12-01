@@ -127,6 +127,13 @@ public class Test {
         System.out.println(hb.find(11));
 
     }
+
+    public static void hashSourceCodeCheck(){
+        Map<String, Integer> myMap = new HashMap<>();
+        myMap.put("abc", 123);
+
+
+    }
     public static void main(String[] args) {
 //        mapTest();
 //        TestMyHeap();
