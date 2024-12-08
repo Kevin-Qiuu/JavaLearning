@@ -2,4 +2,4 @@
 
 ## Stay foolish; Stay hungry.
 
-<img src="http://image2.135editor.com/cache/remote/aHR0cHM6Ly9tbWJpei5xbG9nby5jbi9tbWJpel9naWYvQUlKZ00zYmt3OG5lT3Zsc0ZJTnV5UWREelU2MnFpY2g0dXZHSFFLVXVwWTNCMmNwTkxCRjhCanQweGo3dHoxTTR6VVllZHp2SFE0c1o1RW95UHJpYVdOZy8wP3d4X2ZtdD1naWY=" alt="示例图片">
+<img src="http://5b0988e595225.cdn.sohucs.com/images/20191126/628e7368976b4a8e9c274d3b7935b17b.jpeg" alt="示例图片">
