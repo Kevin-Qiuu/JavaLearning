@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="14e2d702-fd0d-44d3-add5-9dcbf9f526ae" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/../JavaLeetCode/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaLeetCode/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaLeetCode/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaLeetCode/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaLeetCode/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaLeetCode/JavaLeetCode.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaLeetCode/src/leetcode/Solution.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaLeetCode/src/leetcode/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaLeetCode/src/leetcode/TreeNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaLeetCode/src/nowcoder/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaSELearn.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/Apple.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/Banana.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/Food.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/Fruit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/HashBucket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/Lambda.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/Meat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/PokerCards.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/PriorityQueue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/Reflect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/TestEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/TestHeap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/TestQueue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/TestStack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datastructure/TongPeiFu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exam/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework/Bit_array.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/homework/TestDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/Interface_fun/Comparator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/Interface_fun/NameComparable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/Interface_fun/PaperNumComparable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/Interface_fun/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/Interface_fun/Test_main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/abstract_class/Animal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/abstract_class/Cat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/abstract_class/Dog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/abstract_class/Test_main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/abstract_class/Tiger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/array/Array_learn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/cls_and_obj/Class_learn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/cls_and_obj/Inherit_Poly.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/cls_and_obj/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/cls_and_obj/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/cls_and_obj/Test_1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/cls_and_obj/Test_static.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/cls_and_obj/overwrite_and_overload.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/exception/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/exception/TestFirstException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/exception/TestSecondException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/exception/Test_Clone.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/learnSE/string_func/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaSE 学习笔记.md" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home/lib/src.zip!/java.base/java/util/HashMap.java" root0="SKIP_INSPECTION" />
+    <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Map.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2mPNfp4EK6YYTmkzceOkhz4j64w" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/kevinqiu/Desktop/JavaToGithub/JavaLearnCode/JavaSELearn",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/kevinqiu/Desktop/JavaToGit/JavaLearnCode/JavaSELearn/src/Main.java",
+    "settings.editor.selected.configurable": "configurable.group.editor",
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.Reflect.executor": "Run",
+    "应用程序.Test.executor": "Run",
+    "应用程序.TestDemo.executor": "Run",
+    "应用程序.Test_Clone.executor": "Run",
+    "应用程序.datastructure.Test.executor": "Run"
+  }
+}]]></component>
+  <component name="RunManager" selected="应用程序.Reflect">
+    <configuration name="Reflect" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="datastructure.Reflect" />
+      <module name="JavaSELearn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="datastructure.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="exam.Test" />
+      <module name="JavaSELearn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="exam.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="homework.TestDemo" />
+      <module name="JavaSELearn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="homework.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test_Clone" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="learnSE.exception.Test_Clone" />
+      <module name="JavaSELearn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="learnSE.exception.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="datastructure.Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="datastructure.Test" />
+      <module name="JavaSELearn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="datastructure.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="应用程序.Reflect" />
+        <item itemvalue="应用程序.datastructure.Test" />
+        <item itemvalue="应用程序.Test_Clone" />
+        <item itemvalue="应用程序.Test" />
+        <item itemvalue="应用程序.TestDemo" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="14e2d702-fd0d-44d3-add5-9dcbf9f526ae" name="更改" comment="" />
+      <created>1726974364738</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1726974364738</updated>
+      <workItem from="1726974365682" duration="81000" />
+      <workItem from="1726974541002" duration="159000" />
+      <workItem from="1727454329604" duration="12344000" />
+      <workItem from="1728476812648" duration="18313000" />
+      <workItem from="1729090610016" duration="12517000" />
+      <workItem from="1730171105640" duration="15619000" />
+      <workItem from="1730277362653" duration="256000" />
+      <workItem from="1730277637261" duration="9767000" />
+      <workItem from="1730358057013" duration="15287000" />
+      <workItem from="1731127263949" duration="7188000" />
+      <workItem from="1731374209973" duration="14046000" />
+      <workItem from="1732020679337" duration="28000" />
+      <workItem from="1732020715209" duration="696000" />
+      <workItem from="1732021989404" duration="594000" />
+      <workItem from="1732616078472" duration="596000" />
+      <workItem from="1732617319723" duration="20765000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
