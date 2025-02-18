@@ -44,9 +44,7 @@ Java虚拟机（Java Virtual Machine, JVM）是执行 Java 字节码的运行时
 
 标准错误：`System.error`
 
-**4、进程状态：**
-
-就绪和阻塞
+**4、进程状态：**就绪和阻塞
 
 **5、进程调度：**
 
@@ -84,7 +82,7 @@ Java虚拟机（Java Virtual Machine, JVM）是执行 Java 字节码的运行时
 
 通过 MMU 对多个进程进行了内存的隔离，那么如何进行进程之间的通信来让多个进程协作完成一些任务呢？
 
-![image-20250113174656011](JavaEE 学习笔记_markdown_img/image-20250113174656011.png)
+![image-20250218215058848](JavaEE 学习笔记_markdown_img/image-20250218215058848.png)
 
 ## 多线程
 
@@ -94,29 +92,120 @@ Java虚拟机（Java Virtual Machine, JVM）是执行 Java 字节码的运行时
 
 ##### 线程与进程的区别
 
+- 进程是包括线程的，每个进程至少有一个线程存在，即主线程。
+- 进程和进程之间不共享内存空间，同一个进程的线程之间共享同一个内存空间。
+- 进程是系统分配资源的最小单位，线程是 CPU 调度的最小单位。
+- 一个进程挂了一般不会影响其他进程，但是一个线程挂了，可能会把同进程内的其他线程一起带走（整个进程崩溃）。
+
 ##### 多线程的场景
 
 （过多线程会造成什么问题？）
+
+1. 当线程的数量小于逻辑处理器的个数时，使用多线程操作能够提高程序处理任务的效率；
+2. 当线程的数量大于逻辑处理器的个数时，使用多线程操作会拉低程序处理任务的效率，因为要涉及线程的不断摧毁与创建。
+
+---
 
 #### 如何创建线程
 
 （继承 Thread 类、实现 Runnable 接口、Lambda 表达式）
 
+**1、继承 Thread 类，然后重写 Thread 类中的 run 方法：**
+
+```java
+class Mythread extends Thread{
+		@override
+		public void run() {
+        while (true) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Hello, my little thread!");
+        }
+    }
+}
+  
+// main()
+Mythread demo = new Mythread();
+demo.start(); // 开启线程，并执行线程中的 run 方法中的程序逻辑。
+```
+
+**2、实现 Runnable 接口，将线程类与业务逻辑解耦，符合高内聚，低耦合的编码理念：**
+
+```java
+// 定义具体的业务逻辑类
+class MyRun implements Runnable{
+  	@override
+  	public void run(){
+      	while (true){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Hello, my little thread!");
+        }
+    }
+}
+
+// main()
+MyRun myRun = new MyRun(); // 实例化业务逻辑对象
+Thread myThread = new Thread(myRun); // 调用另外一个构造方法，通过接收实现 Runnable 接口的对象创建
+myThread.start(); // 开启线程，并执行线程中的 run 方法中的程序逻辑。
+```
+
+**3、因为 Runnable 接口只有一个方法，所以是一个函数式接口，可以使用 Lambda 表达式内部匿名重写方法：**
+
+```java
+// main()
+Thread myThread = new Thread(() -> {
+    	while (true){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Hello, my little thread!");
+        }
+  	}
+);
+myThread.start(); // 开启线程，并执行线程中的 run 方法中的程序逻辑。
+```
+
+---
+
 #### 线程的各种属性
 
-#### 前后台线程
+- `ID`：**`getID()`**  
+  - `JVM` 中默认为 `Thread` 对象生成一个编号，是 `Java` 层面的，要和 `PCB` （操作系统层面的）区分开。
+- 名称：**`getName()`**  
+  - `Thread` 类还有一个构造方法可以同时接收 `Runnable` 的实现接口对象和 `String` 对象，来设置线程对象的名字。
+- 状态：**`getState()`**
+  - `Java` 层面定义的线程状态，要与 `PCB` 区分开。
+- 优先级：**`getPriority()`**
+- 是否后台线程：**`isDaemon()`**
+  - 线程分为前台线程和后台线程，前台线程可以阻止进程的结束，主线程结束前台线程依然存在。
+  - 后台线程则不能，主线程结束，后台线程也随之结束。
+- 是否存活：**`isAlive()`**
+  - 表示当前线程所对应的系统中的 `PCB` 是否销毁，与 `thread` 对象没啥关系。
+  - `Thread` 是 `Java` 中的类 --> 创建 `Thread` 对象 --> 调用 `start()` 方法 --> `JVM` 调用操作系统 `API` 生成一个 `PCB` --> `PCB` 与 `Thread` 对象一一对应。
+  - `Thread` 对象与 `PCB` 所处的环境不同（一个 `Java` 环境，一个操作系统环境），所以他们的生命周期也不同。
+- 是否被中断：**`isInterrupted()`**
+  - 通过设置一个标志位让线程在执行是判断是否要退出。
 
-（前台线程可以阻止进程的结束，（主线程结束，前台线程依然存在））
+---
 
-#### 线程吃否存活
+#### 线程是否存活
 
 #### 线程中断
 
 （自定义中断标志位，JDK 提供的方法）
 
-自定义中断标志位要使用全局变量
+1、自定义中断标志位要使用全局变量
 
-等待状态的线程中断会报异常
+2、等待状态的线程中断会报异常
 
 #### 线程等待
 

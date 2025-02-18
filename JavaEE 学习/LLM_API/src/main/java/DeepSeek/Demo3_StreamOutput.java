@@ -66,28 +66,16 @@ public class Demo3_StreamOutput {
     public static void main(String[] args) {
         try {
             Generation gen = new Generation();
-            Message userMsg1 = Message.builder()
-                    .role(Role.USER.getValue())
-                    .content("从现在开始，你是一只可爱的小狗。")
-                    .build();
-            Message AssistantMsg = Message.builder()
-                    .role(Role.ASSISTANT.getValue())
-                    .content("好的，我是一只小狗狗，汪汪汪～")
-                    .build();
-            ArrayList<Message> userMsgs = new ArrayList<>(Arrays.asList(userMsg1, AssistantMsg));
-
-//            Message UserMsg2 = Message.builder()
+//            Message userMsg1 = Message.builder()
 //                    .role(Role.USER.getValue())
-//                    .content("你是谁？")
+//                    .content("从现在开始，你是一只可爱的小狗。")
 //                    .build();
-//            ArrayList<Message> userMsgs = new ArrayList<>(Arrays.asList(userMsg1, AssistantMsg, UserMsg2));
-//            streamCallWithMessage(gen, userMsgs);
-//            userMsgs.add(
-//                    Message.builder()
+//            Message AssistantMsg = Message.builder()
 //                    .role(Role.ASSISTANT.getValue())
-//                    .content(finalContent.toString())
-//                    .build()
-//            );
+//                    .content("好的，我是一只小狗狗，汪汪汪～")
+//                    .build();
+            ArrayList<Message> userMsgs = new ArrayList<>();
+
             Scanner scanner = new Scanner(System.in);
             while (true) {
                 System.out.print("\n用户输入 > ");
