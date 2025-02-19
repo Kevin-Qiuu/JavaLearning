@@ -110,7 +110,7 @@ Java虚拟机（Java Virtual Machine, JVM）是执行 Java 字节码的运行时
 
 （继承 Thread 类、实现 Runnable 接口、Lambda 表达式）
 
-**1、继承 Thread 类，然后重写 Thread 类中的 run 方法：**
+**1. 继承 Thread 类，然后重写 Thread 类中的 run 方法：**
 
 ```java
 class Mythread extends Thread{
@@ -132,7 +132,7 @@ Mythread demo = new Mythread();
 demo.start(); // 开启线程，并执行线程中的 run 方法中的程序逻辑。
 ```
 
-**2、实现 Runnable 接口，将线程类与业务逻辑解耦，符合高内聚，低耦合的编码理念：**
+**2. 实现 Runnable 接口，将线程类与业务逻辑解耦，符合高内聚，低耦合的编码理念：**
 
 ```java
 // 定义具体的业务逻辑类
@@ -156,7 +156,7 @@ Thread myThread = new Thread(myRun); // 调用另外一个构造方法，通过�
 myThread.start(); // 开启线程，并执行线程中的 run 方法中的程序逻辑。
 ```
 
-**3、因为 Runnable 接口只有一个方法，所以是一个函数式接口，可以使用 Lambda 表达式内部匿名重写方法：**
+**3. 因为 Runnable 接口只有一个方法，所以是一个函数式接口，可以使用 Lambda 表达式内部匿名重写方法：**
 
 ```java
 // main()
@@ -201,11 +201,79 @@ myThread.start(); // 开启线程，并执行线程中的 run 方法中的程序
 
 #### 线程中断
 
-（自定义中断标志位，JDK 提供的方法）
+（自定义中断标志位，`JDK` 提供的方法）
 
-1、自定义中断标志位要使用全局变量
+1. 自定义一个中断标志位，通过修改这个标志位的值来通知线程中断，这个变量需使用全局变量。
 
-2、等待状态的线程中断会报异常
+```java
+public static void main(String[] args) throws InterruptedException {
+        Thread myThread = new Thread(() -> {
+            while (!isQuit){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.println("Hello, my little thread!");
+            }
+        }, "myThread");
+        myThread.start();
+        Thread.sleep(1000);
+        System.out.println(myThread.getName() + "将在 10s 钟后触发中断标志位。");
+        Thread.sleep(10000);
+        isQuit = true;
+        System.out.println(myThread.getName() + "中断标志位已触发，线程中断。");
+}
+```
+
+2. 调用 `interrupt()` 方法中断线程，因为是 `JDK` 官方 `API`，会比自定义中断标志位代码更清晰，中断更及时。
+
+   - 中断正常执行任务的线程
+
+     ```java
+     public static void main(String[] args) throws InterruptedException {
+             Thread myThread = new Thread(()->{
+                 while (!Thread.currentThread().isInterrupted()){
+                     System.out.println("Hello, my little thread!");
+                 }
+             }, "myThread");
+             System.out.println(myThread.getName() + " 是否存活：" + myThread.isAlive());
+             myThread.start();
+             myThread.interrupt();
+     }
+     ```
+   - 中断有 `sleep()` 方法的线程，这里中断的时候极大概率会在线程休眠状态的时候中断，因为线程正常工作的时间窗口极短，很难碰到，为此会中断处于 `sleep` 状态线程，在 `Java` 中，中断处于 `sleep` 状态的线程时，会抛出`InterruptedException`异常，此时不可正常中断线程，需要在捕获异常处的代码块内，再次调用 `interrupt()` 方法中断线程。
+   
+   ```java
+   		public static void main(String[] args) throws InterruptedException {
+           Thread myThread = new Thread(()->{
+               while (!Thread.currentThread().isInterrupted()){
+                   try {
+                       Thread.sleep(1000);
+                   } catch (InterruptedException e){
+                       // 当中断处于 sleep 状态的线程时，会触发此异常
+                       // 此时不可正常中断线程，需要在捕获异常处的代码块内，手动中断
+                       System.out.println("触发了中断异常 (InterruptedException)");
+                       System.out.println("重新中断线程");
+                       Thread.currentThread().interrupt();
+                   }
+                   System.out.println("Hello, my little thread!");
+               }
+           }, "myThread");
+           System.out.println(myThread.getName() + " 是否存活：" + myThread.isAlive());
+           myThread.start();
+           System.out.println(myThread.getName() + " 是否存活：" + myThread.isAlive());
+           System.out.println(myThread.getName() + " 将在 2s 钟后触发中断标志位。");
+           Thread.sleep(2000);
+           myThread.interrupt();
+           System.out.println(myThread.getName() + "中断标志位已触发。");
+           System.out.println(myThread.getName() + " 是否存活：" + myThread.isAlive());
+       }
+   ```
+   
+   
+
+ 
 
 #### 线程等待
 
