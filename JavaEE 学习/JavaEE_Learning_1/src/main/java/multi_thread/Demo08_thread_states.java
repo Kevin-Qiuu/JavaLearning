@@ -17,7 +17,7 @@ public class Demo08_thread_states {
     }
 
     // 展现线程的 WAITING 和 TIMED_WAITING 状态
-    public static void main(String[] args) throws InterruptedException {
+    public static void main3(String[] args) throws InterruptedException {
         Object locker = new Object();
         Thread myThread_01 = new Thread(()->{
             for (int i = 0; i < 5; i++) {
@@ -55,6 +55,36 @@ public class Demo08_thread_states {
         System.out.println("waiting for 2 seconds...");
         Thread.sleep(2000);
         myThread_02.interrupt();
+        System.out.println(myThread_02.getName() + " : " +myThread_02.getState());
+    }
+
+    public static int count;
+    public static final Object locker = new Object();
+    // final修饰的引用变量不可以更改指向的对象，但对象是可以修改的
+    // 锁对象的引用尽量不去变动，否则线程上的锁对象发生改变，导致不同线程的锁对象不同，synchronized 失去了其功能
+    // 展现线程的 BLOCK 状态
+    public static void main(String[] args) throws InterruptedException {
+        Thread myThread_01 = new Thread(() -> {
+            synchronized (locker){
+                while (true)
+                    count = 100;
+            }
+        }, "myThread_01");
+
+        Thread myThread_02 = new Thread(() -> {
+            synchronized (locker){
+                while (true)
+                    count = 99;
+            }
+        }, "myThread_02");
+        System.out.println(myThread_01.getName() + " : " +myThread_01.getState());
+        System.out.println(myThread_02.getName() + " : " +myThread_02.getState());
+        myThread_01.start();
+        Thread.sleep(500);
+        System.out.println(myThread_01.getName() + " : " +myThread_01.getState());
+        System.out.println(myThread_02.getName() + " : " +myThread_02.getState());
+        myThread_02.start();
+        System.out.println(myThread_01.getName() + " : " +myThread_01.getState());
         System.out.println(myThread_02.getName() + " : " +myThread_02.getState());
     }
 }
