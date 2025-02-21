@@ -505,17 +505,46 @@ public void method(){  // 实例对象
 
    `synchronized` 关键字是通过实现了 `Java` 语句的原子性，使得加锁代码块在本质上时串行执行的，所以间接达成了内存可见性。
 
+---
 
+### volatile
 
+```java
+public class Demo12_volatile {
+    static int flag = 0;
+    public static void main(String[] args) {
+        Thread myThread_01 = new Thread(() -> {
+            while (flag == 0){
 
+            }
+            System.out.println(Thread.currentThread().getName() + " has been exited...");
+        }, "myThread_01");
 
+        myThread_01.start();
 
+        Thread myThread_02 = new Thread(() -> {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Input a number > ");
+            flag = scanner.nextInt();
+            System.out.println(Thread.currentThread().getName() + " has been exited...");
+        }, "myThread_02");
+        myThread_02.start();
+    }
+}
+```
 
+在上述这个代码中，得出的结果如下：
 
+```java
+Input a number > 1
+myThread_02 has been exited...
+```
 
+再输入一个非零的数字后，线程 2 顺利结束，但是线程 1 仍然处于死循环，没有顺利退出循环，由此看出线程没有按照我们写好的代码去执行任务，引发了线程安全问题，这是由 JMM（Java 内存模型）的特点导致。
 
+计算机在执行程序时，会从内存中读取数据，然后加载到 CPU 中运行。由于 **CPU 执行指令的速度要比从内存中读取和写入的速度快的多**，所以如果每条指令都要和内存交互的话，会大大降低 CPU 的运行速度，造成昂贵的 CPU 性能损耗，为了解决这种问题，设计了 **CPU 高速缓存**。有了 CPU 高速缓存后，CPU 就不再需要频繁的和内存交互了，有高速缓存就行了，而 CPU 高速缓存，就是我们经常说的 `L1, L2, L3, cache`。
 
-
+而在上述代码的线程运行中，线程 1 首先去主内存中把 flag 的值读取到自己的工作内存中，在线程 1 的代码中，JVM 发现线程 1 之后并没有对 flag 修改的动作，所以认为线程 1 中的 flag 变量是不会变的，所以每次在读取值的时候为了提高效率，就不会再去主内存中读取值，进而导致线程 1 的工作内存中，flag 的值一直都没有发生变化，这就导致了线程之间的变量值不同步的问题，引发了线程安全问题。
 
 
 
