@@ -622,15 +622,99 @@ myThread_02 has been exited...
 
 ---
 
-### `wait() & notify()`
+### `wait() & notify() & notifyAll()`
 
+`wait()`是`Java`中的一个方法，同样属于`Object`类，用于使当前线程等待，直到其他线程调用此对象的`notify()`方法或`notifyAll()`方法，或者等待的时间超过指定的时间长度。调用`wait()`方法会释放当前线程持有的对象的锁，并导致当前线程进入等待状态。
 
+- `wait()`方法必须在同步代码块或同步方法中调用，且必须持有调用该方法的对象的锁。
+- 调用`wait()`方法会**释放当前线程持有的锁**，这是`wait()`和`sleep()`方法的一个重要区别。
+- `wait()`方法可以通过传递参数来指定等待的时间，如果时间到了还没有被唤醒，线程会自动醒来并重新尝试获取锁。
+- 在等待过程中，如果线程被中断，那么wait方法会抛出[`InterruptedException`](https://zhida.zhihu.com/search?content_id=250556768&content_type=Article&match_order=1&q=InterruptedException&zhida_source=entity)异常。
 
+​	
 
+`notify()`也是`Java`中的一个方法，属于`Object`类，用于唤醒正在等待该对象监视器的单个线程。当某个线程调用了某个对象的`wait()`方法后，该线程会进入等待状态并释放该对象的锁，直到其他线程调用此对象的`notify()`方法或者`notifyAll()`方法，或者等待超时，该线程才会重新获得锁并进入就绪状态。
 
+- `notify()`方法必须在同步代码块或同步方法中调用，且必须持有调用该方法的对象的锁。
+- `notify()`方法一次只能唤醒一个等待线程，如果有多个线程在等待，那么唤醒哪个线程是不确定的。如果需要唤醒所有等待线程，应使用`notifyAll()`方法。
+- 被唤醒的线程不会立即执行，而是会进入就绪状态，等待CPU的调度。
 
+```java
+// 生产者和消费者模型
+class ProducerConsumer{
+    public List<Integer> buffer = new ArrayList<>();
+    int capacity = 5;
 
+    public synchronized void produce(int value, String name) throws InterruptedException {
+        while (buffer.size() >= capacity){
+            wait();
+            // 如果 buffer 里面满了，生产者线程暂停任务
+            // 等待消费者线程消费后再将其唤醒继续执行生产任务
+        }
+        buffer.add(value);
+        System.out.println(name + " : " + "Produced: " + value);
+        notifyAll();
+    }
 
+    public synchronized void consume() throws InterruptedException {
+        while (buffer.isEmpty()){
+            wait();
+            // 如果 buffer 空了，消费者线程暂停任务
+            // 等待生产者线程生产后将其唤醒继续执行消费任务
+        }
+        Integer con_num = buffer.remove(0);
+        System.out.println("Consumed: " + con_num);
+        notifyAll();
+    }
+
+}
+public static void main(String[] args) throws InterruptedException {
+        ProducerConsumer pc = new ProducerConsumer();
+        // 创建一个线程来生产材料（生产者）
+        Thread producer_thread_1 = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                try {
+                    pc.produce(i, "producer_thread_1");
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }, "producer_thread_1");
+
+        // 创建一个线程来消费材料（消费者）
+        Thread consumer_thread = new Thread(() -> {
+            for (int i = 0; i < 20; i++) {
+                try {
+                    pc.consume();
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }, "consumer_thread");
+				// 创建一个线程来监控生产者和消费者线程状态
+        Thread thread_01 = new Thread(() -> {
+            while (true){
+                System.out.println("pc.buffer.size: " + pc.buffer.size());
+                System.out.println(producer_thread_1.getName() + " : " + producer_thread_1.getState());
+                System.out.println(consumer_thread.getName() + " : " + consumer_thread.getState());
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+        }, "thread_01");
+
+        thread_01.start();
+        producer_thread_1.start();
+        Thread.sleep(8000);
+        consumer_thread.start();
+    }
+
+```
 
 
 
