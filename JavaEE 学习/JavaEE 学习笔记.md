@@ -716,11 +716,32 @@ public static void main(String[] args) throws InterruptedException {
 
 ```
 
+上述代码编写遇到的一个问题，在生产者和消费者判断 `buffer.size()` 时使用了不恰当的判断方式：
 
+```java
+// 错误写法（隐患根源）
+if (buffer.size()  >= capacity) {
+    wait();
+}
+```
 
+- **问题描述**：当生产者线程被唤醒时，未重新检查条件就直接执行后续代码。
+- 技术原理：
+  - `wait()`方法可能被虚假唤醒（即使没有显式调用`notify`，线程也可能被唤醒）。
+  - 使用`if`判断时，线程被唤醒后会直接执行`buffer.add(value)` ，**不会重新检查容量是否已满**。
+- 问题复现：
+  1. 当两个生产者线程同时被唤醒。
+  2. 第一个线程抢到锁并生产后，`buffer`已满（`size=5`）。
+  3. 第二个线程拿到锁时，`if`判断**不再生效**，直接执行生产操作导致`size=6`。
 
+所以需要使用 `while` 作为条件判断：
 
-
+```java
+// 正确写法（循环检查条件）
+while (buffer.size()  >= capacity) {
+    wait();
+}
+```
 
 
 
