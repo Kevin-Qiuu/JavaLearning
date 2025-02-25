@@ -2,10 +2,19 @@ package multi_thread;
 
 public class Demo16_Singleton {
     public static void main(String[] args) {
+        // 创建 10个 线程，依次获取单例对象，查看获取结果
+        for (int i = 0; i < 10; i++) {
+            Thread thread = new Thread(() -> {
+                Demo15_Singleton_Lazy singletonLazy = Demo15_Singleton_Lazy.getInstance();
+                System.out.println(Thread.currentThread().getName() + " : " + singletonLazy);
+            });
+            thread.start();
+        }
+    }
+    public static void main3(String[] args) {
         // 多线程访问单例（懒汉）
         Thread thread_1 = new Thread(() -> {
             Demo15_Singleton_Lazy singletonLazy = Demo15_Singleton_Lazy.getInstance();
-            System.out.println(Thread.currentThread().getName() + " : " + singletonLazy);
         }, "thread_1");
 
         Thread thread_2 = new Thread(() -> {
