@@ -1,6 +1,5 @@
-package multi_thread;
+package ee_02_thread_safety;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +57,7 @@ class ProducerConsumer{
 
 }
 
-public class Demo13_wait_notifyall {
+public class Demo06_wait_notifyall {
     static Object locker = new Object();
 
     // 生产者 & 消费者模型

@@ -1,4 +1,4 @@
-package multi_thread;
+package ee_02_thread_safety;
 
 class CounterDemo10{
     public int count = 0;
@@ -7,7 +7,7 @@ class CounterDemo10{
     }
 }
 
-public class Demo10_sychronized {
+public class Demo03_sychronized {
     static int count = 0;
     static final Object locker = new Object();
     static final Object locker_01 = new Object();

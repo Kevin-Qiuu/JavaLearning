@@ -1,4 +1,4 @@
-package multi_thread;
+package ee_01_multi_thread;
 
 public class Demo06_interrupt_thread {
     // 第一种，设置全局变量自定义中断标志位

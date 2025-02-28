@@ -1,9 +1,9 @@
-package multi_thread;
+package ee_02_thread_safety;
 import org.openjdk.jol.info.ClassLayout;
 
 
-public class Demo11_Demo_Layout {
-    static Demo11_Demo_Layout singleton = null;
+public class Demo04_Demo_Layout {
+    static Demo04_Demo_Layout singleton = null;
     // 定义一些变量
     private int count;
     private long count1 = 200;
@@ -22,7 +22,7 @@ public class Demo11_Demo_Layout {
         // 延时4S开启偏向锁
         Thread.sleep(5000);
         // 创建本类的实例
-        Demo11_Demo_Layout monitor = new Demo11_Demo_Layout();
+        Demo04_Demo_Layout monitor = new Demo04_Demo_Layout();
         // 打印实例布局，注意查看锁状态为偏向锁
         System.out.println("=== 打印实例布局，注意查看锁状态为偏向锁");
         System.out.println(ClassLayout.parseInstance(monitor).toPrintable());
@@ -104,10 +104,10 @@ public class Demo11_Demo_Layout {
         System.out.println(ClassLayout.parseInstance(monitor).toPrintable());
         // 打印类布局，注意调用的方法不同
         System.out.println("==== 查看类布局");
-        System.out.println(ClassLayout.parseClass(Demo11_Demo_Layout.class).toPrintable());
+        System.out.println(ClassLayout.parseClass(Demo04_Demo_Layout.class).toPrintable());
         // 打印类对象布局
         System.out.println("==== 查看类对象布局");
-        System.out.println(ClassLayout.parseInstance(Demo11_Demo_Layout.class).toPrintable());
+        System.out.println(ClassLayout.parseInstance(Demo04_Demo_Layout.class).toPrintable());
 
 
 

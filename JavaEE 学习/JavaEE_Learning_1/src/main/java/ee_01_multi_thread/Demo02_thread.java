@@ -1,4 +1,4 @@
-package multi_thread;
+package ee_01_multi_thread;
 
 // Runnable 是一个只有一个方法的接口，因此是一个函数式接口，对于函数式接口的重写可以使用 Lambda 表达式
 // 继承了 Runnable，重写 run 方法，表示这个类可以通过创建线程来去调用其业务逻辑，

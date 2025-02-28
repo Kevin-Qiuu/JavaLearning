@@ -1,4 +1,4 @@
-package multi_thread;
+package ee_01_multi_thread;
 
 // 尝试通过 jconsole 跟踪多线程任务
 

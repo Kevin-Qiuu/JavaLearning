@@ -1,6 +1,6 @@
-package multi_thread;
+package ee_02_thread_safety;
 
-public class Demo09_thread_safety {
+public class Demo02_thread_safety {
     public static int i;
     // 两个线程同时对一个变量进行自增操作
     public static void main(String[] args) throws InterruptedException {

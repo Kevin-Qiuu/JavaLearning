@@ -1,6 +1,6 @@
-package multi_thread;
+package ee_02_thread_safety;
 
-public class Demo08_thread_states {
+public class Demo01_thread_states {
     // 展现线程的 NEW、 RUNNABLE 和 TERMINATED 状态
     public static void main1(String[] args) throws InterruptedException {
         Thread myThread = new Thread(()->{

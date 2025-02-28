@@ -1,8 +1,8 @@
-package multi_thread;
+package ee_02_thread_safety;
 
 import java.util.Scanner;
 
-public class Demo12_volatile {
+public class Demo05_volatile {
     static int flag = 0;
     public static void main(String[] args) throws InterruptedException {
         Thread myThread_01 = new Thread(() -> {

@@ -1,7 +1,4 @@
-package multi_thread;
-
-import java.sql.Time;
-import java.util.Timer;
+package ee_01_multi_thread;
 
 public class Demo07_join_thread {
     public static void main1(String[] args) throws InterruptedException {

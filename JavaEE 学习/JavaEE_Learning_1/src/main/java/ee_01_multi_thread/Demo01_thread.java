@@ -1,4 +1,4 @@
-package multi_thread;
+package ee_01_multi_thread;
 
 class MyThread extends Thread{
     @Override
