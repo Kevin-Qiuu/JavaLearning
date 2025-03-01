@@ -11,8 +11,10 @@ public class MyBlockQueue {
     private ArrayList<Integer> blockQueue = null; // 循环队列
 
     public MyBlockQueue(int capacity){
+        if(capacity <= 0)
+            throw new RuntimeException("阻塞队列的容量不可为空或者为负");
         this.capacity = capacity;
-        blockQueue = new ArrayList<>(capacity);
+        blockQueue = new ArrayList<>(this.capacity);
     }
 
     // 为了避免多线程同时向 blockqueue 添加数据
