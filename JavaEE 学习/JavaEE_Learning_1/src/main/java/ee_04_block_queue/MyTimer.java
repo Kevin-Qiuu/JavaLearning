@@ -16,7 +16,7 @@ class MyTimerTask implements Comparable{
     // MyTimerTask cannot be cast to class java.lang.Comparable
     // PriorityBlockingQueue 是通过 comparable 来比较队列元素的优先级
     // 所以要放入这个队列中的类应该实现 comparable
-    private long runTime;
+    private long runTime; // 任务执行的时间
     private TimerRunTask runTask;
 
     public MyTimerTask(TimerRunTask runTask, long runTime) {
@@ -25,8 +25,7 @@ class MyTimerTask implements Comparable{
     }
 
     // 如果当前时间未到任务执行时间，则让调用 TaskRun 方法的线程睡眠
-    public void TaskRun() throws InterruptedException {
-        Thread.sleep(runTime - System.currentTimeMillis());
+    public void TaskRun(){
         runTask.run();
     }
 
@@ -47,22 +46,51 @@ class MyTimerTask implements Comparable{
 }
 
 public class MyTimer {
-    private PriorityBlockingQueue<MyTimerTask> tasksQueue = new PriorityBlockingQueue<>();
+    private final PriorityBlockingQueue<MyTimerTask> tasksQueue = new PriorityBlockingQueue<>();
+    private final Object locker = new Object();
     // 定义一个线程一直监控执行阻塞队列中的任务
-    private Thread timerThread = new Thread(() -> {
+    private final Thread timerThread = new Thread(() -> {
         while (true) {
-            MyTimerTask task = null;
-            try {
-                task = tasksQueue.take();
-                task.TaskRun();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            synchronized (locker) {
+                MyTimerTask task = null;
+                try {
+                    task = tasksQueue.take();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                long waitTime = task.getRunTime() - System.currentTimeMillis();
+                if (waitTime > 0) {
+                    tasksQueue.put(task);
+                    try {
+                        locker.wait(waitTime);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    task.TaskRun();
+                }
             }
         }
     }, "TimerThread"); // 用于管理消息队列的线程，随时等待新的任务的注入，然后执行
 
+    // 解决死锁的关键线程
+    private Thread notifyThread = new Thread(() -> {
+        while (true){
+            try {
+                Thread.sleep(100); // 每隔 1 毫秒唤醒一次全部线程
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            synchronized (locker){
+                locker.notifyAll();
+            }
+        }
+    });
+
     public MyTimer() {
         timerThread.start();
+        notifyThread.setDaemon(true); // 设置为后台（守护）线程
+        notifyThread.start();
     }
 
     public void schedule(TimerRunTask timerTask, long delay) {
@@ -73,6 +101,7 @@ public class MyTimer {
 
     public void printTimerThreadState(){
         System.out.println(timerThread.getName() + " : " + timerThread.getState());
+        System.out.println("tasksQueue.size() : " + tasksQueue.size());
     }
 
 }

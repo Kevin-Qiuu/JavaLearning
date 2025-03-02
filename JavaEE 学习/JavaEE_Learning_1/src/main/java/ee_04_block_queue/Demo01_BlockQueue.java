@@ -4,9 +4,11 @@ import javax.swing.plaf.synth.SynthListUI;
 import java.sql.Time;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
 
-class MyTimerTask_1 extends TimerTask{
+class MyTimerTask_1 extends TimerTask {
     @Override
     public void run() {
         System.out.println("执行自定义对象的 run 方法...");
@@ -15,7 +17,85 @@ class MyTimerTask_1 extends TimerTask{
 
 
 public class Demo01_BlockQueue {
+    public static void main7(String[] args) {
+        MyTimer myTimer = new MyTimer();
+        myTimer.schedule(new TimerRunTask() {
+            @Override
+            public void run() {
+                System.out.println("执行第一个任务...");
+            }
+        }, 0);
+
+        myTimer.schedule(new TimerRunTask() {
+            @Override
+            public void run() {
+                System.out.println("执行第二个任务...");
+            }
+        }, 0);
+
+        myTimer.schedule(new TimerRunTask() {
+            @Override
+            public void run() {
+                System.out.println("执行第三个任务...");
+            }
+        }, 0);
+    }
+
     public static void main(String[] args) throws InterruptedException {
+        MyTimer myTimer = new MyTimer();
+        Thread timeThread = new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.println("After 0.5s ...");
+            }
+        });
+        timeThread.start();
+        myTimer.schedule(new TimerRunTask() {
+            @Override
+            public void run() {
+                System.out.println("天亮了...");
+            }
+        }, 0);
+        myTimer.schedule(new TimerRunTask() {
+            @Override
+            public void run() {
+                System.out.println("小邱第二个起床了...");
+            }
+        }, 10000);
+        // 因为先放入了小邱起床的任务，所以此时扫描线程在等待小邱起床任务的执行时间，处于忙等
+        // 所以再次添加小球球起床的任务，即使他执行时间更靠前，程序也不能够按时执行小球球起床的任务
+        // 程序的实时性就变差了，但是在扫描线程结束 WAITING 时，仍然会拿最靠前的任务（因为 PriorityBlockingQueue），
+        // 所以执行任务的顺序不会发生改变，但是任务的总体执行实时性变差了
+        Thread putTaskDemo = new Thread(() -> {
+            putTimeTask(myTimer, new TimerRunTask() {
+                @Override
+                public void run() {
+                    System.out.println("小球球起床了...");
+                }
+            }, 1000);
+        }, "putTaskDemo");
+        putTaskDemo.start();
+        myTimer.schedule(new TimerRunTask() {
+            @Override
+            public void run() {
+                System.out.println("小陈第三个起床了...");
+            }
+        }, 15000);
+    }
+
+    public static void putTimeTask(MyTimer myTimer, TimerRunTask task, long delay) {
+        myTimer.schedule(task, delay);
+    }
+
+    public static void main4(String[] args) {
+
+    }
+
+    public static void main3(String[] args) throws InterruptedException {
         // 基于阻塞队列手动写一个定时器
         // 定时器使用的是 PriorityBlockQueue
         // 需要注意的是优先级消息队列用到了堆，同时会使用到 comparable 接口
@@ -66,6 +146,7 @@ public class Demo01_BlockQueue {
         Thread.sleep(3000);
         myTimer.printTimerThreadState();
     }
+
     public static void main2(String[] args) {
 
         // 使用 JDK 创建一个定时器 timer
@@ -106,6 +187,7 @@ public class Demo01_BlockQueue {
         thread_timer.start();
 
     }
+
     public static void main1(String[] args) throws InterruptedException {
         // 再实现一遍消费者生产者的案例吧
         // 使用 while 判断是否已满
@@ -128,7 +210,7 @@ public class Demo01_BlockQueue {
         }, "producer_1");
 
         Thread producer_2 = new Thread(() -> {
-            while (true){
+            while (true) {
                 try {
                     myBlockQueue.put(2);
                     System.out.println(Thread.currentThread().getName() + " 放入了 " + 2);
@@ -140,7 +222,7 @@ public class Demo01_BlockQueue {
         }, "producer_2");
 
         Thread producer_3 = new Thread(() -> {
-            while (true){
+            while (true) {
                 try {
                     myBlockQueue.put(3);
                     System.out.println(Thread.currentThread().getName() + " 放入了 " + 3);
@@ -152,7 +234,7 @@ public class Demo01_BlockQueue {
         }, "producer_3");
 
         Thread consumer_1 = new Thread(() -> {
-            while (true){
+            while (true) {
                 try {
                     Integer takeNum = myBlockQueue.take();
                     System.out.println(Thread.currentThread().getName() + " 拿取了 " + takeNum);
@@ -164,7 +246,7 @@ public class Demo01_BlockQueue {
         }, "consumer_1");
 
         Thread consumer_2 = new Thread(() -> {
-            while (true){
+            while (true) {
                 try {
                     Integer takeNum = myBlockQueue.take();
                     System.out.println(Thread.currentThread().getName() + " 拿取了 " + takeNum);
@@ -185,8 +267,6 @@ public class Demo01_BlockQueue {
         producer_1.start();
         producer_2.start();
         producer_3.start();
-
-
 
 
     }

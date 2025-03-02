@@ -743,19 +743,174 @@ while (buffer.size()  >= capacity) {
 }
 ```
 
+### 定时器
 
+```java
+public class MyTimer {
+    private final PriorityBlockingQueue<MyTimerTask> tasksQueue = new PriorityBlockingQueue<>();
+    private final Object locker = new Object();
 
+    // 定义一个线程一直监控执行阻塞队列中的任务
+    private final Thread timerThread = new Thread(() -> {
+        while (true) {
+            MyTimerTask task = null;
+            try {
+                task = tasksQueue.take();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            long waitTime = task.getRunTime() - System.currentTimeMillis();
+            if (waitTime > 0) {
+                tasksQueue.put(task);
+                synchronized (locker) {
+                    try {
+                        // 这一步会引发程序执行顺序出异常的情况
+                        // 如果此时扫描线程拿出了一个任务，然后在等待这个任务的执行时间
+                        // 但此时来了一个更紧急的任务，由于此时扫描线程处于 WAITING 状态
+                        // 所以不能执行这个紧急任务，因而出现了忙等，所以需要正确唤醒扫描线程
+                        // 这是代码的原子性导致的
+                        locker.wait(waitTime);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            } else {
+                task.TaskRun();
+            }
+        }
+    }, "TimerThread"); // 用于管理消息队列的线程，随时等待新的任务的注入，然后执行
+  
+		public MyTimer() {
+        timerThread.start();
+    }
+    
+    public void schedule(TimerRunTask timerTask, long delay) {
+        if (delay < 0)
+            throw new IllegalArgumentException("任务的延迟时间不可为负数");
+        tasksQueue.put(new MyTimerTask(timerTask, System.currentTimeMillis() + delay));
+        synchronized (locker){
+            locker.notifyAll(); // 在每一次 put 时都进行一次 notify
+        }
+    }
+  
+  	public void printTimerThreadState(){
+        System.out.println(timerThread.getName() + " : " + timerThread.getState());
+        System.out.println("tasksQueue.size() : " + tasksQueue.size());
+    }
+}
+```
 
+以上代码会引发程序执行顺序出异常的情况。如果此时扫描线程拿出了一个任务，然后在等待这个任务的执行时间但此时来了一个更紧急的任务，由于此时扫描线程处于 `WAITING` 状态，所以不能及时执行这个紧急任务，因而出现了忙等，所以需要在 `schedule` 方法中正确唤醒扫描线程。
 
+但是在唤醒代码添加后，可能一样会出现问题，原因还在于 CPU 的随机式调度，如果此时扫描线程在执行完毕计算 `waitTime` 这一行代码后被调出 CPU，其他线程调用 `schedule` 方法，并添加了一个更紧急的任务，然后抢占锁执行了一次空的 `notifyAll`，但是此时抢占线程的等待时间没有变，所以仍然会出现忙等，显然是代码不具备原子性导致的，所以扫描线程在执行完成 `wait` 方法以前，是不可以执行 `schedule` 方法，因而要使用 `synchronized` 保证代码原子性，所以尝试在 `take` 方法执行前加锁，保证扫描线程取到任务并且在执行完毕 `wait` 以前，外界不会向阻塞队列中添加新的任务，更新后代码如下。
 
+```java
+private final Thread timerThread = new Thread(() -> {
+    while (true) {
+        synchronized (locker) {
+            MyTimerTask task = null;
+            try {
+                task = tasksQueue.take();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            long waitTime = task.getRunTime() - System.currentTimeMillis();
+            if (waitTime > 0) {
+                tasksQueue.put(task);
+                try {
+                    locker.wait(waitTime);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                task.TaskRun();
+            }
+        }
+    }
+}, "TimerThread");
+```
 
+**此时如果执行下列代码来添加任务时，又会出现一个新的问题。**
 
+```java
+public static void main(String[] args) {
+    MyTimer myTimer = new MyTimer();
+    Thread checkTimerState = new Thread(() -> {
+        while (true){
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            myTimer.printTimerThreadState();
+        }
+    }, "checkTimerState");
+    checkTimerState.start();
+    myTimer.schedule(new TimerRunTask() {
+        @Override
+        public void run() {
+            System.out.println("执行第一个任务...");
+        }
+    }, 0);
 
+    myTimer.schedule(new TimerRunTask() {
+        @Override
+        public void run() {
+            System.out.println("执行第二个任务...");
+        }
+    }, 1000);
 
+    myTimer.schedule(new TimerRunTask() {
+        @Override
+        public void run() {
+            System.out.println("执行第三个任务...");
+        }
+    }, 1000);
+}
+```
 
+在队列为空并且扫描线程抢到锁并执行 `take` 方法时，由于队列为空，扫描线程进入阻塞状态，并等待新的任务被加入队列，需要注意的是，这里使得扫描线程进入阻塞队列的锁对象来自于阻塞队列，而扫描线程同时还拥有 `MyTimer` 的 `locker` 锁对象，所以此时由于扫描线程进入了阻塞状态（不会执行后续代码），所以不会释放 `locker` 这个锁，导致执行 `schedule` 方法的线程抢不到执行 `notifyAll` 的锁，所以会一直等待锁的释放，同样进入了阻塞状态，出现了**非常严重的死锁现象**。通过 `jconsole` 工具查看进程状态如下：
 
+![image-20250302212836076](JavaEE 学习笔记_markdown_img/image-20250302212836076.png)
 
+![image-20250302214657149](JavaEE 学习笔记_markdown_img/image-20250302214657149.png)
 
+`TimerThread` 就是 `Mytimer` 中的扫描线程，`jconsole` 显示 `TimerThread` 线程处于 `WAITING` 状态，最近的堆栈追踪来自于 `MyTimer` 类文件的第 `57` 行代码，而第 57 行代码为 `task = tasksQueue.take();` ，表示当前阻塞队列为空，而 `TimerThread` 仍然去拿出数据，则进入 `WAITING` 状态，与上文分析的情况一致。main 就是主线程，`jconsole` 线程 `main` 线程处于 `BLOCKED` 状态，最近的堆栈追踪来自于由 `MyTimer` 类文件的第 `87` 行代码，而第 87 行代码为`locker.notifyAll();`，表示 `main` 线程正在等待 `locker` 锁对象的释放，同样与上文分析一致。
+
+通过打印以下线程状态，使得产生死锁的情况更加清晰了：
+
+```python
+执行完毕 put 方法
+执行第一个任务...
+TimerThread : WAITING
+tasksQueue.size() : 0
+```
+
+这表示主线程会率先执行 `put` 方法，然后扫描线程抢到锁，执行了放入的第一个任务，然后扫描线程再次通过锁竞争抢到了锁，由于阻塞队列为空，扫描线程因为阻塞队列进入了阻塞状态，无法释放 `locker` 锁，此时主线程也在等待 `locker` 锁，导致双方都在等待对方，造成死锁。
+
+**解决方法：**
+
+引入另外一个线程 `notifyThread`，是其每隔一段时间对 `locker` 锁对象管理的线程进行一次唤醒，因为这个线层是一个处理辅助任务的线程，设置为后台线程即可，使其随着进程的结束也随之结束。这样便取消了 `schedule` 方法中的 `notifyAll` 操作，使得执行 `schedule` 方法的线程不会去竞争 `locker` 锁，避免了死锁的产生。
+
+```java
+// 解决死锁的关键线程
+private Thread notifyThread = new Thread(() -> {
+    while (true){
+        try {
+           Thread.sleep(100); // 每隔 1 毫秒唤醒一次全部线程
+        } catch (InterruptedException e) {
+           throw new RuntimeException(e);
+        }
+        synchronized (locker){
+           locker.notifyAll();
+        }
+    }
+ });
+```
+
+在扫描线程睡眠等待时，可能会被多次唤醒，但仍然会继续等待时间，直到到达阻塞队列中最先执行的任务时间；而在扫描线层睡眠等到时有更紧急的任务进入，扫描线程也会被唤醒并重新 `take` 到任务，仍然可以 `put` 到最新的任务并执行（这里会有 `1` 毫秒左右的误差，是因为 `notifyThread` 是间隔 `1` 毫秒，唤醒一次线程的）；在扫描线程因为对空阻塞队列 `take` 任务时而进入 `WAITING` 状态，此时 `schedule` 方法没有了锁竞争，也可以顺利加入了任务，进而唤醒了扫描线程。
+
+到这里死锁的问题就解决了，即使耗费了重复唤醒扫描线程以及 `1` 毫秒左右的误差，但是对于性能强大的计算机而言，可以使用户几乎感知不到，所以可以忽略不计，但最重要的是解决掉了会使得整个程序崩溃的死锁问题。
 
 
 
