@@ -743,6 +743,24 @@ while (buffer.size()  >= capacity) {
 }
 ```
 
+---
+
+### 单例模式
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
 ### 定时器
 
 ```java
@@ -912,7 +930,19 @@ private Thread notifyThread = new Thread(() -> {
 
 到这里死锁的问题就解决了，即使耗费了重复唤醒扫描线程以及 `1` 毫秒左右的误差，但是对于性能强大的计算机而言，可以使用户几乎感知不到，所以可以忽略不计，但最重要的是解决掉了会使得整个程序崩溃的死锁问题。
 
+---
 
+### 线程锁
+
+```java
+ public ThreadPoolExecutor(int corePoolSize,
+                           int maximumPoolSize,
+                           long keepAliveTime,
+                           TimeUnit unit,
+                           BlockingQueue<Runnable> workQueue,
+                           ThreadFactory threadFactory,
+                           RejectedExecutionHandler handler) 
+```
 
 
 
