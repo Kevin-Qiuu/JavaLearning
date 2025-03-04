@@ -747,17 +747,46 @@ while (buffer.size()  >= capacity) {
 
 ### 单例模式
 
+单例模式，是 Java 开发中的一个设计模式，顾名思义就是在整个进程中全局唯一，在整个项目的运行过程中，都只会有这一个对象。
 
+单例模式分为饿汉模式和懒汉模式，饿汉模式会在进程一启动后便创建单例对象；懒汉模式为了提高进程启动速度，在使用单例模式的时候再创建单例对象；
 
+#### 饿汉模式
 
+```java
+private static final Singleton_Hungry singletonHungry = new Singleton_Hungry();
+```
 
+1. `private` 表示不可以再类外获取，保证外部不可以修改这个引用变量，保证单例对象始终都有这个引用变量指向。
+2. `static` 依靠类的全局唯一的属性，所以类的静态变量也是全局唯一的（存在于 `.class` 对象中 ？）
+3. `final` 进一步保证了这个引用变量是一个常量，在类内也不可以更改，保证单例对象始终都有这个引用变量指向。
 
+#### 懒汉模式
 
+```java
+// 在进程一启动时定义单例引用为 null
+private static volatile Singleton_Lazy singletonLazy = null;
 
+// 获取单例对象的方法使用到了 DCL (Double check lock)
+public static Singleton_Lazy getInstance(){
+    if (singletonLazy == null) {
+        synchronized (Singleton_Lazy.class) {
+            if (singletonLazy == null) {
+                // 达到了延时加载
+                System.out.println("第一次访问单例，懒汉单例即将创建...");
+                singletonLazy = new Singleton_Lazy();
+            }
+        }
+    }
+    return singletonLazy;
+}
+```
 
+在懒汉线程的 `getInstance` 方法中，使用到了 **DCL (Double check lock)**，双重检查锁。
 
-
-
+1. **`synchronized` 的使用原因**：当多个线程同时在没有创建单例对象的时候去调用 **getInstance** 方法时，会同时判断 **singletonLazy** 为空，然后同时创建了单例对象，同时更改了 **singleton** 这一引用变量，由于同时修改了共享变量，所以引发了线程安全问题，本质是由 **java** 代码的原子性问题导致的，所以需要使用 **synchronized** 加锁，保证代码的原子性。
+2. **最外面的 `if` 语句**：如果单例对象已经创建，那就不用再去创建了，也就不用触发锁竞争了，不然重复抢夺释放锁，额外使用锁资源会造成内存资源浪费。
+3. **volatile 的使用原因**：只要在多线程环境中，会出现多个线程使用或更改同一个变量，就要为这个变量添加 **volatile**。
 
 ---
 
@@ -932,7 +961,9 @@ private Thread notifyThread = new Thread(() -> {
 
 ---
 
-### 线程锁
+### 线程池
+
+#### 构造函数
 
 ```java
  public ThreadPoolExecutor(int corePoolSize,
@@ -943,6 +974,56 @@ private Thread notifyThread = new Thread(() -> {
                            ThreadFactory threadFactory,
                            RejectedExecutionHandler handler) 
 ```
+
+`JDK` 通过工厂模式给定了多个根据不同的参数创建线程池的方法，但是本质都是使用的上述 `ThreadPoolExecutor` 类的构造函数，所以理解这个构造函数的 7 个参数至关重要。
+
+1. ```java
+   1. int corePoolSize  // 核心线程数
+   2. int maximumPoolSize  // 最大线程数。临时线程数 = maximumPoolSize - corePoolSize
+   3. long keepAliveTime  // 临时线程的存活时间
+   4. TimeUnit unit  // 临时线程存活时间的时间单位
+   5. BlockingQueue<Runnable> workqueue  // 组织（保存）任务的阻塞队列，元素是 Runnable
+   6. ThreadFactory threadFactory  // 线程工厂（暂时忽略）
+   7. RejectExecutionHandler Handler  // 拒绝策略
+   ```
+
+#### 工作原理
+
+以火锅店为例：
+
+<img src="https://q8.itc.cn/images01/20240814/865ebc52f7cf47f69744ac9321be6037.jpeg" alt="描述" width="900" height="600">
+
+1. 小伙伴周末去吃火锅，火锅店里有 6 张桌子（**核心线程数**），如果店里有空位就可以直接入座上菜吃火锅（**核心线程开始执行任务**）；
+2. 随着到了饭点，人越来越多，6 张桌子都坐满了，后面来的人就要去排号，然后坐在店门口准备的等位小板凳上面，最多排到 20 号，因为一共准备了 20 个小板凳（**阻塞队列和队列的容量**）；
+3. 火锅太好吃了，来的人越来越多，排到了 20 号，门口的凳子已经坐满了（**阻塞队列已经满容量了**），于是在店门口又加了 10 张临时的桌子（**启动了 10 个临时线程**）；
+4. 排号的人依次去外面新搭建的临时桌吃饭（**临时线程开始执行任务**）；
+5. 时间越来越晚了，随着一桌一桌的翻台（**线程的任务执行完毕**），排号的人都在店里吃上了饭，外面临时搭建的桌子就空出来了（**临时线程空闲**），再等 30 分钟，如果还没有人来吃饭，就把桌子撤掉了（**临时线程空闲状态下存活时间为 30 分钟，到了存活时间便销毁临时线程**）；
+6. 外面的桌子撤掉以后，就剩下店里的 6 张桌子有人就餐（**最后的线程数量又回到了核心线程数**）
+7. 如果中途排号的时候，人实在是爆满了，店里 6 张桌子和店外 10 张桌子都有人在就餐，店外的 20 个小板凳也都排满了号，那老板便不接待了，只好让后面来的客人去别的家了（**线程池能容纳的所有线程都在工作，并且阻塞队列也已经满了，便采取拒绝策略**）。
+8. 如果店里的桌子能变多或者临时搭建的桌子变多或者等位的桌子也变多，那就可以一次性接纳更多客人。（增大 maximumPoolSize 和 阻塞队列的容量，便可以降低使用拒绝策略的概率）
+
+#### 四种拒绝策略
+
+![image-20250304160106039](JavaEE 学习笔记_markdown_img/image-20250304160106039.png)
+
+1. `ThreadPoolExecutor.AbortPolicy`：直接拒绝提交的任务，并抛出拒绝异常
+2. `ThreadPoolExecutor.CallerRunsPolicy`：把提交的任务转给提交任务的线程执行
+3. `ThreadPoolExecutor.DiscardOldestPolicy`：跳过最老提交的任务
+4. `ThreadPoolExecutor.DiscardPolicy`：跳过最新提交的任务
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
