@@ -151,11 +151,18 @@ public class ThrowsDemo {
 
 ![exception_img](JavaSE 学习笔记_markdown_img/image-20241010115357061-8960296.png)
 
+#### **try-catch-finally：**
+
+如果一个线程执行任务时，引发了异常，若不采取捕获异常的操作，线程会直接崩溃终止，不会执行异常的后续代码，所以为了提高代码的健壮性，需要捕获异常：
+
+1. 使用 **try-catch**：如果异常被捕获，线程会继续执行 catch 块及后续代码，但如果没有捕获到异常，则不会执行 catch 块中的代码。
+2. 使用 **finally** 块：需要与 try 一起使用，无论是否发生了异常，都会执行 finally 块中的代码。
+
 非常详细的异常内容讲解文章：https://zhuanlan.zhihu.com/p/696348474
 
 ## 比较器
 
-
+Comparable 是一个接口，许多类在比较操作时，会调用 Comparable 接口的方法，所以使用这些类的类需要实现 Comparable 接口。
 
 ## Some tips
 

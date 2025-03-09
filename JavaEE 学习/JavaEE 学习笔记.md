@@ -743,6 +743,15 @@ while (buffer.size()  >= capacity) {
 }
 ```
 
+#### **`wait` 与 `sleep` 之间的区别：**
+
+1. 共同点：都是将线程处于 `WAITED` 状态。
+2. 二者实现和调用的方式不同：
+   1. `wait` 方法是 `Object` 类的方法，与锁对象对应，需配合 `synchronized` 一起使用，因为要通过锁对象管理 `wait` 的线程。
+   2. `sleep` 方法是 `Thread` 类的方法，与锁对象无关，使用时无需任何条件。
+3. `wait` 既可以设置为超时唤醒，也可以使用 `notify` 或者 `notifyAll` 唤醒，通过 `wait` 方法阻塞的线程会直接退出锁竞争，唤醒后会立即参与锁竞争。
+4. `sleep` 方法只可以设置为超时唤醒，通过 `sleep` 方法阻塞的线程不会退出锁竞争，或继续持有锁。
+
 ---
 
 ### 单例模式
@@ -1019,49 +1028,189 @@ private Thread notifyThread = new Thread(() -> {
 
 ### 锁策略
 
-悲观锁 & 乐观锁
+1. **乐观锁 & 悲观锁**
 
-自旋锁 & 挂起等待锁
+   乐观锁：在多线程执行任务时，预期锁竞争程度不会激烈，那就可以先不加锁，等后面真正发生锁竞争后再加锁。
 
-轻量级锁 & 重量级锁
+   悲观锁：在多线程执行任务时，预期锁竞争程度激烈，必须先加锁再执行任务。
 
-读写锁 & 普通互斥锁
+2. **轻量级锁 & 重量级锁**
 
-公平锁 & 非公平锁
+   轻量级锁：尽量停留在通过用户代码级别的锁，不会依赖于操作系统的 mutex 互斥锁，只会做少量的用户态与内核态之间的切换，通过 CAS + 自旋实现，轻度竞争场景下使用。
 
-可重入锁 & 不可重入锁
+   重量级锁：完全依赖于操作系统的 mutex 锁，需要频繁在用户态于内核态之间切换，系统开销大，在自旋失败或者高并发竞争场景下使用。
 
-**Synchronized 是什么锁？**
+   ![image-20250309154544586](JavaEE 学习笔记_markdown_img/image-20250309154544586.png)
+
+3. **自旋锁 & 挂起等待锁**
+
+   自旋锁：不停地检查锁是否被释放，如果锁一旦释放，就可以直接获取锁资源。会使用 CPU 的 cmpxchg 指令。(轻量级锁的实现方式)
+
+   挂起等待锁：阻塞等待，直到线程被唤醒，再去竞争锁资源。（重量级锁）
+
+4. **读写锁 & 普通互斥锁**
+
+   读写锁：分为读锁和写锁。
+
+   ​	线程只涉及到读操作（共享锁），就使用读锁，多个读锁可以共存，但是不可以与写锁共存，即若一个变量正在被一个拥有读锁的线程读取，加了写锁的线程不可以修改这个变量。
+
+   ​	线程涉及到了写操作（排他锁），就使用写锁，只允许有一个写锁执行任务，表示在同一时刻，只有一个拥有写锁的线程可以修改变量，写锁与其他所有锁都不能共存。
+
+   ![image-20250309161101150](JavaEE 学习笔记_markdown_img/image-20250309161101150.png)
+
+   普通互斥锁：保证了原子性，只有一个线程释放了互斥锁以后，其他线程才可以来抢，写锁就是一个互斥锁。
+
+5. **公平锁 & 非公平锁**
+
+   公平锁：先来后到，先排队的线程会提前拿到锁，后排的线程要等待前面的线程都拿到以后才可以重新拿到。
+
+   非公平锁：单纯一个抢，谁抢到算谁的。
+
+6. **可重入锁 & 不可重入锁**
+
+   可重入锁：线程可以重复添加锁，在释放锁是也会多次释放锁，不会造成死锁。
+
+   不可重入锁：线程不可以重复添加锁，否则会造成死锁。
+
+
+#### **synchronized 是什么锁？**
+
+synchronized 在 Java 中被高度实现了，会自动结合当前线程的竞争状态切换锁的状态。
+
+	1. 既是乐观锁，也是悲观锁。
+	1. 既是轻量级锁，也是重量级锁。
+	1. 既是自旋锁，也是挂起等待锁。
+	1. 互斥锁、非公平锁、可重入锁。（synchronized 保证原子性所以是互斥锁；线程自由竞争所以是非公平锁；线程可以重入，在释放锁时也会多次释放锁，所以是可重入锁。）
 
 ---
 
+### CAS
+
+CPU 的一个原子类操作，全称 compare and swap，通过硬件指令直接操作内存（`CMPXCHG`）。一个 CAS 涉及到以下操作：
+
+（假设共享内存中变量的数据是 A，线程缓存中存储的旧的预期值是 B，线程所要修改后的新值是 C）
+
+1. 首先从共享内存读取变量值为 A。（所以注意的是，CAS 操作也会有一个真正去主内存中读取值的操作）
+2. 然后比较 A 与 B 是否相等。
+3. 如果相等则把 C 写入共享内存（主内存）的变量中，并返回 true；如果不相等则不进行任何操作，并返回 false。
+
+以上三步构成了 CAS 操作，**CAS 操作是一个原子类操作**，所以以上三步会一次性依次执行完毕。
+
+伪代码如下：
+
+```java
+Boolean CAS(address, expectedValue, modifyValue) {
+  if (&address == expectedValue){
+    &address = expectedValue;
+    return true;
+  } else 
+  	return false;
+}
+```
+
+#### CAS 的 ABA 问题：
+
+如果线程 1 修改了共享变量 `count` 后，线程 2 又把 `count` 重新修改回了原值，此时线程 3 在检查预期值与主内存中的值时，值是相等的，所以线程 3 认为 `count` 没有被修改，但是实际上 `count` 已经被修改了，引起线程安全问题隐患，这就是 ABA 问题（一开始是 A，然后修改成了 B，最后又修改回了 A）
+
+**解决方法**：对 `count` 加一个线程的修改标签，通常是一个随机数🆔，每一个线程在修改了 `count` 后，都修改这个随机数🆔，相当于每一个线程修改后都会对这个变量做一个标记。所以预期值中除了存储此时变量的值也会存储变量对应的随机数🆔，在比较变量是否已经修改时，除了比较旧的预期值，还会比较这个随机数🆔，如果预期值一致，但是🆔不一致，则认为是存在 ABA 问题，进而给出反馈以做下一步处理。（可以通过时间戳、 `UUID` 等方式实现这个随机数🆔）。
+
+![image-20250309165023944](JavaEE 学习笔记_markdown_img/image-20250309165023944.png)
+
 ### 自旋锁
 
-Step1. 线程把共享内存（主内存）中变量的值读取到自己的缓存（工作内存）中作为**预期值**。
+**Step1.** 线程把共享内存（主内存）中变量的值读取到自己的缓存（工作内存）中作为**预期值**。
 
-Step2. 执行 CAS 操作，CAS 是一个原子类操作，是指令级别，通常是 cmpxchg
+**Step2.** 执行 CAS 操作，CAS 是一个原子类操作，是指令级别，通常是 cmpxchg
 
 ​	1）CAS 操作会再次读取共享内存中的变量值，并与预期值比较是否一致。
 
 ​	2）如果一致则表明当前所要修改的这个变量没有被其他线程修改过，所以直接把所要修改的值写入主内存中。
 
-​        3）如果不一致则表明当前线程所要修改的这个变量已经被其他线程修改过了，所以缓存中的预期值已经过时了，需重新循环执行第一步，直到 CAS 操作返回的是 true。
+   3）如果不一致则表明当前线程所要修改的这个变量已经被其他线程修改过了，所以缓存中的预期值已经过时了，需重新循环执行第一步，直到 CAS 操作返回的是 true。
 
 若线程一直处于循环的过程中，就是一个等待锁的操作（认为是阻塞 BLOCKED 状态），而这个阻塞状态实际就是一个不断循环的操作，故将其称为自旋锁。
 
-#### CAS
+![image-20250309165648681](JavaEE 学习笔记_markdown_img/image-20250309165648681.png)
 
-![image-20250307210318486](JavaEE 学习笔记_markdown_img/image-20250307210318486.png)
+Java 同样有基于自旋锁的几个原子类（Atomic...），以 AtomicInteger 为例，在修改值时会采用 CAS 操作：
+
+```java
+AtomicInteger count = new AtomicInteger(0);
+int ret = count.incrementAndGet();  // ++count
+System.out.println("count: " + count);
+System.out.println("ret: " + ret);
+ret = count.getAndIncrement(); // count++
+System.out.println("count: " + count);
+System.out.println("ret: " + ret);
+ret = count.decrementAndGet(); // --count;
+System.out.println("count: " + count);
+System.out.println("ret: " + ret);
+ret = count.getAndDecrement(); // count--
+System.out.println("count: " + count);
+System.out.println("ret: " + ret);
+```
 
 ### 锁升级
 
 **无锁 ➡️ 偏向锁 ➡️ 自旋锁 ➡️ 重量级锁**
 
+无锁：加锁代码块还未被线程执行，锁对象处于无锁状态。
+
+偏向锁：有一个线程执行了加锁代码块，但还未触及锁竞争，锁对象处于偏向锁（JDK 8 之前，之后的 JDK 不包含偏向锁），锁对象会存储使用锁的线程信息。
+
+自旋锁：两个线程同时执行加锁代码块，引起了轻度锁竞争，竞争状态不激烈，使用轻量级锁（CAS+自旋）。（thin-lock）
+
+重量级锁：两个以上的线程执行加锁代码块，引起了重度锁竞争，竞争状态激烈，使用重量级锁。（fat-lock）
+
+在 JDK 中，synchronized 会根据当前线程的竞争状态，自动进行锁策略的调控。
+
+### 锁消除 & 锁粗化
+
+**锁消除**是 synchronized 的一个优化策略，如果 JVM 100%确定度线程执行任务的时候不会出现问题是，才会执行锁消除（即不会真正地去加锁）
+
+**锁粗化**是 synchronized 的一个优化策略，当线程整型下图示例中的代码逻辑时，JVM 会将其视为一个低效的操作，因此会把锁粒度拉粗，会优化成从方法 1 开始加锁到方法 4 执行完成之后再释放锁，将方法 1 -- > 方法 4 进行合并，优化成只用一个锁。
+
+![image-20250309180543103](JavaEE 学习笔记_markdown_img/image-20250309180543103.png)
+
 ### Callable 接口
 
-**如何使用？怎样搭配 FutureTask 类一起使用？**
+Callable 是 Java 的一个接口，可以用来定义线程执行的任务逻辑，使用时需要重写 Callable 的 call 方法，需要结合 FutureTask 类来构建一个线程，FutureTask 是一个泛型类，接收类型应与 Callable 的 call 方法返回值的类型相同，因为后续在接收这个值时，需要使用 FutureTask 的 get 方法，因此需要类型匹配一致。
 
-#### runnable 与 callable 接口的区别
+```java
+public static void main(String[] args) throws ExecutionException, InterruptedException {
+    Callable callable_int = new Callable() {
+        @Override
+        public Object call() throws Exception {
+            int ret = 0;
+            TimeUnit.SECONDS.sleep(4);
+            for (int i = 0; i < 100; i++) {
+                ++ret;
+            }
+            return Integer.valueOf(ret);
+        }
+    };
+    FutureTask<Object> futureTask = new FutureTask(callable_int);
+    Thread thread_02 = new Thread(futureTask);
+    thread_02.start();
+    // 获取 callable 的 call 方法的返回值
+    System.out.println(futureTask.get());
+    // 因为 Callable 在执行任务时，可以抛出线程，故 get 方法要引入异常
+    // 因为要获取执行任务的值，所以要等待线程执行完毕才能获取到，所以在等待的这个过程，线程进入阻塞状态。
+}
+```
+
+在主线程调用 FutureTask 的 get 方法时，需要等待线程执行 FutureTask 的 Callable 接口的 call 方法执行完毕才可以获取到，因此这个方法可能会使线程进入阻塞状态。
+
+Callable 接口的 call 方法可以抛出异常，因此在 get 方法调用处需要设置捕获异常的操作。
+
+#### Runnable 与 Callable 接口的区别
+
+1. 共同点：两个接口都可以把线程和其执行的任务逻辑进行解耦，都可以单独定义出线程执行的任务逻辑，Runnable 接口是重写 run 方法，Callable 接口是重写 call 方法。
+2. 创建 Thread 对象时可以直接使用 Runnable 接口；而 Callable 需要事先实例化 FutureTask 对象，在把 FutureTask 对象传递给 Thread 方可构建一个线程对象。
+3. Runnable 接口不可以抛出异常，方法中的异常处理只可以 try-catch 捕获；Callable 接口可以抛出异常。
+4. Runnable 接口的 run 方法没有返回值；Callable 接口的 call 方法有返回值，需要通过 FutureTask 类的 get 方法获取。
+
+如果需要获取线程执行任务完成后的一个变量值，如果使用 Runnable 接口定义线程则无法获取，但是 Callable 搭配 FutureTask 便可以获取到线程执行任务完毕后的结果。
 
 ### 创建线程的方式
 
@@ -1073,6 +1222,14 @@ Step2. 执行 CAS 操作，CAS 是一个原子类操作，是指令级别，通�
 ### ReentrantLock
 
 **如何使用？在加了锁的代码执行时，如果产生了异常，怎样保证锁一定会被释放，已确保不会发生死锁问题？**
+
+**ReentarntLock 的 condition 成员方法，根据特定的条件为不同的线程上锁**
+
+**ReentrantLock 对应的公平锁和非公平锁、读锁和写锁的使用**
+
+**ReentrantLock 的 tryLock 方法**
+
+**ReentrantLock 与 synchronized 之间的区别**
 
 
 
