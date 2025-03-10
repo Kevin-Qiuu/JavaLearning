@@ -1210,7 +1210,7 @@ Callable 接口的 call 方法可以抛出异常，因此在 get 方法调用处
 3. Runnable 接口不可以抛出异常，方法中的异常处理只可以 try-catch 捕获；Callable 接口可以抛出异常。
 4. Runnable 接口的 run 方法没有返回值；Callable 接口的 call 方法有返回值，需要通过 FutureTask 类的 get 方法获取。
 
-如果需要获取线程执行任务完成后的一个变量值，如果使用 Runnable 接口定义线程则无法获取，但是 Callable 搭配 FutureTask 便可以获取到线程执行任务完毕后的结果。
+如果需要获取线程执行任务完成后的一个变量值，如果使用 Runnable 接口定义线程则无法获取，但是 Callable 搭配 FutureTask 便可以获取到线程执行任务完毕后的结果。所以在我看来，如果需要获取线程执行任务的结果，则需要线层进行返回值，此时就应该使用 Callable。
 
 ### 创建线程的方式
 
@@ -1221,9 +1221,64 @@ Callable 接口的 call 方法可以抛出异常，因此在 get 方法调用处
 
 ### ReentrantLock
 
+ReentrantLock 是 Java 并发包 JUC 的一个类，是 Java 根据自身代码实现的**可重入互斥锁**。
+
+在使用过程中，首先使用 Reentrant 的 lock 方法来为后面的代码进行加锁以保证代码原子性，然后使用 unlock 方法解锁，使得当前线程释放锁，并再次与其他线程共同竞争锁，但是会出现下面的死锁问题：
+
+1. 如果一个线程 A 在执行完 lock 方法后继续执行后续代码时出现了异常没有正确执行 unlock 方法，使得线程 A 一直握着这个锁放不开，进而使得其他线程一直在等待锁资源的释放，进而出现了死锁问题，所以无论发生什么情况，都应执行到 unlock 方法，所以需要使用 try-finally 代码块，将 unlock 方法放在 finally 代码块内，无论发生什么，最后都会执行到 unlock 方法，避免了这一种情况的死锁问题。
+2. 如果一个线程 A 执行锁的重入时，执行多少次 lock 方法，就要执行多少次 unlock 方法，否则也会出现一直握着锁放不开进而导致死锁的情况。
+
+```java
+public static (String[] args) throws InterruptedException{  
+    ReentrantLock lock = new ReentrantLock(); // 非公平锁
+    Thread thread_1 = new Thread(() -> {
+        for (int i = 0; i < 5000; i++) {
+            try{
+                lock.lock();
+                ++ret;
+                if (i == 2000) {
+//                    throw new Exception("thread_1: i has got to 2000");
+                    lock.lock();
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            lock.unlock(); // 如果前面的代码抛出了异常，不能够顺利释放锁，后面的线程无法获取锁，因而出现死锁
+        }
+    });
+    Thread thread_2 = new Thread(() -> {
+        for (int i = 0; i < 5000; i++) {
+            try{
+               lock.lock();
+                ++ret;
+//                if (i == 2500)
+//                    throw new Exception("thread_2: i has got to 2500");
+                } catch (Exception e) {
+                throw new RuntimeException(e);
+            } finally {
+                lock.unlock();  // 使用 finally 语句，使得代码块无论发生什么，都可以解锁
+            }
+
+        }
+    }, "thread_2");
+    thread_1.start();
+    thread_2.start();
+
+    thread_1.join();
+    thread_2.join();
+
+    System.out.println(ret);
+}
+```
+
 **如何使用？在加了锁的代码执行时，如果产生了异常，怎样保证锁一定会被释放，已确保不会发生死锁问题？**
 
 **ReentarntLock 的 condition 成员方法，根据特定的条件为不同的线程上锁**
+
+1. 首先执行 lock 方法，获取锁，然后满足条件后执行 awit 方法，进而使得当前线程进入阻塞状态，退出锁竞争。
+2. 唤醒时也要先执行 lock 方法，获取锁，然后根据条件执行 signalAll 方法，唤醒阻塞的线程，使得其重新进入锁竞争。
+
+
 
 **ReentrantLock 对应的公平锁和非公平锁、读锁和写锁的使用**
 
