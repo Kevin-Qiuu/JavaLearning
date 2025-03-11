@@ -1223,72 +1223,104 @@ Callable 接口的 call 方法可以抛出异常，因此在 get 方法调用处
 
 ReentrantLock 是 Java 并发包 JUC 的一个类，是 Java 根据自身代码实现的**可重入互斥锁**。
 
+#### 如何避免使用不当造成的死锁？
+
 在使用过程中，首先使用 Reentrant 的 lock 方法来为后面的代码进行加锁以保证代码原子性，然后使用 unlock 方法解锁，使得当前线程释放锁，并再次与其他线程共同竞争锁，但是会出现下面的死锁问题：
 
-1. 如果一个线程 A 在执行完 lock 方法后继续执行后续代码时出现了异常没有正确执行 unlock 方法，使得线程 A 一直握着这个锁放不开，进而使得其他线程一直在等待锁资源的释放，进而出现了死锁问题，所以无论发生什么情况，都应执行到 unlock 方法，所以需要使用 try-finally 代码块，将 unlock 方法放在 finally 代码块内，无论发生什么，最后都会执行到 unlock 方法，避免了这一种情况的死锁问题。
-2. 如果一个线程 A 执行锁的重入时，执行多少次 lock 方法，就要执行多少次 unlock 方法，否则也会出现一直握着锁放不开进而导致死锁的情况。
+1. 如果一个线程 A 在执行完 lock 方法后继续执行后续代码时出现了异常没有正确执行 unlock 方法，使得线程 A 一直握着这个锁放不开，进而使得其他线程一直在等待锁资源的释放，进而出现了死锁问题，所以**无论发生什么情况，都应执行到 unlock 方法，所以需要使用 try-finally 代码块，将 unlock 方法放在 finally 代码块内**，保证最后都会执行到 unlock 方法，避免了这一种情况的死锁问题。
+
+<img src="JavaEE 学习笔记_markdown_img/IntelliJ IDEA 2025-03-11 14.57.33.png" alt="IntelliJ IDEA 2025-03-11 14.57.33" style="zoom:50%;" />
+
+2. 如果一个线程 A 执行锁的重入时，**执行多少次 lock 方法，就要执行多少次 unlock 方法**，否则也会出现一直握着锁放不开进而导致死锁的情况。
+
+<img src="JavaEE 学习笔记_markdown_img/image-20250311150159677.png" alt="IntelliJ IDEA 2025-03-11 15.01.57" style="zoom:50%;" />
+
+#### Condition 变量
+
+`Condition` 是一个类，可以**在当特定的条件满足时才阻塞线程线程**的场景中使用，本质是一个阻塞队列，`awit` 方法执行完毕后则把当前线程放入阻塞队列中，并将其阻塞（执行后续方法），等到其他线程执行了 `signal` 或者 `signalAll` 方法后，就会把阻塞队列中的线程进行唤醒并出队。
+
+1. 首先执行 `lock` 方法，获取锁，然后满足条件后执行 `awit` 方法，进而使得当前线程进入阻塞状态，线程释放锁，退出锁竞争。
+2. 唤醒时也要先执行 `lock` 方法，获取锁，然后根据条件执行 `signalAll` 方法，唤醒阻塞的线程，使得其重新进入锁竞争。
+
+所有的条件变量的阻塞与唤醒操作以及这些操作会对相应线程产生的影响，都要通过 `ReentrantLock`，所以与对 `synchronized` 理解相似，都是把锁看成一个中间商或者平台，来管理上锁、阻塞、唤醒等操作，如下图。
+
+<img src="JavaEE 学习笔记_markdown_img/image-20250311151829692.png" alt="image-20250311151829692" style="zoom:50%;" />
+
+#### **ReentrantLock 对应的公平锁和非公平锁、读锁和写锁的使用**
 
 ```java
-public static (String[] args) throws InterruptedException{  
-    ReentrantLock lock = new ReentrantLock(); // 非公平锁
-    Thread thread_1 = new Thread(() -> {
-        for (int i = 0; i < 5000; i++) {
-            try{
-                lock.lock();
-                ++ret;
-                if (i == 2000) {
-//                    throw new Exception("thread_1: i has got to 2000");
-                    lock.lock();
-                }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-            lock.unlock(); // 如果前面的代码抛出了异常，不能够顺利释放锁，后面的线程无法获取锁，因而出现死锁
-        }
-    });
-    Thread thread_2 = new Thread(() -> {
-        for (int i = 0; i < 5000; i++) {
-            try{
-               lock.lock();
-                ++ret;
-//                if (i == 2500)
-//                    throw new Exception("thread_2: i has got to 2500");
-                } catch (Exception e) {
-                throw new RuntimeException(e);
-            } finally {
-                lock.unlock();  // 使用 finally 语句，使得代码块无论发生什么，都可以解锁
-            }
-
-        }
-    }, "thread_2");
-    thread_1.start();
-    thread_2.start();
-
-    thread_1.join();
-    thread_2.join();
-
-    System.out.println(ret);
-}
+ReentrantLock lock = new ReentrantLock(); // 默认参数是 false，非公平锁
+ReentrantLock lock = new ReentrantLock(true); // 传参是 true，公平锁
 ```
 
-**如何使用？在加了锁的代码执行时，如果产生了异常，怎样保证锁一定会被释放，已确保不会发生死锁问题？**
+非公平锁表示线程自由竞争锁，公平锁则为先到先得，先去抢锁的线程拿到锁，然后依次给后面来的线程。
 
-**ReentarntLock 的 condition 成员方法，根据特定的条件为不同的线程上锁**
+**读锁与写锁**
 
-1. 首先执行 lock 方法，获取锁，然后满足条件后执行 awit 方法，进而使得当前线程进入阻塞状态，退出锁竞争。
-2. 唤醒时也要先执行 lock 方法，获取锁，然后根据条件执行 signalAll 方法，唤醒阻塞的线程，使得其重新进入锁竞争。
+在我看来，读锁和写锁没有实际的应用场景，直接使用 synchronized 即可。
 
+```java
+// 先实例化一个 ReentrantReadWriteLock 对象
+static ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
-
-**ReentrantLock 对应的公平锁和非公平锁、读锁和写锁的使用**
-
-**ReentrantLock 的 tryLock 方法**
-
-**ReentrantLock 与 synchronized 之间的区别**
-
+// 使用 readWrite 对象单独定义读锁和写锁
+ReentrantReadWriteLock.ReadLock readLock = readWriteLock.readLock();        
+ReentrantReadWriteLock.WriteLock writeLock = readWriteLock.writeLock();
 
 
+```
 
+#### **`ReentrantLock` 的 `tryLock` 方法**
+
+`tryLock` 是 `ReentrantLock` 提供的一种 **非阻塞锁获取机制**，尝试获取锁，如果锁可用则立即获取并返回 `true`，否则返回 `false`。与 `lock()` 相比，`tryLock` 不会阻塞线程，不会使线程出现一直死等的情况，适合需要快速响应或避免死锁的场景。
+
+需要注意的是，**`tryLock` 也可以对线程进行上锁**，只是如果一个线程在规定的等待时间内还没有抢到锁资源，就会返回 `false`，然后程序可以去执行抢不到锁的对应语句，所以在使用 `tryLock` 时，不要忘记 `unlock`，但是线程只有在抢到 `ReentrantLock` 类规定的锁时，才可以执行 `unlock` 方法，否则会出现异常，因此要加以判断，抢到锁时执行 `unlock`，未抢到锁则不执行 `unlock`。
+
+<img src="JavaEE 学习笔记_markdown_img/image-20250311152809903.png" alt="image-20250311152809903" style="zoom:50%;" />
+
+#### **`ReentrantLock` 与 `synchronized` 之间的区别**
+
+1. **共同点：二者都是可重入互斥锁**
+
+2. **工作的原理不同：**
+
+   synchronized 是一个关键字，调用的系统 API；ReentrantLock 是一个类，是纯 Java 实现的。
+
+3. **上锁和释放锁的方式不同：**
+
+   ReentrantLock 需要通过实例化的对象管理线程，调用 lock 和 unlock 方法来上锁和释放锁，如果没有正常执行 unlock 方法，会因无法释放锁而产生死锁现象；
+
+   synchronized 需要使用一个锁对象（任何对象都可以成为锁对象），进入代码块即上锁，退出代码块即释放锁，JVM 会自动加锁和释放锁。
+
+4. **可重入锁的使用方式不同：**
+
+   ReentrantLock 通过多次 lock 方法后，要手动配上对应次数的 unlock 方法，否则一样会因为无法释放锁而产生死锁现象；
+
+   synchronized 进行重入锁后，会在锁对象中标记加锁次数，在代码块执行结束时会自动释放重入后的锁。
+
+5. **线程等待锁的方式不同：**
+
+   ReentrantLock 的 lock 方法会让线程一直等待锁资源的释放（死等）在参与锁竞争，但是 tryLock 方法可以制定线程等待锁的时间，到达等待时间后还未抢到锁就会放弃等待锁以执行其他逻辑；
+
+   synchronized 则不能自由选择，线程只可以一直等待锁资源的释放在参与锁竞争。
+
+6. **公平锁与非公平锁的指定方式不同：**
+
+   ReentrantLock 在一开始创建实例时，可以给构造方法传参，默认是 false（非公平锁），传递 true 是公平锁；
+
+   synchronized 无法指定公平锁与非公平锁，默认就是非公平锁，线程自由竞争，不会先来先得。
+
+7. **线程阻塞时唤醒方式不同，但都是阻塞线程并且释放当前锁：**
+
+   ReentrantLock 搭配 Condition 变量阻塞线程，await 是阻塞线程，signal 和 signalAll 是唤醒线程，注意需要先使用 ReentrantLock 对象上锁后方可调用 Condition 的 await 和 signalAll 方法，统一由 ReentrantLock 类进行中间管理，管理阻塞线程的方式更细粒度。
+
+   synchronized 依托的是锁对象进行管理，直接调用 Object 类的 wait 和 notify、notifyAll 方法实现线程的阻塞与唤醒。
+
+synchronized 能做的事，ReentrantLock 都可以实现；ReentrantLock 能做的事，synchronized 不一定可以，所以工作中要具体问题具体分析。
+
+---
+
+### JUC 的工具类
 
 
 
