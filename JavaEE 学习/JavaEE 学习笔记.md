@@ -1334,6 +1334,26 @@ synchronized 能做的事，ReentrantLock 都可以实现；ReentrantLock 能做
 
 #### ConcurrentHashMap 
 
+---
+
+### 死锁
+
+#### 造成死锁的原因：
+
+#### 如何解决死锁：
+
+#### 哲学家问题
+
+##### 引发的死锁：
+
+##### 如何解决？
+
+---
+
+### 多线程的面试题
+
+![image-20250313232409430](JavaEE 学习笔记_markdown_img/image-20250313232409430.png)
+
 #### 
 
 #### 
