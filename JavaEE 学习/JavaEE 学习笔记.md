@@ -1322,17 +1322,55 @@ synchronized 能做的事，ReentrantLock 都可以实现；ReentrantLock 能做
 
 ### JUC 的工具类
 
-#### Semaphore 
+#### Semaphore 信号量
 
-#### CoutDownLatch
+举例子，停车场，车子进来一个，少一个停车位。
+
+#### CoutDownLatch 
+
+多个任务都执行完目标点时，再进行下一步操作。
 
 #### 多线程下使用 List
 
 ##### Collections.synchronized
 
+```java
+List<Integer> list = Collections.synchronized(new ArrayList<Integer>(5));
+```
+
+就相当于为 ArrayList 的每一个操作都上了锁，使用了 synchronized 关键字，锁资源消耗大。
+
 ##### CopyOnWriteArrayList
 
+写时复制：在修改（写）数组的时候，会把原数组进行复制，然后在副本上添加数据，再把数组的引用指向副本数组，只有在写操作的时候才会加锁，读操作的时候，不会使用锁，锁资源消耗少。
+
+优点：在读多写少的场景下使用时，代码性能会大幅提升，因为使用的锁资源较少。
+
+缺点：在写操作进行的过程中，由于上了写锁，所以只会有一个写进程去写，但是需要复制数组，所以较为耗时，如果此时读操作被执行了，就会出现读操作数据不一致的问题。
+
+例如，在执行 list 逐元素获取时，如果执行了一次add操作，可能会在读操作时出现重复统计的现象（在数组前的位置添加了数组，导致当前读取的数据后移了，在下一次读取时会再次读取到）。
+
+为了解决这个问题，可以使用迭代器，因为迭代器的指向数组的引用不会更新，因此避免了重复统计元素的情况。但是在使用 Iterator 执行写操作的时候会出现线程安全问题，CoprOnWriteArrayList 在执行 setArray 方法（把数组的引用指向新数组）以前，会出现读操作的数据不一致。原因在于迭代器没有更新自己的数组引用变量，还是在使用旧的。
+
+所以写时复制容器需结合具体使用场景，如果写操作频繁，则不推荐使用。
+
 #### ConcurrentHashMap 
+
+HashMap 会有多个 Hash 桶，为了存放 Hash 函数值一样的不同对象，**HashMap 是线程不安全的**。
+
+**HashTable 是线程安全的**，但是他为每一个操作都添加了锁，对性能有较大影响，当线程 A 正在进行一个哈希桶的 put 操作时，因为上了粗粒度较大的锁，其他线程若想对其他哈希桶进行 put 操作时，就要等待线程 A 的锁释放才可以，会导致严重的效率问题。
+
+为此，JUC 实现了 ConcurrentHashMap，保证了多线程环境下的 Map 的线程安全。ConcurrentHashMap 既能保证线程安全，也可以提升性能，原因在于它为每一个哈希桶都提供了一把锁，线程在使用一个哈希桶时，其他线程也可以使用其他的哈希桶，提升了性能，线程可以同时对多个哈希桶进行读写操作，如下图：
+
+<img src="JavaEE 学习笔记_markdown_img/image-20250314221448681.png" alt="image-20250314221448681" style="zoom:50%;" />
+
+##### 面试题（ConcurrentHashMap）：
+
+1. 多线程环境下如何保证 Map 的线程安全？
+
+   使用 ConcurrentHashMap
+
+2. ConcurrentHashMap、HashTable、HashMap 的区别？
 
 ---
 
