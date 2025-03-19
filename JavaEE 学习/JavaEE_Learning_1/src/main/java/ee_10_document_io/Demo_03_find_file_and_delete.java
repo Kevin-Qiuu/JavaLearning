@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Demo_03_file_demo_1 {
+public class Demo_03_find_file_and_delete {
     public static void scan_dir(File scan_file, ArrayList<String> files_path_with_keyword, String keyword) throws IOException {
         File[] listFiles = scan_file.listFiles();
         if (listFiles != null) {
@@ -38,7 +38,7 @@ public class Demo_03_file_demo_1 {
             return false;
         }
 
-        System.out.println("These files will be delete, please check...");
+        System.out.println("The files below will be deleted, please check them...");
 //        System.out.println(files_path_with_keyword);
         for (String file_path_with_keyword : files_path_with_keyword) {
             System.out.println(file_path_with_keyword);
