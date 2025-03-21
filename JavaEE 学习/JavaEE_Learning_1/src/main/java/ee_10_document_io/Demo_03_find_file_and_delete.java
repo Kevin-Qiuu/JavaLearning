@@ -17,6 +17,7 @@ public class Demo_03_find_file_and_delete {
                     scan_dir(file, files_path_with_keyword, keyword);
                 }
             }
+            
 
         }
     }
@@ -69,5 +70,8 @@ public class Demo_03_find_file_and_delete {
         String keyword = "Demo_01";
 //        System.out.println(file_path);
         delete_file_keywords(file_path, keyword);
+        if (!keyword.equals("y")) {
+            System.out.println();
+        }
     }
 }

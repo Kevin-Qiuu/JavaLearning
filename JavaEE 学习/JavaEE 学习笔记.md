@@ -1552,3 +1552,163 @@ IP 地址对应的是网络中的某一个主机设备，是在互联网环境�
 
 Socket 套接字：流套接字（TCP）和数据报套接字（UDP）
 
+Java 中使用 UDP
+
+
+
+DatagramSocket 是 Java 中 UDP 的套接字，用于发送和接收 UDP 数据报
+
+DatagramSocket()：用于客户端，绑定到本机任意一个随机端口（系统分配）
+
+DatagramSocket(int port)：用于服务器端，绑定到本机指定的端口
+
+
+
+网络编程在收发数据的过程中，主要是对网卡进行操作
+
+网卡是电脑的一个硬件，与显卡一样都是计算机的硬件
+
+DatagramPacket 是 UDP socket 发送和接收的数据报
+
+DatagramPacket 的JDK 实现的 API
+
+
+
+DataSocket 指定的是网络通信中的客户端和服务端
+
+DataPacket 指定的是网络通信中的数据流
+
+
+
+基于 UDP 协议的示例
+
+回显服务器：服务器收到什么数据就返回什么数据
+
+
+
+服务器端：
+
+1. 定义一个 DatagramSocket ，指定开放的端口号
+2. 循环进行接收数据的业务
+   1. 定义一个 DatagramPacket用于存储接收的数据
+   2. 调用 receive 方法接收数据（无消息则阻塞等待）
+   3. 解析从客户端接收到的数据
+   4. 处理客户端的请求，计算应响应的数据
+   5. 使用 DatagramPacket 封装响应的数据
+   6. socket调用 send 方法发送响应数据
+   7. 打印日志
+
+服务器端的 DatagramSocket 对象中的 SocketAddress 对象会在DatagramSocket 对象调用 receive 方法时，JVM 会调用对应操作系统的 API 获取客户端（发送端）的 IP 和端口号，进而创建了 SocketAddress 对象，使得后期可以获取发送端的网络信息。
+
+JVM 之所以可以调用操作系统的 API 获取发送端的 ip 和端口号，是因为网络层的协议中规定了发送数据报文要有发送端自己的 IP 和端口号信息。
+
+
+
+客户端：
+
+需要指定服务器的 IP 和端口号
+
+客户端不指定自身的端口号，表示让操作系统随机分配一个可用的端口
+
+1. 初始化 DatagramScoket 对象（不指定端口号）
+2. 循环处理用户在客户端的输入
+3. 创建目标的 SocketAddress 对象服务器 Ip 和端口号
+4. send 方法向服务器发送数据
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$
+\hat{m_i}=\theta([x_1^i, x_2^i, x_3^i,x_4^i,x_5^i])
+\\
+\hat{y_i}=\hat{m_m^i}+\hat{m_e^i}
+
+\\
+
+----------------------
+
+\\
+L_{data}=\frac{1}{n}\sum_{i=1}^{N}(y_i-\hat{y}_i)^2
+\\
+L_{data}=\frac{1}{n}\sum_{i=1}^{N}[y_i-(\hat{m_m}+\hat{m_e})]^2
+\\
+\mathcal{L} _{\mathrm{phys}}=\frac{1}{N}\sum_{i=1}^N{\left[ (\hat{m}_{m}^i-m_{m}^i)^2+(\hat{m}_{e}^i-m_{e}^i)^2 \right]}
+\\
+Loss=\alpha*\mathcal{L} _{\mathrm{phys}}+\beta*\mathcal{L}_{data}
+\\
+L=y-\theta([x_1^i, x_2^i, x_3^i,x_4^i,x_5^i])
+$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
