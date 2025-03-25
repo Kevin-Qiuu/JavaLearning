@@ -1,4 +1,4 @@
-package ee_11_network_program.UDP;
+package ee_11_network_program.udp;
 
 import java.io.IOException;
 import java.net.*;
@@ -6,9 +6,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class UDPEchoClient {
-    private DatagramSocket socket;  // 创建一个 socket 来管理客户端
-    private String serverIP;
-    private int serverPort;
+    private final DatagramSocket socket;  // 创建一个 socket 来管理客户端
+    private final String serverIP;
+    private final int serverPort;
 
     public UDPEchoClient(String serverIP, int serverPort) throws SocketException {
         socket = new DatagramSocket(); // 不指定端口号，由操作系统来进行分配端口号
@@ -18,9 +18,9 @@ public class UDPEchoClient {
     }
 
     public void start() throws IOException {
-        System.out.println("=======================================");
-        System.out.println("====  The Client has been started  ====");
-        System.out.println("=======================================");
+        System.out.println("============================================");
+        System.out.println("====  The UDP Client has been started.  ====");
+        System.out.println("============================================");
 
         while (true){
             Scanner scanner = new Scanner(System.in);
@@ -51,7 +51,7 @@ public class UDPEchoClient {
     }
 
     public static void main(String[] args) throws IOException {
-        UDPEchoClient client_1 = new UDPEchoClient("127.0.0.1", 8888);
+        UDPEchoClient client_1 = new UDPEchoClient("127.0.0.1", 6868);
         client_1.start();
     }
 }
