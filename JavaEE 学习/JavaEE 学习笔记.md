@@ -84,17 +84,17 @@ Java虚拟机（Java Virtual Machine, JVM）是执行 Java 字节码的运行时
 
 使用 MMU（内存管理单元）同意虚拟内存的方式来管理进程对内存的使用
 
-![image-20250113174733981](JavaEE 学习笔记_markdown_img/image-20250113174733981.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250113174733981.png" alt="image-20250113174733981" style="zoom: 50%;" />
 
 通过 MMU 对多个进程进行了内存的隔离，那么如何进行进程之间的通信来让多个进程协作完成一些任务呢？
 
-![image-20250218215058848](JavaEE 学习笔记_markdown_img/image-20250218215058848.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250218215058848.png" alt="image-20250218215058848"  />
 
 ## 多线程初阶
 
 ### 什么是线程
 
-![image-20250113175011178](JavaEE 学习笔记_markdown_img/image-20250113175011178.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250113175011178.png" alt="image-20250113175011178" style="zoom:50%;" />
 
 #### 线程与进程的区别
 
@@ -355,7 +355,9 @@ public static void main(String[] args) throws InterruptedException {
 
    内存可见性指的是一个线程对共享变量的修改可以被其他线程看到。如果没有满足内存可见性，会引发同时对共享变量进行修改但线程彼此之间不知道，就会引发线程安全问题。
 
-   `JVM` 重新定义了 `Java` 的内存工作环境，`JMM (Java memory model)`，⽬的是屏蔽掉各种硬件和操作系统的内存访问差异，以实现让Java程序在各种平台下都能达到⼀致的并发效果，如下图。JMM 定义每一个线程都有一个属于自己的工作内存，并且线程彼此之间的工作内存之间是隔离，线程彼此之间感知不到。![WPS Office 2025-02-19 21.32.47](JavaEE 学习笔记_markdown_img/WPS Office 2025-02-19 21.32.47.png)
+   `JVM` 重新定义了 `Java` 的内存工作环境，`JMM (Java memory model)`，⽬的是屏蔽掉各种硬件和操作系统的内存访问差异，以实现让Java程序在各种平台下都能达到⼀致的并发效果，如下图。JMM 定义每一个线程都有一个属于自己的工作内存，并且线程彼此之间的工作内存之间是隔离，线程彼此之间感知不到。
+   
+   <img src="JavaEE 学习笔记_markdown_img/WPS Office 2025-02-19 21.32.47.png" alt="WPS Office 2025-02-19 21.32.47" style="zoom:50%;" />
 
 **JMM 的规定（面试题)：**
 
@@ -398,7 +400,7 @@ public static void main(String[] args) throws InterruptedException {
 - `unlock`（解锁）：作用于主内存，把一个处于锁定状态的变量释放出来。
 - ....... （还有一些原子操作）
 
-![image-20250220115813163](JavaEE 学习笔记_markdown_img/image-20250220115813163.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250220115813163.png" alt="image-20250220115813163" style="zoom: 67%;" />
 
 ```java
 public class Demo10_sychronized {
@@ -435,7 +437,7 @@ public class Demo10_sychronized {
 
 ​	每一个线程都是从主内存中加载变量到自己的工作内存中，在自己的工作内存中修改后再写入主内存中，由于加了锁，一次 `count++` 只能由一个线程完成，每一个线程读到的值都是上一个线程写入内存中的值，因此主内存相当于一个交换空间，线程依次执行读取和写入动作，一个线程的修改动作能够被另一个线程感知到，使得线程彼此之间能够感受到对方的存在，通过这样的方式间接实现了内存可见性。
 
-![image-20250220120901436](JavaEE 学习笔记_markdown_img/image-20250220120901436.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250220120901436.png" alt="image-20250220120901436" style="zoom:50%;" />
 
 
 
@@ -928,9 +930,9 @@ public static void main(String[] args) {
 
 在队列为空并且扫描线程抢到锁并执行 `take` 方法时，由于队列为空，扫描线程进入阻塞状态，并等待新的任务被加入队列，需要注意的是，这里使得扫描线程进入阻塞队列的锁对象来自于阻塞队列，而扫描线程同时还拥有 `MyTimer` 的 `locker` 锁对象，所以此时由于扫描线程进入了阻塞状态（不会执行后续代码），所以不会释放 `locker` 这个锁，导致执行 `schedule` 方法的线程抢不到执行 `notifyAll` 方法的锁，所以会一直等待锁的释放，同样进入了阻塞状态，同时不会正常执行 put 方法，不会成功地把任务放入阻塞队列中，导致阻塞队列一致为空，所以扫描线程一直处于 WAITING 状态，出现了**非常严重的死锁现象**。通过 `jconsole` 工具查看进程状态如下：
 
-![image-20250302212836076](JavaEE 学习笔记_markdown_img/image-20250302212836076.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250302212836076.png" alt="image-20250302212836076" style="zoom: 67%;" />
 
-![image-20250302214657149](JavaEE 学习笔记_markdown_img/image-20250302214657149.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250302214657149.png" alt="image-20250302214657149" style="zoom: 67%;" />
 
 `TimerThread` 就是 Mytimer 中的扫描线程，`jconsole` 显示 `TimerThread` 线程处于 `WAITING` 状态，最近的堆栈追踪来自于 `MyTimer` 类文件的第 `57` 行代码，而第 57 行代码为 `task = tasksQueue.take();` ，表示当前阻塞队列为空，而 `TimerThread` 仍然去拿出数据，则进入 `WAITING` 状态，与上文分析的情况一致。main 就是主线程，`jconsole` 线程 `main` 线程处于 `BLOCKED` 状态，最近的堆栈追踪来自于由 `MyTimer` 类文件的第 `87` 行代码，而第 87 行代码为`locker.notifyAll();`，表示 `main` 线程正在等待 `locker` 锁对象的释放，同样与上文分析一致。
 
@@ -999,11 +1001,11 @@ private Thread notifyThread = new Thread(() -> {
 
 #### 工作原理
 
-![image-20250304203450390](JavaEE 学习笔记_markdown_img/image-20250304203450390.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250304203450390.png" alt="image-20250304203450390" style="zoom:50%;" />
 
 以火锅店为例：
 
-![image-20250325211151257](JavaEE 学习笔记_markdown_img/image-20250325211151257.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250325211151257.png" alt="image-20250325211151257"  />
 
 1. 客人（**Runnable 任务**）周末去吃火锅，火锅店里有 6 张桌子（**核心线程数**），如果店里有空位就可以直接入座上菜吃火锅（**核心线程开始执行任务**）；
 2. 随着到了饭点，人越来越多，6 张桌子都坐满了，后面来的人就要去排号，然后坐在店门口准备的等位小板凳上面，最多排到 20 号，因为一共准备了 20 个小板凳（**阻塞队列和队列的容量**）；
@@ -1016,7 +1018,7 @@ private Thread notifyThread = new Thread(() -> {
 
 #### 四种拒绝策略
 
-![image-20250304160106039](JavaEE 学习笔记_markdown_img/image-20250304160106039.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250304160106039.png" alt="image-20250304160106039"  />
 
 1. `ThreadPoolExecutor.AbortPolicy`：直接拒绝提交的任务，并抛出拒绝异常
 2. `ThreadPoolExecutor.CallerRunsPolicy`：把提交的任务转给提交任务的线程执行
@@ -1041,7 +1043,7 @@ private Thread notifyThread = new Thread(() -> {
 
    重量级锁：完全依赖于操作系统的 mutex 锁，需要频繁在用户态于内核态之间切换，系统开销大，在自旋失败或者高并发竞争场景下使用。
 
-   ![image-20250309154544586](JavaEE 学习笔记_markdown_img/image-20250309154544586.png)
+   <img src="JavaEE 学习笔记_markdown_img/image-20250309154544586.png" alt="image-20250309154544586" style="zoom: 67%;" />
 
 3. **自旋锁 & 挂起等待锁**
 
@@ -1057,7 +1059,7 @@ private Thread notifyThread = new Thread(() -> {
 
    ​	线程涉及到了写操作（排他锁），就使用写锁，只允许有一个写锁执行任务，表示在同一时刻，只有一个拥有写锁的线程可以修改变量，写锁与其他所有锁都不能共存。
 
-   ![image-20250309161101150](JavaEE 学习笔记_markdown_img/image-20250309161101150.png)
+   <img src="JavaEE 学习笔记_markdown_img/image-20250309161101150.png" alt="image-20250309161101150"  />
 
    普通互斥锁：保证了原子性，只有一个线程释放了互斥锁以后，其他线程才可以来抢，写锁就是一个互斥锁。
 
@@ -1115,7 +1117,7 @@ Boolean CAS(address, expectedValue, modifyValue) {
 
 **解决方法**：对 `count` 加一个线程的修改标签，通常是一个随机数🆔，每一个线程在修改了 `count` 后，都修改这个随机数🆔，相当于每一个线程修改后都会对这个变量做一个标记。所以预期值中除了存储此时变量的值也会存储变量对应的随机数🆔，在比较变量是否已经修改时，除了比较旧的预期值，还会比较这个随机数🆔，如果预期值一致，但是🆔不一致，则认为是存在 ABA 问题，进而给出反馈以做下一步处理。（可以通过时间戳、 `UUID` 等方式实现这个随机数🆔）。
 
-![image-20250309165023944](JavaEE 学习笔记_markdown_img/image-20250309165023944.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250309165023944.png" alt="image-20250309165023944"  />
 
 ### 自旋锁
 
@@ -1171,7 +1173,7 @@ System.out.println("ret: " + ret);
 
 **锁粗化**是 synchronized 的一个优化策略，当线程整型下图示例中的代码逻辑时，JVM 会将其视为一个低效的操作，因此会把锁粒度拉粗，会优化成从方法 1 开始加锁到方法 4 执行完成之后再释放锁，将方法 1 -- > 方法 4 进行合并，优化成只用一个锁。
 
-![image-20250309180543103](JavaEE 学习笔记_markdown_img/image-20250309180543103.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250309180543103.png" alt="image-20250309180543103" style="zoom:50%;" />
 
 ### Callable 接口
 
@@ -1429,7 +1431,7 @@ HashMap 会有多个 Hash 桶，为了存放 Hash 函数值一样的不同对象
 
 ### 多线程的面试题
 
-![image-20250313232409430](JavaEE 学习笔记_markdown_img/image-20250313232409430.png)
+<img src="JavaEE 学习笔记_markdown_img/image-20250313232409430.png" alt="image-20250313232409430" style="zoom:50%;" />
 
 ---
 
@@ -1583,7 +1585,7 @@ DatagramPacket clientRequest = new DatagramPacket(new byte[1024], 0, 1024);
 
 ##### 基于 UDP 协议的示例：
 
-###### 服务器端（`Server`）：
+###### [服务器端（`Server`）：](https://github.com/Kevin-Qiuu/JavaLearning/blob/master/JavaEE%20%E5%AD%A6%E4%B9%A0/JavaEE_Learning_1/src/main/java/ee_11_network_program/udp/UDPEchoServer.java)
 
 1. 实例化一个 `DatagramSocket`，指定开放的端口号，用于描述服务器  
 2. 开启服务器的服务，循环执行接收数据报的业务
@@ -1595,7 +1597,7 @@ DatagramPacket clientRequest = new DatagramPacket(new byte[1024], 0, 1024);
 8. `Scoket` 调用 `send` 方法将封装好的数据进行发送
 9. 打印相关日志
 
-###### 客户端（`Client`）：
+###### [客户端（`Client`）：](https://github.com/Kevin-Qiuu/JavaLearning/blob/master/JavaEE%20%E5%AD%A6%E4%B9%A0/JavaEE_Learning_1/src/main/java/ee_11_network_program/udp/UDPEchoClient.java)
 
 1. 实例化一个 `DatagramSocket`，不指定开放的端口号，直接由操作系统分配即可，用于描述客户端
 2. 开启客户端的服务，等待用户的数据输入
@@ -1628,7 +1630,7 @@ DatagramPacket clientRequest = new DatagramPacket(new byte[1024], 0, 1024);
 
 ##### 基于 TCP 协议的示例：
 
-服务器端（Server）：
+**[服务器端（`Server`）：](https://github.com/Kevin-Qiuu/JavaLearning/blob/master/JavaEE%20%E5%AD%A6%E4%B9%A0/JavaEE_Learning_1/src/main/java/ee_11_network_program/tcp/TCPEchoServer.java)**
 
 1. 创建一个 `ServerSocket` 来描述服务器，需指定好端口号
 
@@ -1650,7 +1652,7 @@ DatagramPacket clientRequest = new DatagramPacket(new byte[1024], 0, 1024);
 
 8. 当前一轮数据处理完毕，打印日志
 
-客户端（`Client`）：
+[**客户端（`Client`）：**](https://github.com/Kevin-Qiuu/JavaLearning/blob/master/JavaEE%20%E5%AD%A6%E4%B9%A0/JavaEE_Learning_1/src/main/java/ee_11_network_program/tcp/TCPEchoClient.java)
 
 1. 创建一个 `Socket` 来与服务器建立 `TCP` 连接，以及管理通信数据流
 2. 循环执行让用户输入数据的任务
