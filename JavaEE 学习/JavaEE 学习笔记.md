@@ -358,6 +358,7 @@ public static void main(String[] args) throws InterruptedException {
    `JVM` 重新定义了 `Java` 的内存工作环境，`JMM (Java memory model)`，⽬的是屏蔽掉各种硬件和操作系统的内存访问差异，以实现让Java程序在各种平台下都能达到⼀致的并发效果，如下图。JMM 定义每一个线程都有一个属于自己的工作内存，并且线程彼此之间的工作内存之间是隔离，线程彼此之间感知不到。![WPS Office 2025-02-19 21.32.47](JavaEE 学习笔记_markdown_img/WPS Office 2025-02-19 21.32.47.png)
 
 **JMM 的规定（面试题)：**
+
    - 所有线程不可之间修改主内存空间的共享变量。
    - 如果需要修改变量，需要把这个变量从主内存中读取到工作内存中，在工作内存中修改后，再写入主内存中。
    - 各个线程之间彼此无法直接相互通信，做到了内存级别的线程隔离。（可以通过锁实现间接性的通信，来感知线程彼此之间的存在）
@@ -1500,19 +1501,19 @@ try(InputStream, OutputStream){
 
 IP 地址对应的是网络中的某一个主机设备，是在互联网环境的，此时每一个主机是一个节点；端口号对应的是当前主机操作系统所管理的某一个进程，是在操作系统中的，此时每一个进程是一个节点。
 
+---
 
+#### 网络中的五元组：
 
-## 网络中的五元组：
+1. **源 IP 地址** （网络环境中的源主机）
+2. **源端口号** （源主机操作系统中的进程）
+3. **目标 IP 地址**（网络环境中的目的主机）
+4. **目标端口号** （目的地主机操作系统中的进程）
+5. **协议** （传递数据的约定）
 
-1. 源 IP 地址 （网络环境中的源主机）
-2. 源端口号 （源主机操作系统中的进程）
-3. 目的 IP 地址（网络环境中的目的主机）
-4. 目的端口号 （目的地主机操作系统中的进程）
-5. 协议 （传递数据的约定）
+---
 
-
-
-### TCP/IP 协议
+#### TCP/IP 协议
 
 1. 应用层：与用户打交道，发送与接收用户的数据，重心在于数据。（快递中的包裹）
 2. 传输层：完成端到端的准备，确定收送两主机的 IP 地址与端口号。（快递收件人与发件人的相关信息）
@@ -1520,9 +1521,9 @@ IP 地址对应的是网络中的某一个主机设备，是在互联网环境�
 4. 数据链路层：完成点到点之间的传输，重心在于每个网络设备中的传输（每一个网点之间怎么跑）
 5. 物理层：把真实的比特数据流转换成光电信号在传输介质（网线、光纤）中进行传输。（走高速还是国道）
 
+---
 
-
-### 封装和分用
+#### 封装和分用
 
 封装是在发送方进行的对数据的处理，分用是在接收方进行的对数据的处理
 
@@ -1535,7 +1536,7 @@ IP 地址对应的是网络中的某一个主机设备，是在互联网环境�
 
 
 
-### TCP 与 UDP
+#### TCP 与 UDP
 
 |                        TCP（打电话）                         |                        UDP（发短信）                         |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
@@ -1550,86 +1551,143 @@ IP 地址对应的是网络中的某一个主机设备，是在互联网环境�
 
 ### 网络编程
 
-Socket 套接字：流套接字（TCP）和数据报套接字（UDP）
+在网络编程中，是通过 socket 套接字对网络中的实例进行抽象与管理的，在 java 的网络编程中，使用 TCP 与 UDP 网络协议，Java 对这两种协议分别进行了抽象与封装，为流套接字（TCP）和数据报套接字（UDP）。在网络通信中，主要有两个动作，封装和分用，封装是在发送方进行的数据处理，分用是在接收方进行的数据处理。网络编程在收发数据的过程中，主要是对网卡进行操作，网卡是电脑的一个硬件，与显卡一样都是计算机的硬件，操作系统最终会将发送的数据写入网卡，由网卡发送到数据链路层。
 
-Java 中使用 UDP
+---
 
+#### Java 中使用 UDP
 
-
-DatagramSocket 是 Java 中 UDP 的套接字，用于发送和接收 UDP 数据报
-
-DatagramSocket()：用于客户端，绑定到本机任意一个随机端口（系统分配）
-
-DatagramSocket(int port)：用于服务器端，绑定到本机指定的端口
-
-
-
-网络编程在收发数据的过程中，主要是对网卡进行操作
-
-网卡是电脑的一个硬件，与显卡一样都是计算机的硬件
-
-DatagramPacket 是 UDP socket 发送和接收的数据报
-
-DatagramPacket 的JDK 实现的 API
-
-
-
-DataSocket 指定的是网络通信中的客户端和服务端
-
-DataPacket 指定的是网络通信中的数据流
-
-
-
-### 基于 UDP 协议的示例
-
-回显服务器：服务器收到什么数据就返回什么数据
-
-
-
-服务器端：
-
-1. 定义一个 DatagramSocket ，指定开放的端口号
-2. 循环进行接收数据的业务
-   1. 定义一个 DatagramPacket用于存储接收的数据
-   2. 调用 receive 方法接收数据（无消息则阻塞等待）
-   3. 解析从客户端接收到的数据
-   4. 处理客户端的请求，计算应响应的数据
-   5. 使用 DatagramPacket 封装响应的数据
-   6. socket调用 send 方法发送响应数据
-   7. 打印日志
-
-服务器端的 DatagramSocket 对象中的 SocketAddress 对象会在DatagramSocket 对象调用 receive 方法时，JVM 会调用对应操作系统的 API 获取客户端（发送端）的 IP 和端口号，进而创建了 SocketAddress 对象，使得后期可以获取发送端的网络信息。
-
-JVM 之所以可以调用操作系统的 API 获取发送端的 ip 和端口号，是因为网络层的协议中规定了发送数据报文要有发送端自己的 IP 和端口号信息。
-
-
-
-客户端：
-
-需要指定服务器的 IP 和端口号
-
-客户端不指定自身的端口号，表示让操作系统随机分配一个可用的端口
-
-1. 初始化 DatagramScoket 对象（不指定端口号）
-2. 循环处理用户在客户端的输入
-3. 创建目标的 SocketAddress 对象服务器 Ip 和端口号
-4. send 方法向服务器发送数据
+UDP 中进行连接的发送方与接收方在操作系统中是两个独立的进程，通过网络进行通信。如下图，服务器端与客户端完全是两个进程，PID 不一样，两个进程进行网络的通信，使用的是 UDP 协议。
 
 ![image-20250322235622231](JavaEE 学习笔记_markdown_img/image-20250322235622231.png)
 
-服务器端与客户端完全是两个进程，PID 不一样，两个进程进行网络的通信，使用的是 UDP 协议。
+`UDP` 是一个不可靠连接，是面向数据报的连接，所以要结合它的性质，理解 `Java` 中关于 `UDP` 的使用方法。
 
+`DatagramSocket`：在 UDP 协议中，每一个在网络中通信的对象（进程）都被抽象成了一个套接字（`DatagramSocket`），根据定义方式的不同来区分服务器还是客户端（服务器直接规定端口号，客户端则由操作系统分配端口号）。
 
+```java
+DatagramSocket serverSocket = new DatagramSocket(8888);  // 描述服务器端的端口号调用构造函数时明确了端口号
+DatagramSocket clientSOcket = new DatagramSocket();  // 描述客户端的端口号调用构造函数是不指定端口号，由操作系统分配
+```
 
-### 基于 TCP 协议的示例
+`DatagramPacket`：在 UDP 协议中，通信过程中的每一个数据报都被抽象成了DatagramPacket，由一个 byte 数组（存储报文信息）和报文数组的 offset 和 length 来规定数组的使用位置，如果是接收数据则不用指定 InetSocketAddress，因为JVM 会在底层自动获取发送方的网络信息，如果是要发送的数据报，则要指定网络信息（InetSocketAddress）。
+
+```java
+// 发送 DatagramPacket 示例
+SocketAdress serverAddress = new InetSocketAdress(serverIP, serverPort);
+DatagramPacket clientRquest = new DatagramPacket(new byte[1024], 0, 1024, serverAddress);
+  
+// 接收 DatagramPacket 示例
+DatagramPacket clientRequest = new DatagramPacket(new byte[1024], 0, 1024);
+```
+
+##### 基于 UDP 协议的示例：
+
+###### 服务器端（`Server`）：
+
+1. 实例化一个 `DatagramSocket`，指定开放的端口号，用于描述服务器  
+2. 开启服务器的服务，循环执行接收数据报的业务
+3. 定义一个 `DatagramPacket` 用于接收客户端发来的数据报（这个实例会在底层自动获取到发送端的网络地址，因为网络中发送出来的信息一定封装有源目标的 IP 与端口号）。 
+4. `Socket` 调用 `receive` 方法接收数据，该方法将接受的数据填入 `DatagramPacket` 中，无消息则阻塞等待
+5. 解析从客户端接收的数据（根据不同的编码对 `byte` 数组进行解析）
+6. 处理客户端的请求，计算响应的数据 
+7. 再次定义一个 `DatagramPacket` 封装服务器响应的数据以及目标客户端的网络地址（使用 InetSocketAddress 类封装 IP+端口号）
+8. `Scoket` 调用 `send` 方法将封装好的数据进行发送
+9. 打印相关日志
+
+###### 客户端（`Client`）：
+
+1. 实例化一个 `DatagramSocket`，不指定开放的端口号，直接由操作系统分配即可，用于描述客户端
+2. 开启客户端的服务，等待用户的数据输入
+3. 将用户数据的数据和服务器的网络地址（使用 `InetSocketAddress` 类封装 IP+端口号）封装成 `DatagramPacket`
+4. `socket` 调用 `send` 方法，将用户输入发送给客户端
+5. 实例化一个 `DatagramPacket` 用于接收客户端的响应数据
+6. `scoket` 调用 `receive` 方法，等待客户端的响应数据
+7. 解析从客户端收到的响应数据（根据不同的编码对 `byte` 数组进行解析）
+8. 提供给用户，并打印相关日志
+
+---
+
+#### Java 中使用 TCP
+
+如下图 TCP 的连接状态查看：
+
+`127.0.0.1:6868`  <--连接--> `127.0.0.1:53498`
+
+`127.0.0.1:6868`  <--连接--> `127.0.0.1:53456`
+
+同时，服务器（`127.0.0.1:6868`） 正在监听其他客户端数据请求的到来
 
 ![image-20250325223200813](JavaEE 学习笔记_markdown_img/image-20250325223200813.png)
 
-ServerSocket
+`TCP` 协议是一个可靠的连接，面对的是数据流，所以在 `Java` 中的使用也会根据其特性有对应的方法。对于 `TCP` 协议，服务器由 `ServerSocket` 类来管理，而对于客户端，则没有对应的套接字，因为 `TCP` 是面向数据流的，所以只关注于服务器和网络通信中的数据流，客户端只需与服务器建立连接，建立起 `Socket` 数据流即可进行通信。
 
-Socket
+`ServerSocket`：用于描述服务器的套接字，需要指定服务器的端口号。
 
-使用线程池处理多条连接数据流
+`Socket`：用于描述客户端与服务器之间的数据流，通过 `getInputStream` 和 `getOutputStream`来获取数据输入流和数据输出流，来接收和发送数据
+
+##### 基于 TCP 协议的示例：
+
+服务器端（Server）：
+
+1. 创建一个 `ServerSocket` 来描述服务器，需指定好端口号
+
+2. 开启服务器服务，循环执行接收数据流
+
+3. 调用 `accept` 方法来接收 `Socket` 数据流，如果没有接收到则阻塞等待（操作系统级别的阻塞等待，`JVM` 没有进一步区分，仍视为 `RUNNABLE`，但已不占用 `CPU`）
+
+4. 使用 `try` 代码块获取输入流和输出流，以便在后续程序会自动释放两个数据流
+
+5. 使用 `Scanner` 来读取输入流中的数据（**要格外注意下面👇的情况**），完成接收客户端请求的动作
+
+   1. **因为 `TCP` 是可靠连接，并且是数据传输和连接是不限时的，只要 `TCP` 处于连接，数据流就一直存在，如果此时读完了一行，还没有下一行数据来，操作系统会对调用读取输入流的进程进行操作系统级别的休眠，此时当前线程就会阻塞等待下一行数据的到来。这样设计的目的：客户端等待服务器的响应，服务器响应完毕后自然会发送响应数据；服务器等待客户端的请求，客户端产生请求后也自然会发送请求数据。**
+   2. 所以如果循环处理任务的条件为 `hasNextLine()`，有数据时会返回 `true`，连接中断后返回 `fasle`，而处于连接但是没有数据时**会阻塞等待下一行数据的到来**，如果下一行数据迟迟不来，就会出现程序阻塞 `while` 语句的条件无法跳出的情况。
+   3. 但如果应用层的协议认为换行表示信息发送结束，同样由于是等待系统资源的阻塞，`JVM` 仍然无法识别所以在这里线程的状态还是 `RUNNABLE`。所以对于服务器端要使用 `while` 语句，循环执行客户端发来数据，如果读取完毕则阻塞等待数据流中下一行数据的带来；而对于客户端则直接调用 `if` 语句即可，每次读一行数据，读完一行则表示本次消息发送完毕，再继续进行下一次消息的发送。
+6. 解析并处理客户端发来的数据
+7. 使用 `PrintWriter` 向输出流中写入服务器的响应数据，完成向客户端发送响应的动作
+   1. 使用 `PrintWriter` 类的原因是这个类使用方便、简单
+   2. 数据写入完毕后，要调用 `flush` 方法，刷新缓冲区，强制操作系统将数据写入网卡中
+
+8. 当前一轮数据处理完毕，打印日志
+
+客户端（`Client`）：
+
+1. 创建一个 `Socket` 来与服务器建立 `TCP` 连接，以及管理通信数据流
+2. 循环执行让用户输入数据的任务
+3. 获取用户输入数据后，调用 Socket 的 `getInputStream` 和 `getOutputStream` 来获取通信数据流
+4. 使用 PrintWriter 向数据输出流中写入数据，完成向服务器发送客户端请求的操作，同样调用 flush 刷新缓存
+5. 使用 Scanner 从数据输入流中读取数据，完成接收服务器响应数据的操作
+6. 向用户展示接收的响应数据，并打印日志
+
+##### 使用线程池处理多条 TCP 连接数据流
+
+将处理数据流的操作进行封装，代码如下，交给线程去处理接收的数据流，这样一个服务器就可以同时接收多条连接了，同时指定线程池的阻塞队列为 `SynchronousQueue` ，`SynchronousQueue` 不存储任务，新任务直接交给空闲线程或新创建的线程执行。
+
+```java
+    protected void process_connection(Socket clientSocket) throws IOException {
+        System.out.printf("[%s:%d] client is online.\n", clientSocket.getInetAddress(), clientSocket.getPort());
+        try (InputStream inputStream = clientSocket.getInputStream();
+             OutputStream outputStream = clientSocket.getOutputStream()) {
+            // 2. 读取连接的输入数据流的数据
+            Scanner scanner = new Scanner(inputStream); // 用于读取客户端的输入流
+//            while (scanner.hasNextLine()) {
+            while (scanner.hasNextLine()) {
+                // TCP 如果一直处于连接，在没有消息时会阻塞等待下一行消息的输入
+                String request = scanner.nextLine();
+                String response = process(request);
+                // 3. 向连接的输出数据流写入数据
+                PrintWriter writer = new PrintWriter(outputStream);
+                writer.println(response);
+                // 清空缓存区，强制要求操作系统将数据写入网卡
+                writer.flush();
+                // 4. 打印日志
+                System.out.printf("[%s:%d] request: %s --> response: %s\n",
+                        clientSocket.getInetAddress(), clientSocket.getPort(), request, response);
+            }
+            System.out.printf("[%s:%d] client is offline.\n", clientSocket.getInetAddress(), clientSocket.getPort());
+        }
+    }
+```
 
 
 

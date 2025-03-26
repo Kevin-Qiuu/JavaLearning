@@ -50,10 +50,9 @@ public class TCPEchoServer {
              OutputStream outputStream = clientSocket.getOutputStream()) {
             // 2. 读取连接的输入数据流的数据
             Scanner scanner = new Scanner(inputStream); // 用于读取客户端的输入流
+//            while (scanner.hasNextLine()) {
             while (scanner.hasNextLine()) {
-                // TCP 如果一直处于连接，会认为一直有 nextLine，所以会阻塞等待下一行消息的输入
-                // 简单来说，只要数据流存在，就会一直认为有 nextLine
-                // 由于这个特性，这个流会保持住，所以一直都会有数据流入，hasNextLine 阻塞等待就好
+                // TCP 如果一直处于连接，在没有消息时会阻塞等待下一行消息的输入
                 String request = scanner.nextLine();
                 String response = process(request);
                 // 3. 向连接的输出数据流写入数据
