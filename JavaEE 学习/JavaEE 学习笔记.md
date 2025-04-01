@@ -1583,7 +1583,7 @@ DatagramPacket clientRquest = new DatagramPacket(new byte[1024], 0, 1024, server
 DatagramPacket clientRequest = new DatagramPacket(new byte[1024], 0, 1024);
 ```
 
-##### 基于 UDP 协议的示例：
+##### UDP 套接字使用示例：
 
 ###### [服务器端（`Server`）：](https://github.com/Kevin-Qiuu/JavaLearning/blob/master/JavaEE%20%E5%AD%A6%E4%B9%A0/JavaEE_Learning_1/src/main/java/ee_11_network_program/udp/UDPEchoServer.java)
 
@@ -1628,7 +1628,7 @@ DatagramPacket clientRequest = new DatagramPacket(new byte[1024], 0, 1024);
 
 `Socket`：用于描述客户端与服务器之间的数据流，通过 `getInputStream` 和 `getOutputStream`来获取数据输入流和数据输出流，来接收和发送数据
 
-##### 基于 TCP 协议的示例：
+##### TCP 套接字使用示例：
 
 **[服务器端（`Server`）：](https://github.com/Kevin-Qiuu/JavaLearning/blob/master/JavaEE%20%E5%AD%A6%E4%B9%A0/JavaEE_Learning_1/src/main/java/ee_11_network_program/tcp/TCPEchoServer.java)**
 
@@ -1691,13 +1691,24 @@ DatagramPacket clientRequest = new DatagramPacket(new byte[1024], 0, 1024);
     }
 ```
 
+---
 
+#### TCP 协议的可靠连接
 
+1. 确认应答
+2. 超时重发
+3. 三次握手
+4. 四次挥手
+5. 滑动窗口（发送端没有接收到 ACK？接收端没有接收到数据包？ ）
+6. 流量控制（根据自身缓冲区限制滑动窗口大小）
+7. 拥塞控制（轮回控制流量）
+8. 延迟应答（捎带应答）
+9. 粘包问题（面向字节流的必然结果，在报文首部添加报文的字节长度）
+10. 异常情况
 
+---
 
-
-
-
+#### HTTP 协议
 
 
 
