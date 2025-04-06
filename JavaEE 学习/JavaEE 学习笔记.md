@@ -1695,9 +1695,9 @@ DatagramPacket clientRequest = new DatagramPacket(new byte[1024], 0, 1024);
 
 #### TCP 协议的可靠连接
 
-1. 确认应答
+1. 确认应答（ACK）
 2. 超时重发
-3. 三次握手
+3. 三次握手（SYN 与 ACK）
 4. 四次挥手
 5. 滑动窗口（发送端没有接收到 ACK？接收端没有接收到数据包？ ）
 6. 流量控制（根据自身缓冲区限制滑动窗口大小）

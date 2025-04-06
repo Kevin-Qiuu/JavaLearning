@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 这是一个表单 使用GET方法 -->
+    <form action="./26demo01.html" method="get">
+        <!-- 这是一个输入框， 表示用户名 -->
+        用户名： <input type="text" name="username" placeholder="请输入用户名"></input>
+        <br>
+        <!-- 这是一个输入框， 表示密码 -->
+        密码： <input type="password" name="password" placeholder="请输入密码"></input>
+        <br>
+        <input type="submit" value="登录"></input>
+    </form>
+    <hr>
+    <br>
+
+    <!-- 这是一个表单 使用POST方法-->
+    <form action="./26demo01.html" method="post">
+        <!-- 这是一个输入框， 表示用户名 -->
+        用户名： <input type="text" name="username" placeholder="请输入用户名"></input>
+        <br>
+        <!-- 这是一个输入框， 表示密码 -->
+        密码： <input type="password" name="password" placeholder="请输入密码"></input>
+        <br>
+        <input type="submit" value="登录"></input>
+    </form>
+    <hr>
+    <br>
+
+    <!-- 加载网络上的一张图片 -->
+    <img src="http://gips0.baidu.com/it/u=1690853528,2506870245&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024" height="500px" width="500px" alt=""></img>
+    <hr>
+    <br>
+
+    <!-- 上传一个图片 -->
+     <form action="./26demo01.html" method="post" enctype="multipart/form-data">
+        <!-- 这是一个上传框， 表示用户名 -->
+        上传图片： <input type="file" name="image"></input>
+        <br>
+        <input type="submit" value="上传"></input>
+    </form>
+    <hr>
+    <br>
+
+    <!-- A标签 -->
+    <a href="https://www.baidu.com">点击我 百度一下</a>
+    <hr>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p id="test_p">这是段落</p>
+
+
+
+</body>
+</html>

@@ -15,7 +15,7 @@ public class Demo02_PreparedStatement {
             // 创建连接和预编译 SQL 语句
             connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/javaDB?characterEncoding=utf8" +
                             "&allowPublicKeyRetrieval=true&useSSL=false",
-                    "root", "Qjh20020515");
+                    "root", "8888");
             String sql = """
                     SELECT
                     b.name  AS battle_name,
