@@ -1,0 +1,26 @@
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"> </script>
+
+
+<div id="text">
+    <h1 id="TextContent">这是一只可爱的小狗，汪汪汪！</h1>
+</div>
+
+<p><img src="../pic/dog.png" class="ShowPic"></p>
+
+<input type="button" id="ChangeImage" class="ShowPic" value="切换图片">
+
+<script>
+    var ChangFlag = true;
+    // 使用匿名方法，我认为这里更像是在托管匿名方法的调用
+    $("#ChangeImage").click(function(){
+        if(ChangFlag){
+            console.log($("#text").html());
+            $("#TextContent").text("这是一只可爱的小猫🐱，喵喵喵！");
+            $("img.ShowPic").attr("src", "../pic/cat.png");
+        } else {
+            $("#TextContent").text("这是一只可爱的小狗🐶，汪汪汪！");
+            $("img.ShowPic").attr("src", "../pic/dog.png");
+        }
+        ChangFlag = !ChangFlag;
+    })
+</script>
