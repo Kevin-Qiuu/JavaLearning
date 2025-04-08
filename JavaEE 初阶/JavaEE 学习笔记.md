@@ -1745,11 +1745,72 @@ DatagramPacket clientRequest = new DatagramPacket(new byte[1024], 0, 1024);
 
 #### HTTP 协议
 
+http 响应状态
+
+关键键值对
+
+回车
+
+Body
+
+
+
+---
+
+## JavaEE 进阶
+
+JavaEE 进阶
+
+Http 状态码：
+
+4xx 检查请求是否正确
+
+5xx 后端代码有bug 查看控制台报错日志
 
 
 
 
 
+Spring Framework：火车（真正运行的主体）
+
+Spring MVC：火车站、火车票代售点（提供上车的方式）
+Spring Boot：12306（ 封装集成了全部的框架以及第三方服务）
+
+
+
+Spring Framework：燃气灶、锅等食材或工具
+
+Spring MVC：点火、做饭、切菜等功能
+
+SpringBoot：厨房、厨房里可以有柜子来放许多炒饭的工具（制作饭菜的平台）
+
+Spring 家族
+
+
+
+MVC 
+
+Model
+
+Controller
+
+View 
+
+MVC 是一种架构设计模式，也是一种规范，而 Spring MVC 就是对 MVC 思想的具体实现
+
+
+
+
+
+Spring MVC：
+
+1、客户端发送请求给 Controller
+
+2、Controller 根据用户请求选择模型处理业务逻辑
+
+3、Model 将业务处理结果返回给 Controller
+
+4、Controller 填充响应内容给到 View 进行最终呈现
 
 
 
