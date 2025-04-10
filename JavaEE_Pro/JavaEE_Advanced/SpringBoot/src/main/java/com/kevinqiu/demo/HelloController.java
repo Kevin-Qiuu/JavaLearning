@@ -16,16 +16,30 @@ public class HelloController {
         return ret + ret_2;
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/getName")
     public String getName(@RequestParam(required = false) String name) {
         if (name == null)
             name = "KevinQiu";
         return "<h1>" + name + "</h1>";
     }
 
+    @RequestMapping("/login")
+    public String loginAccount(String userName, String passwd, Integer age){
+        // 方法中有多个参数的，既可以通过 url 传参也可以通过Form 表单传参
+        Person person = new Person(userName, age, passwd);
+        return person.toString();
+    }
+
+    @RequestMapping("/search")
+    public String search(@RequestParam("q")String query){
+        return "query: " + query;
+    }
+
     @RequestMapping("/makePerson")
     public String makePerson(@RequestBody(required = false) Person person) {
-        // @RequestBody：这个注解用于接收并处理 JSON 数据
+        // @RequestBody：这个注解用于接收并处理 JSON 数据，可以通过 JSON 传参
         return "<h1>" + person + "</h1>";
     }
+
+
 }
