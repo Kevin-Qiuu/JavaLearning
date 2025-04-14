@@ -1,8 +1,13 @@
 package com.kevinqiu.demo;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 @RestController// 为了使 SpringBoot 明确有哪些类的方法需要路径映射
 @RequestMapping("/request")
@@ -48,11 +53,25 @@ public class RequestController {
         return "ArticleId: " + ArticleId + " ArticleType: " + ArticleType;
     }
 
+
+    // 获取用户上传文件
+    // @RequestPart  MultipartFile
+    @RequestMapping("getFile")
+    public String getFile(@RequestPart("file") MultipartFile file) throws IOException {
+        String originalFilename = file.getOriginalFilename();
+        file.transferTo(new File("/Users/kevinqiu/Downloads/Java_save_data/"+originalFilename));
+        return "Get file successfully and save in " + "~/download/java_save_data" + originalFilename;
+    }
+
     // 获取用户 cookie
     @RequestMapping("getCookie")
     public String getCookie(HttpServletRequest request){
         // todo
-        return "";
+        Cookie[] cookies = request.getCookies();
+        for(Cookie cookie : cookies){
+            System.out.println(cookie.getName() + ":" + cookie.getValue());
+        }
+        return "Show the data in the controller...";
     }
 
 
@@ -79,6 +98,17 @@ public class RequestController {
         String age = (String) session.getAttribute("age");
         return "name: " + name + " passwd: " + passwd + " age: " + age;
     }
+
+    // 获取头信息中的 host，使用 HttpServletRequest
+    @RequestMapping("getHost")
+    public String getHost(HttpServletRequest request){
+        String host = request.getHeader("Host");
+        return "Current host: " + host;
+    }
+
+    // 设置头信息中的 Content-type，使其返回给前端的值为 json
+
+
 
 
 }
