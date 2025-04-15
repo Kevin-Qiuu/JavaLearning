@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户登录首页</title>
+</head>
+
+<body>
+    登录人: <span id="loginUser"></span>
+
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        getLoginUser();
+        function getLoginUser() {
+            $.ajax({
+                type: "get",
+                url: "/user/getLoginUser",
+                success: function (body) {
+                    console.log(body)
+                    if (body != "") {
+                        $("#loginUser").text(body);
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>
