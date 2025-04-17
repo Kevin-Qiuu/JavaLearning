@@ -16,7 +16,7 @@
             <img src="pic/computer.png" width="350px">
         </div>
         <div class="login-dialog">
-            <h3>登陆</h3>
+            <h3>登录</h3>
             <div class="row">
                 <span>用户名</span>
                 <input type="text" name="userName" id="userName" class="form-control">
@@ -33,7 +33,22 @@
     <script src="js/jquery.min.js"></script>
     <script>
         function login() {
-            location.href = "book_list.html";
+            $.ajax({
+                type: "POST",
+                url: "/books/login",
+                data: {
+                    userName: $("#userName").val(),
+                    password: $("#password").val()
+                },success: function (result){
+                    if (result == -1){
+                        alert("账号或密码不可为空！")
+                    } if(result == 1){
+                        location.href = "book_list.html";
+                    } else {
+                        alert(("账号或密码不正确！"))
+                    }
+                }
+            });
         }
     </script>
 </body>
