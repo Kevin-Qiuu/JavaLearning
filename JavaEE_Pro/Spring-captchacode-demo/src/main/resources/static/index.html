@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>验证码</title>
+  <style>
+    #inputCaptcha {
+      height: 30px;
+      vertical-align: middle; 
+    }
+    #verificationCodeImg{
+      vertical-align: middle; 
+    }
+    #checkCaptcha{
+      height: 40px;
+      width: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>输入验证码</h1>
+  <div id="confirm">
+    <input type="text" name="inputCaptcha" id="inputCaptcha">
+    <img id="verificationCodeImg" src="/captcha/getCaptcha" style="cursor: pointer;" title="看不清？换一张" />
+    <input type="button" value="提交" id="checkCaptcha">
+  </div>
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script>
+    
+    $("#verificationCodeImg").click(function(){
+      $(this).hide().attr('src', '/captcha/getCaptcha?dt=' + new Date().getTime()).fadeIn();
+    });
+
+    $("#checkCaptcha").click(function () {
+      console.log("click check ")
+        $.ajax({
+          url: "captcha/checkCaptcha",
+          type: "POST",
+          data: {
+            inputCaptcha: $("#inputCaptcha")
+          }, success: function (result){
+            if(result === -1){
+              alert("当前验证码已过期！")
+            } else if(result === 0){
+              alert("验证码输入错误！")
+            } else{
+              location.href="success.html";
+            }
+          }
+
+        })
+    });
+
+  </script>
+</body>
+
+</html>
