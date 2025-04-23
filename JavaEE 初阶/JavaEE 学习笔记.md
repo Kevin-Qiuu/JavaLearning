@@ -1968,24 +1968,9 @@ Body
 
 ## JavaEE 进阶
 
-JavaEE 进阶
+### SpringBoot
 
-Http 状态码：
-
-4xx 检查请求是否正确
-
-5xx 后端代码有bug 查看控制台报错日志
-
-
-
-
-
-Spring Framework：火车（真正运行的主体）
-
-Spring MVC：火车站、火车票代售点（提供上车的方式）
-Spring Boot：12306（ 封装集成了全部的框架以及第三方服务）
-
-
+#### Spring 之间的关系
 
 Spring Framework：燃气灶、锅等食材或工具
 
@@ -1995,23 +1980,9 @@ SpringBoot：厨房、厨房里可以有柜子来放许多炒饭的工具（制�
 
 Spring 家族
 
+---
 
-
-MVC 
-
-Model
-
-Controller
-
-View 
-
-MVC 是一种架构设计模式，也是一种规范，而 Spring MVC 就是对 MVC 思想的具体实现
-
-
-
-
-
-Spring MVC：
+#### MVC
 
 1、客户端发送请求给 Controller
 
@@ -2021,7 +1992,11 @@ Spring MVC：
 
 4、Controller 填充响应内容给到 View 进行最终呈现
 
+---
 
+#### Spring MVC
+
+##### 注解：
 
 @Controller
 
@@ -2037,7 +2012,51 @@ Spring MVC：
 
 @RequestPart
 
+---
 
+#### Cookie & Session
+
+##### **学到的类**
+
+HttpServletRequest
+
+HttpSession
+
+HttpServeletResponse
+
+
+
+HTTP 是无状态（没有记忆力）
+
+Cookie 是客户端保存用户信息的一种机制
+
+Session 是服务器端保存用户信息的一种机制
+
+服务端：Session
+
+
+
+HttpServerletRequest的成员方法 getSession
+
+getSession通过客户端 Cookie 中的 SessionId找到服务器中存储的 Session，获取到用户的信息。
+
+如果客户端没有 cookie，就会自动创建一个 session（如果 getSession 方法的 create 参数设置为 true，默认为 true），然后把 sessionID 放入 cookie 中通过响应报文发送给客户端
+
+
+
+1.发送请求
+
+2.服务器创建一个 Session，并把 sessionId通过 set_cookie 返回给客户端
+
+3.客户端发送其他请求是就会写到 CookieId
+
+4.服务器根据客户端发来的 CookieId 查找对应的 Session
+
+---
+
+#### IoC
+
+我们会把被下面五大注解修饰的所有类将对象的控制权交给 Spring 的 IoC 容器，由 IoC 容器创建及管理对象，存放的对象被称为 bean，也就是bean的存储。Spring 会在服务启动时，会把被下面五大注解修饰的所有类都进行实例化，放在 IoC 容器中，通过这种方式，我们将这些类的控制权给到了 Spring 框架，这就是控制反转。
 
 @Controller
 
@@ -2049,7 +2068,9 @@ Spring MVC：
 
 @Component
 
+---
 
+#### DI
 
 @Autowired
 
@@ -2059,23 +2080,11 @@ Spring MVC：
 
 
 
-@Data
-
-@AllArgsConstructor
-
-@NoArgsConstructor
 
 
 
 
 
-学到的类
-
-HttpServletRequest
-
-HttpSession
-
-HttpServeletResponse
 
 
 

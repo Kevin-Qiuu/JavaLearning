@@ -1,0 +1,9 @@
+Captcha:
+  width: 200
+  height: 50
+  codeCount: 4
+  lineCount: 200
+
+  CaptchaSession:
+    key: CAPTCHA_CODE
+    timeStamp: CAPTCHA_SET_TIME_STAMP

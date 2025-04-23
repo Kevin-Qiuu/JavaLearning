@@ -29,9 +29,15 @@
   </div>
   <script src="js/jquery-3.7.1.min.js"></script>
   <script>
-    
-    $("#verificationCodeImg").click(function(){
-      $(this).hide().attr('src', '/captcha/getCaptcha?dt=' + new Date().getTime()).fadeIn();
+
+    const verificationCodeImg = $("#verificationCodeImg");
+
+    function updateCaptcha(){
+      verificationCodeImg.hide().attr('src', '/captcha/getCaptcha?dt=' + new Date().getTime()).fadeIn();
+    }
+
+    verificationCodeImg.click(function(){
+      updateCaptcha();
     });
 
     $("#checkCaptcha").click(function () {
@@ -40,18 +46,19 @@
           url: "captcha/checkCaptcha",
           type: "POST",
           data: {
-            inputCaptcha: $("#inputCaptcha")
+            inputCaptcha: $("#inputCaptcha").val()
           }, success: function (result){
             if(result === -1){
-              alert("当前验证码已过期！")
+              alert("当前验证码已过期！");
+              updateCaptcha();
             } else if(result === 0){
-              alert("验证码输入错误！")
+              alert("验证码输入错误！");
+              updateCaptcha();
             } else{
               location.href="success.html";
             }
           }
-
-        })
+        });
     });
 
   </script>
