@@ -2012,6 +2012,12 @@ Spring 家族
 
 @RequestPart
 
+注解就是 Java 这些第三方工具跟用户（程序员）交互的方式，用户通过在类、方法、属性上添加注解，来向第三方工具明确需要对注解修饰的代码段做如何处理。
+
+而对于底层，第三方工具是通过 java 的反射机制对注解修饰的代码进行处理的，通过反射可以拿取到全部的代码段，同时根据用户使用的注解去提供不同的服务。
+
+而对于用户，只需记住当前注解具备什么功能即可，学习 Java 如同学会怎么开赛车，需要明确工作原理，但是不用深入理解制作工艺，在理解工作原理的基础之上把赛车开到极致，这便是 Java 的学习之道。
+
 ---
 
 #### Cookie & Session
@@ -2054,29 +2060,175 @@ getSession通过客户端 Cookie 中的 SessionId找到服务器中存储的 Ses
 
 ---
 
+#### IoC & DI
+
+**IoC（Inversion of Control）**
+
+IoC 是 Inversion of Control 的简写，译为“控制反转”，它不是一门技术，而是一种**设计思想**，指的是预先把依赖进行创建并存储，在需要时动态进行提供。
+
+**以造车为例：**
+
+- 在传统的代码中对象创建顺序是：Car -> Framework -> Bottom -> Tire
+- 但是在 IoC 思想中对象的创建顺序是：Tire -> Bottom -> Framework -> Car
+
+传统代码中，为了造一辆车，会先创建车，然后再去寻找造车所需的依赖，如果底层一旦有哪一个工具出现了问题，会连带底层往上的所有类的代码改动，导致耦合度比较高。
+
+而引入了 IoC 思想后，先把依赖创建好并进行存储，当上层类需要创建时直接拿取即可，这样从底层往上创建，底层的代码改动不会影响上层的代码逻辑，极大降低了代码耦合度。
+
+Spring 通过 **IoC** 容器来管理**所有** **Java** **对象的实例化和初始化**，**控制对象与对象之间的依赖关系**。我们将由 IoC 容器管理的 Java 对象称为 Spring **Bean**，它与使用关键字 new 创建的 Java 对象没有任何区别。
+
+---
+
+**DI（Denpendency Injection）**
+
+IoC 容器在运行期间，会动态地向应用程序提供创建好的依赖资源，这称之为依赖注入。
+
+当程序目前需要哪个资源时，此时容器就会提供什么资源。我们把存放 bean 的容器成为 IoC 容器，将把 bean 从容器中注入到应用程序的过程称为依赖注入。依赖注入就是通过 IoC 容器，利用依赖关系注入的方式，实现对象之间的解耦。
+
+---
+
 #### IoC
 
-我们会把被下面五大注解修饰的所有类将对象的控制权交给 Spring 的 IoC 容器，由 IoC 容器创建及管理对象，存放的对象被称为 bean，也就是bean的存储。Spring 会在服务启动时，会把被下面五大注解修饰的所有类都进行实例化，放在 IoC 容器中，通过这种方式，我们将这些类的控制权给到了 Spring 框架，这就是控制反转。
+Spring 会把根据是否添加注解来明确是否要把类创建并放入容器中，这里总共有两类注解：
 
-@Controller
+1. 类注解：@Cotroller、@Service、@Repository、@Configuration、@Component
+2. 方法注解：@Bean
 
-@Service
+##### 类注解
 
-@Repository
+类注解的作用域是类，具体使用时应根据类的实际用途选择不一样的注解，这就是应用分层，如下图。
 
-@Configuration
+<img  src="JavaEE 学习笔记_markdown_img/image-20250425181854348.png" alt="image-20250425181854348">
 
-@Component
+@Component 是一个元注解，@Cotroller、@Service、@Repository、@Configuration 这四个注解都是 @Component 的衍生注解，所以在实际应用中，这四个注解用哪个对实际程序的运行都没太大影响，但是关键影响了开发规范，破坏了应用分层的程序开发思想。
+
+---
+
+##### 方法注解
+
+```java
+@Component 
+public class BeanConfig {
+  @Bean
+  public User user(){ 
+    User user = new User(); 
+    user.setName("zhangsan"); 
+    user.setAge(18); 
+    return user; 
+  } 
+}
+```
+
+@Bean 注解需要搭配类注解才可以将对象正常地存储到 Spring 容器中，除了这个还要配合 Spring 的扫描范围，让 Spring 能够扫描到标注 @Bean 注解的方法，默认是 Spring 的启动类（被 @SpringBootApplication 修饰的类）所在的目录以及其所有子目录。虽然可以通过@ComponentScan 注解来调整 Spring 的扫描范围，但是强烈不推荐，在创建项目时按照下图创建即可：
+
+<img  src="JavaEE 学习笔记_markdown_img/image-20250425185123710.png" alt="image-20250425185123710" >
+
+**多个 Bean 同时创建**
+
+```java
+@Component 
+public class BeanConfig {
+  @Bean
+  public User user1(){ 
+    User user = new User(); 
+    user.setName("zhangsan"); 
+    user.setAge(18); 
+    return user; 
+  } 
+  @Bean
+  public User user2(){ 
+    User user = new User(); 
+    user.setName("zhangsan"); 
+    user.setAge(18); 
+    return user; 
+  } 
+}
+```
+
+对于上述情况，如果根据类别来使用 Bean 会出现冲突，因为同一类型下创建了多个 bean，所以应该根据 bean 的名称去获取。
+
+对于通过方法创建的 bean，Spring 统一会把这些 bean 命名成方法名，对于上面的两个方法，Spring 创建的两个 bean 的名称是 user1 和 user2。
 
 ---
 
 #### DI
 
-@Autowired
+依赖注入是一个过程，是指 IoC 容器为需要创建的 Bean 提供所依赖的资源，而这里的资源指的就是对象，我们也称为依赖。所以依赖注入，ioC 在创建一个 bean 时，把之前创建好的依赖 bean 注入到这个 bean 的过程就是依赖注入。
 
-@Qulifier
+关于依赖注入，Spring 提供了三种方式，这里最关键的是 **`@Autowired`** 注解：
 
-@Resource
+1. 属性注入
+2. 构造方法注入
+3. Setter 注入
+
+##### 属性注入
+
+下面是某个 Service 类的实现代码，被@Service 修饰，在程序启动后，Spring 会创建其对象并将其放入 IoC 容器中。
+
+```java
+import org.springframework.stereotype.Service;
+@Service 
+public class UserService {
+  public void sayHi() {
+    System.out.println("Hi,UserService");
+  } 
+}
+```
+
+对应的 Controller 类的实现代码如下：
+
+```java
+@Controller
+public class UserController {
+  @Autowired
+  private UserService userService; 
+  public void sayHi(){ 
+    System.out.println("hi,UserController..."); 
+    userService.sayHi(); 
+  }
+}
+```
+
+上面这个 Controller 的依赖是 UserService，也就是上面的 Service 类，而在这里 @Autowired 修饰了 userService 引用变量。
+
+当 Spring 创建这个 Controller 作为 IoC 容器中的一个 bean 时，对于有@Autowired 修饰的变量，会自动把 IoC 容器中对应的依赖进行注入。
+
+（总结到这里，突然对 IoC 的设计思想更领悟了一点。）
+
+**@Qulifier**
+
+当遇到同一类型下的多个bean 时，可以在使用 @Autowired 的基础上搭配 @Qulifier，通过 bean 的名称来明确表示使用哪个 bean。
+
+```java
+@Controller 
+public class UserController { 
+  @Qualifier("user2") 
+  @Autowired 
+  private User user;
+  public void sayHi(){
+    System.out.println("hi,UserController...");
+    System.out.println(user); 
+  } 
+}
+```
+
+**@Resource**
+
+@Resource 的功能就是 @Autowired 和 @Qulifier 的组合，可以直接通过 bean 的名称来进行依赖的注入。
+
+但不是单纯的叠加，@Resource 是 JDK 提供的注解，而 @Autowired 是 Spring 提供的注解。
+
+```java
+@Controller 
+public class UserController { 
+  @Resource(name = "user2") 
+  private User user; 
+  public void sayHi(){ 
+    System.out.println("hi,UserController..."); 
+    System.out.println(user); 
+  } 
+}
+```
 
 
 

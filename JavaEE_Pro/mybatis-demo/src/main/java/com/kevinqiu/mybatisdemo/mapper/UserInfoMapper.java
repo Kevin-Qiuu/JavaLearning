@@ -5,8 +5,8 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 // @Mapper
-// 注解在程序运⾏时，mybatis 框架会⾃动⽣成接⼝的实现类对象(代理对象)，
-// 并给交给 Spring 的 IOC 容器管理
+// 注解在程序运⾏时，mybatis 框架会根据我们设定的接口以及接口的注解⾃动⽣成接⼝的实现类
+// 并创建对象(代理对象)，然后将对象交给 Spring 的 IOC 容器管理
 @Mapper
 public interface UserInfoMapper {
 
@@ -27,7 +27,9 @@ public interface UserInfoMapper {
             "values (#{username}, #{password}, #{age}, #{gender}) ")
     Integer insertUser(UserInfo userInfo);
 
-    @Update()
+    @Update("update user_info set username=#{username} where id=#{id}")
+    void updateUsernameById(String username, Integer id);
+//    @Delete()
 
 
 

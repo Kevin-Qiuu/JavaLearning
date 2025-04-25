@@ -31,4 +31,10 @@ class UserInfoMapperTest {
         System.out.println("The effected lines: " + userInfoMapper.insertUser(userInfo));
         System.out.println("The id of the added line: " + userInfo.getId());
     }
+
+
+    @Test
+    void updateUsernameById() {
+        userInfoMapper.updateUsernameById("QJH",8);
+    }
 }
