@@ -37,4 +37,9 @@ class UserInfoMapperTest {
     void updateUsernameById() {
         userInfoMapper.updateUsernameById("QJH",8);
     }
+
+    @Test
+    void deleteUserById() {
+        userInfoMapper.deleteUserById(8);
+    }
 }

@@ -9,8 +9,8 @@ public class UserInfo {
     private String password;
     private Integer age;
     private Integer gender;
-//    String phone;
-//    Integer delete_flag;
+    private String phone;
+    Integer deleteFlag;
 //    String create_time;
 //    String update_time;
 }

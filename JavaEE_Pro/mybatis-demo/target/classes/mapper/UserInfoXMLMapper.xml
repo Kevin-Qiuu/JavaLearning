@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--    namespace 的根目录是src/main/java    -->
+<mapper namespace="com.kevinqiu.mybatisdemo.mapper.UserInfoXMLMapper">
+
+    <sql id="SelectNeededColum">
+       select `id`, `username`, `password`, `age`, `gender`, `phone` from user_info
+    </sql>
+
+    <!--  resultType 表示返回对象的类型是什么，如果返回的对象是一个 List，则类型为 List 元素的类型  -->
+    <select id="selectAllUser" resultType="com.kevinqiu.mybatisdemo.mapper.UserInfo">
+        <include refid="SelectNeededColum"/>
+    </select>
+
+    <!--  resultType 表示返回对象的类型是什么  -->
+    <select id="selectUserById" resultType="com.kevinqiu.mybatisdemo.mapper.UserInfo">
+        <include refid="SelectNeededColum"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectUserByUsername" resultType="com.kevinqiu.mybatisdemo.mapper.UserInfo">
+        <!-- ${} 会将参数的值直接进行替换，放入 sql 语句中，将传递的值视为 SQL 语句的一部分，所以会有 SQL 注入隐患 -->
+        <!-- #{} 则会将输入值作为整体参数传递，数据库会将其视为纯参数值，而非SQL语法的一部分 -->
+        <!-- 但是在动态对 SQL 语句的参数进行使用时，需要使用${}，如需要传递 ASC 或者 DESC -->
+        select `id`, `username`, `password`, `age`, `gender`, `phone` from user_info where username=#{username}
+    </select>
+
+    <select id="selectUserByLikeUsername" resultType="com.kevinqiu.mybatisdemo.mapper.UserInfo">
+        select `id`, `username`, `password`, `age`, `gender`, `phone`
+        from user_info
+        where username like concat('%', #{username}, '%')
+    </select>
+
+    <select id="selectUserByCondition" resultType="com.kevinqiu.mybatisdemo.mapper.UserInfo">
+        <!-- 根据用户选择的标签动态查找对应的数据 -->
+        <!-- 第一种实现方式：<if> + <trim> -->
+        <!--        select `id`, `username`, `password`, `age`, `gender`, `phone`-->
+        <!--        from user_info-->
+        <!--        where true-->
+        <!--            <trim>-->
+        <!--                <if test="username != null">-->
+        <!--                    and username = #{username}-->
+        <!--                </if>-->
+        <!--                <if test="age != null">-->
+        <!--                    and age = #{age}-->
+        <!--                </if>-->
+        <!--                <if test="gender != null">-->
+        <!--                    and gender = #{gender}-->
+        <!--                </if>-->
+        <!--            </trim>-->
+        <!-- 第二种实现方式：<where> 标签 -->
+        <!-- <where> 标签会自动去除前后缀中的 and 并且在没有指定查找标签时默认添加 true -->
+        select `id`, `username`, `password`, `age`, `gender`, `phone`
+        from user_info
+        <where>
+            <if test="username != null">
+                and username = #{username}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+        </where>
+
+    </select>
+
+    <!--    useGeneratedKeys 表示是否将数据库自增的主键进行返回，keyProperty 表示 Mybatis 返回的值赋值给插入对象的哪个变量 -->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        insert into user_info(username, password, age, gender, phone)
+        values (#{username},
+                #{password},
+                #{age},
+                #{gender},
+                #{phone})
+    </insert>
+
+    <!--  如果对于未提供的值想使用 SQL 创建表时的默认参数值，这个场景需要动态调整 SQL，使用 <if> 标签   -->
+    <insert id="insertUserByCondition" useGeneratedKeys="true" keyProperty="id">
+        <!-- Mybaits 的处理顺序是这样的： -->
+        <!-- 1. 对语句中出现的参数进行赋值，无法赋值的则置为 null -->
+        <!-- 2. 根据 if 标签中的 test 条件对 SQL 语句进行动态修改 -->
+        <!-- 3. 根据 trim 标签中的前后缀和去除前后缀的设置对 sql 语句再进行动态修改 -->
+        insert into user_info
+        <!-- trim 标签可以用来添加包含 sql 语句部分的前后缀字符以及需要去除的前后缀字符 -->
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+            <if test="phone != null">
+                phone
+            </if>
+        </trim>
+
+        values
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <if test="username != null">
+                #{username},
+            </if>
+            <if test="password != null">
+                #{password},
+            </if>
+            <if test="age != null">
+                #{age},
+            </if>
+            <if test="gender != null">
+                #{gender},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag},
+            </if>
+            <if test="phone != null">
+                #{phone}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteUserById">
+        delete
+        from user_info
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteUsersByIds">
+        delete
+        from user_info
+        where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateUserById">
+        update user_info
+        set username=#{username},
+            password=#{password},
+            gender=#{gender},
+            phone=#{phone}
+        where id = #{id}
+    </update>
+
+    <update id="updateUserByCondition">
+        <!-- 在更新操作中根据标签来指定动态内容的 sql 语句 -->
+        <!-- 第一种实现方式：<if> + <trim> -->
+        <!--        update user_info set-->
+        <!--        <trim suffixOverrides=",">-->
+        <!--            <if test="username != null">-->
+        <!--                username=#{username},-->
+        <!--            </if>-->
+        <!--            <if test="password != null">-->
+        <!--                password=#{password},-->
+        <!--            </if>-->
+        <!--            <if test="age != null">-->
+        <!--                age=#{age},-->
+        <!--            </if>-->
+        <!--            <if test="phone != null">-->
+        <!--                phone=#{age},-->
+        <!--            </if>-->
+        <!--            <if test="deleteFlag != null">-->
+        <!--                delete_flag=#{deleteFlag},-->
+        <!--            </if>-->
+        <!--        </trim>-->
+        <!--        where id = #{id}-->
+        <!-- 第二种实现方式：<set> -->
+        <!-- 这里的<set>与上面的<where>功能类似，都是 mybatis 官方做了封装，会自动去除多余的前后缀 -->
+        update user_info
+        <set>
+            <if test="username != null">
+                username=#{username},
+            </if>
+            <if test="password != null">
+                password=#{password},
+            </if>
+            <if test="age != null">
+                age=#{age},
+            </if>
+            <if test="phone != null">
+                phone=#{age},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag=#{deleteFlag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <!--  使用 Mybatis 提供的更多的标签来实现更复杂的动态 SQL   -->
+    <!--  如果对于未提供的值想使用 SQL 创建表时的默认参数值，这个场景需要动态调整 SQL，使用 <if> 标签   -->
+
+
+</mapper>

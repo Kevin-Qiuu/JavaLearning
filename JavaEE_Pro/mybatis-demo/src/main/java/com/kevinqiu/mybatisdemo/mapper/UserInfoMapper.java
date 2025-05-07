@@ -31,6 +31,7 @@ public interface UserInfoMapper {
     void updateUsernameById(String username, Integer id);
 //    @Delete()
 
-
+    @Delete("delete from user_info where id = #{id}")
+    void deleteUserById(Integer id);
 
 }
