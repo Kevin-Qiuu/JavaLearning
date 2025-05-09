@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kevinqiu.springmvc_demos.mapper.MessageInfoMapper">
+
+    <select id="selectAllMessage" resultType="com.kevinqiu.springmvc_demos.model.MessageInfo">
+        select `id`, `from`, `to`, `message` from message_info;
+    </select>
+
+    <insert id="insertMessage" useGeneratedKeys="true" keyProperty="id">
+        insert into message_info (`from` ,`to`, `message`)
+        values (#{from}, #{to}, #{message})
+    </insert>
+
+</mapper>
