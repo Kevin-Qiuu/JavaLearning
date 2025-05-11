@@ -2000,13 +2000,13 @@ Spring 家族
 
 @Controller
 
-@ResponseBody
+@ResponseBody：`@ResponseBody` 用于将方法的返回值序列化为 JSON（或其他格式，取决于配置的内容协商策略），并发送给客户端。它通常用于处理 GET 请求或返回数据的场景。
 
-@RestController
+@RestController：`@RestController` 是一个组合注解，它等价于 `@Controller` + `@ResponseBody`。使用 `@RestController` 注解的控制器中的所有方法默认都会使用 `@ResponseBody`。
 
-@RequestMapping
+@RequestMapping：`@RequestMapping` 是一个用于映射 HTTP 请求到控制器方法的注解。它可以通过 `produces` 参数指定响应的内容类型（`Content-Type`），告诉客户端服务器将返回的数据类型。
 
-@RequestBody
+@RequestBody：`@RequestBody` 用于接收客户端发送的 JSON 数据，并将其反序列化为一个 Java 对象。它通常用于处理 POST 或 PUT 请求。
 
 @RequestParam
 
@@ -2017,6 +2017,31 @@ Spring 家族
 而对于底层，第三方工具是通过 java 的反射机制对注解修饰的代码进行处理的，通过反射可以拿取到全部的代码段，同时根据用户使用的注解去提供不同的服务。
 
 而对于用户，只需记住当前注解具备什么功能即可，学习 Java 如同学会怎么开赛车，需要明确工作原理，但是不用深入理解制作工艺，在理解工作原理的基础之上把赛车开到极致，这便是 Java 的学习之道。
+
+
+
+接收 JSON 格式数据：
+
+使用注解：
+
+- @RequestBody
+
+前端传来 json 数据，使用@RequestBody 接收 json 数据创建对象，但需注意 json 数据的 key 应与对象的字段名称一致
+
+![image-20250511120025033](JavaEE 学习笔记_markdown_img/image-20250511120025033.png)
+
+
+
+返回 Json 格式数据创建对象
+
+使用注解：
+
+- @RequestMapping
+- @ResponseBody
+
+使用@RequestMapping 中的 produce 参数，设置为"application/json"，在 http 报文状态头位置通知前端后端传递的数据是 json
+
+使用@ResponseBody 修饰方法把对象重新反序列化为 json，但如果类由@RestController 修饰，则所有的方法都会默认自带@ResponseBody
 
 ---
 

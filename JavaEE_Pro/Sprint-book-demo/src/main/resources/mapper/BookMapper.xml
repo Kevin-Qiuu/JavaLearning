@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kevinqiu.springBookDemo.mapper.BookMapper">
+
+    <select id="selectBooksByPage" resultType="com.kevinqiu.springBookDemo.model.BookInfo">
+        select `id`, `book_name`, `author`, `count`, `price`, `publish`, `status`, `create_time`, `update_time`
+        from book_info where status != 0 limit #{pageOffset}, #{pageSize}
+    </select>
+</mapper>

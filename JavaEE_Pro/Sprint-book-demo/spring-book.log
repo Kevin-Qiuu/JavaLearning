@@ -1,65 +1,673 @@
-2025-05-10T00:09:42.486+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=18m53s329ms).
-2025-05-10T00:10:53.618+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m11s133ms).
-2025-05-10T00:12:32.562+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m8s930ms).
-2025-05-10T01:48:48.054+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h35m45s482ms).
-2025-05-10T02:36:54.445+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=47m36s376ms).
-2025-05-10T04:12:49.960+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h35m55s514ms).
-2025-05-10T05:34:55.365+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h22m5s406ms).
-2025-05-10T05:45:00.074+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m4s709ms).
-2025-05-10T06:35:20.238+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=50m20s160ms).
-2025-05-10T07:37:11.027+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h1m50s793ms).
-2025-05-10T07:45:54.014+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m12s973ms).
-2025-05-10T08:19:36.750+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=33m42s737ms).
-2025-05-10T08:46:51.109+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=27m14s359ms).
-2025-05-10T09:04:24.029+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m32s920ms).
-2025-05-10T09:10:09.430+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m45s380ms).
-2025-05-10T09:11:17.182+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m7s753ms).
-2025-05-10T09:47:45.756+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=35m58s565ms).
-2025-05-10T10:42:07.702+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=52m21s903ms).
-2025-05-10T10:48:43.152+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m5s427ms).
-2025-05-10T11:49:40.272+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h27s107ms).
-2025-05-10T11:52:26.079+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m15s795ms).
-2025-05-10T11:57:09.070+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m42s947ms).
-2025-05-10T11:58:21.170+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m12s99ms).
-2025-05-10T12:50:35.411+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=51m44s225ms).
-2025-05-10T13:02:07.685+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m2s259ms).
-2025-05-10T13:04:00.423+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m22s721ms).
-2025-05-10T13:05:30.234+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s787ms), soft-evicting connections from pool.
-2025-05-10T14:51:57.001+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=25s610ms), soft-evicting connections from pool.
-2025-05-10T20:08:05.818+08:00  WARN 86751 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s860ms), soft-evicting connections from pool.
-2025-05-10T20:53:35.226+08:00  INFO 86751 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-05-10T20:53:35.249+08:00  INFO 86751 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-05-10T20:53:35.270+08:00  INFO 86751 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-05-10T20:53:35.275+08:00  INFO 86751 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-05-10T21:30:38.162+08:00  INFO 10862 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Starting BookMapperTest using Java 17.0.11 with PID 10862 (started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
-2025-05-10T21:30:38.163+08:00  INFO 10862 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : No active profile set, falling back to 1 default profile: "default"
-2025-05-10T21:30:38.897+08:00  INFO 10862 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Started BookMapperTest in 0.911 seconds (process running for 1.408)
-2025-05-10T21:30:39.348+08:00  INFO 10862 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-05-10T21:30:39.471+08:00  INFO 10862 --- [Sprint-book-demo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fa212df
-2025-05-10T21:30:39.472+08:00  INFO 10862 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-05-10T21:30:39.541+08:00  INFO 10862 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-05-10T21:30:39.547+08:00  INFO 10862 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-05-10T21:34:35.180+08:00  INFO 11042 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Starting BookMapperTest using Java 17.0.11 with PID 11042 (started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
-2025-05-10T21:34:35.182+08:00  INFO 11042 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : No active profile set, falling back to 1 default profile: "default"
-2025-05-10T21:34:35.920+08:00  INFO 11042 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Started BookMapperTest in 0.915 seconds (process running for 1.424)
-2025-05-10T21:34:36.321+08:00  INFO 11042 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-05-10T21:34:36.422+08:00  INFO 11042 --- [Sprint-book-demo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fa212df
-2025-05-10T21:34:36.423+08:00  INFO 11042 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-05-10T21:34:36.477+08:00  INFO 11042 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-05-10T21:34:36.482+08:00  INFO 11042 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-05-10T21:34:43.388+08:00  INFO 11054 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 11054 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
-2025-05-10T21:34:43.389+08:00  INFO 11054 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
-2025-05-10T21:34:43.801+08:00  INFO 11054 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-05-10T21:34:43.809+08:00  INFO 11054 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-05-10T21:34:43.810+08:00  INFO 11054 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
-2025-05-10T21:34:43.830+08:00  INFO 11054 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-05-10T21:34:43.830+08:00  INFO 11054 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 418 ms
-2025-05-10T21:34:44.115+08:00  INFO 11054 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-05-10T21:34:44.120+08:00  INFO 11054 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.948 seconds (process running for 1.181)
-2025-05-10T21:34:49.791+08:00  INFO 11054 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-05-10T21:34:49.791+08:00  INFO 11054 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-05-10T21:34:49.792+08:00  INFO 11054 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-05-10T21:34:49.857+08:00  INFO 11054 --- [Sprint-book-demo] [http-nio-8080-exec-1] c.k.s.controller.BookController          : 添加图书：BookInfo(id=null, bookName=QQQ, author=chen, count=20, price=15, publish=Lab, status=1, createTime=null, updateTime=null)
-2025-05-10T21:34:49.869+08:00  INFO 11054 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-05-10T21:34:49.946+08:00  INFO 11054 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@48396e6
-2025-05-10T21:34:49.947+08:00  INFO 11054 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T01:14:49.324+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h21m6s904ms).
+2025-05-11T02:56:15.941+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h41m26s617ms).
+2025-05-11T03:27:42.246+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=31m26s306ms).
+2025-05-11T03:43:56.274+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m14s28ms).
+2025-05-11T05:06:36.860+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h22m40s584ms).
+2025-05-11T06:23:02.618+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h16m25s760ms).
+2025-05-11T07:01:37.929+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=38m4s367ms).
+2025-05-11T07:03:28.485+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m20s546ms).
+2025-05-11T07:35:49.782+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=32m21s296ms).
+2025-05-11T08:27:15.298+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=50m55s500ms).
+2025-05-11T09:36:56.148+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h9m40s851ms).
+2025-05-11T10:37:53.271+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h27s109ms).
+2025-05-11T11:15:25.588+08:00  WARN 11054 --- [Sprint-book-demo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=37m2s297ms).
+2025-05-11T11:22:04.624+08:00  INFO 11054 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T11:22:04.666+08:00  INFO 11054 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T11:22:04.685+08:00  INFO 11054 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T11:22:04.690+08:00  INFO 11054 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T11:25:33.515+08:00  INFO 13769 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 13769 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T11:25:33.517+08:00  INFO 13769 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T11:25:34.002+08:00  INFO 13769 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T11:25:34.009+08:00  INFO 13769 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T11:25:34.010+08:00  INFO 13769 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T11:25:34.031+08:00  INFO 13769 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T11:25:34.031+08:00  INFO 13769 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 489 ms
+2025-05-11T11:25:34.591+08:00  INFO 13769 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T11:25:34.600+08:00  INFO 13769 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.337 seconds (process running for 1.652)
+2025-05-11T11:25:45.308+08:00  INFO 13769 --- [Sprint-book-demo] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T11:25:45.310+08:00  INFO 13769 --- [Sprint-book-demo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T11:25:45.315+08:00  INFO 13769 --- [Sprint-book-demo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-05-11T11:25:45.380+08:00  INFO 13769 --- [Sprint-book-demo] [http-nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T11:25:45.490+08:00  INFO 13769 --- [Sprint-book-demo] [http-nio-8080-exec-3] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@ff72d4b
+2025-05-11T11:25:45.491+08:00  INFO 13769 --- [Sprint-book-demo] [http-nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T11:32:46.057+08:00  INFO 13769 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T11:32:46.091+08:00  INFO 13769 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T11:32:46.097+08:00  INFO 13769 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T11:32:46.106+08:00  INFO 13769 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T11:32:47.740+08:00  INFO 14552 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 14552 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T11:32:47.742+08:00  INFO 14552 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T11:32:48.325+08:00  INFO 14552 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T11:32:48.338+08:00  INFO 14552 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T11:32:48.338+08:00  INFO 14552 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T11:32:48.368+08:00  INFO 14552 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T11:32:48.369+08:00  INFO 14552 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 602 ms
+2025-05-11T11:32:48.808+08:00  INFO 14552 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T11:32:48.814+08:00  INFO 14552 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.417 seconds (process running for 1.757)
+2025-05-11T11:32:56.832+08:00  INFO 14552 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T11:32:56.834+08:00  INFO 14552 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T11:32:56.836+08:00  INFO 14552 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-11T11:33:08.287+08:00  WARN 14552 --- [Sprint-book-demo] [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported]
+2025-05-11T11:33:19.174+08:00  WARN 14552 --- [Sprint-book-demo] [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported]
+2025-05-11T11:34:21.711+08:00  INFO 14552 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T11:34:21.720+08:00  INFO 14552 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T11:34:23.635+08:00  INFO 14779 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 14779 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T11:34:23.636+08:00  INFO 14779 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T11:34:24.088+08:00  INFO 14779 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T11:34:24.095+08:00  INFO 14779 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T11:34:24.095+08:00  INFO 14779 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T11:34:24.115+08:00  INFO 14779 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T11:34:24.115+08:00  INFO 14779 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 457 ms
+2025-05-11T11:34:24.458+08:00  INFO 14779 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T11:34:24.463+08:00  INFO 14779 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.044 seconds (process running for 1.252)
+2025-05-11T11:39:23.383+08:00  INFO 14779 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T11:39:23.406+08:00  INFO 14779 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T11:39:25.469+08:00  INFO 15268 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 15268 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T11:39:25.472+08:00  INFO 15268 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T11:39:26.016+08:00  INFO 15268 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T11:39:26.024+08:00  INFO 15268 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T11:39:26.024+08:00  INFO 15268 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T11:39:26.044+08:00  INFO 15268 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T11:39:26.045+08:00  INFO 15268 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 531 ms
+2025-05-11T11:39:26.354+08:00  INFO 15268 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T11:39:26.359+08:00  INFO 15268 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.19 seconds (process running for 1.44)
+2025-05-11T11:39:50.147+08:00  INFO 15268 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T11:39:50.148+08:00  INFO 15268 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T11:39:50.152+08:00  INFO 15268 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-05-11T11:40:27.010+08:00  INFO 15268 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T11:40:27.019+08:00  INFO 15268 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T11:40:54.681+08:00  INFO 15369 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 15369 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T11:40:54.682+08:00  INFO 15369 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T11:40:55.161+08:00  INFO 15369 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T11:40:55.169+08:00  INFO 15369 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T11:40:55.173+08:00  INFO 15369 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T11:40:55.198+08:00  INFO 15369 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T11:40:55.198+08:00  INFO 15369 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 493 ms
+2025-05-11T11:40:55.536+08:00  INFO 15369 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T11:40:55.541+08:00  INFO 15369 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.074 seconds (process running for 1.311)
+2025-05-11T11:40:57.995+08:00  INFO 15369 --- [Sprint-book-demo] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T11:40:57.996+08:00  INFO 15369 --- [Sprint-book-demo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T11:40:57.997+08:00  INFO 15369 --- [Sprint-book-demo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-11T11:41:10.768+08:00  INFO 15369 --- [Sprint-book-demo] [http-nio-8080-exec-4] c.k.s.controller.BookController          : 添加图书：BookInfo(id=null, bookName=aa, author=ccca, count=12, price=16, publish=asdasc, status=1, createTime=null, updateTime=null)
+2025-05-11T11:41:10.791+08:00  INFO 15369 --- [Sprint-book-demo] [http-nio-8080-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T11:41:10.890+08:00  INFO 15369 --- [Sprint-book-demo] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63ea567e
+2025-05-11T11:41:10.891+08:00  INFO 15369 --- [Sprint-book-demo] [http-nio-8080-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T11:41:43.631+08:00  INFO 15369 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T11:41:43.642+08:00  INFO 15369 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T11:41:43.646+08:00  INFO 15369 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T11:41:43.654+08:00  INFO 15369 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T11:41:45.497+08:00  INFO 15428 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 15428 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T11:41:45.503+08:00  INFO 15428 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T11:41:45.976+08:00  INFO 15428 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T11:41:45.983+08:00  INFO 15428 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T11:41:45.983+08:00  INFO 15428 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T11:41:46.004+08:00  INFO 15428 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T11:41:46.004+08:00  INFO 15428 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 474 ms
+2025-05-11T11:41:46.319+08:00  INFO 15428 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T11:41:46.324+08:00  INFO 15428 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.1 seconds (process running for 1.314)
+2025-05-11T11:41:48.802+08:00  INFO 15428 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T11:41:48.802+08:00  INFO 15428 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T11:41:48.803+08:00  INFO 15428 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T11:42:06.064+08:00  WARN 15428 --- [Sprint-book-demo] [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported]
+2025-05-11T11:45:30.639+08:00  INFO 15428 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T11:45:30.654+08:00  INFO 15428 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T11:45:32.419+08:00  INFO 15595 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 15595 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T11:45:32.421+08:00  INFO 15595 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T11:45:32.874+08:00  INFO 15595 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T11:45:32.880+08:00  INFO 15595 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T11:45:32.880+08:00  INFO 15595 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T11:45:32.897+08:00  INFO 15595 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T11:45:32.897+08:00  INFO 15595 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 453 ms
+2025-05-11T11:45:33.239+08:00  INFO 15595 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T11:45:33.245+08:00  INFO 15595 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.041 seconds (process running for 1.247)
+2025-05-11T11:45:44.135+08:00  INFO 15595 --- [Sprint-book-demo] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T11:45:44.136+08:00  INFO 15595 --- [Sprint-book-demo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T11:45:44.138+08:00  INFO 15595 --- [Sprint-book-demo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-11T11:46:07.474+08:00  WARN 15595 --- [Sprint-book-demo] [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported]
+2025-05-11T11:50:25.506+08:00  INFO 15595 --- [Sprint-book-demo] [http-nio-8080-exec-6] c.k.s.controller.BookController          : 添加图书：BookInfo(id=null, bookName=QQQ, author=chen, count=20, price=15, publish=Lab, status=1, createTime=null, updateTime=null)
+2025-05-11T11:50:25.523+08:00  INFO 15595 --- [Sprint-book-demo] [http-nio-8080-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T11:50:25.647+08:00  INFO 15595 --- [Sprint-book-demo] [http-nio-8080-exec-6] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6cad48e
+2025-05-11T11:50:25.648+08:00  INFO 15595 --- [Sprint-book-demo] [http-nio-8080-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T11:50:33.788+08:00  INFO 15595 --- [Sprint-book-demo] [http-nio-8080-exec-7] c.k.s.controller.BookController          : 添加图书：BookInfo(id=null, bookName=QQQ, author=chen, count=20, price=15, publish=Lab, status=1, createTime=null, updateTime=null)
+2025-05-11T11:55:14.972+08:00  INFO 15595 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T11:55:14.983+08:00  INFO 15595 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T11:55:14.991+08:00  INFO 15595 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T11:55:15.004+08:00  INFO 15595 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T11:55:16.983+08:00  INFO 16421 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 16421 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T11:55:16.985+08:00  INFO 16421 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T11:55:17.432+08:00  INFO 16421 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T11:55:17.439+08:00  INFO 16421 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T11:55:17.439+08:00  INFO 16421 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T11:55:17.459+08:00  INFO 16421 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T11:55:17.459+08:00  INFO 16421 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 450 ms
+2025-05-11T11:55:17.742+08:00  INFO 16421 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T11:55:17.748+08:00  INFO 16421 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.033 seconds (process running for 1.277)
+2025-05-11T11:55:30.496+08:00  INFO 16421 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T11:55:30.497+08:00  INFO 16421 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T11:55:30.499+08:00  INFO 16421 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-11T11:55:52.538+08:00  WARN 16421 --- [Sprint-book-demo] [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unrecognized token 'bookName': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')]
+2025-05-11T11:58:49.574+08:00  INFO 16421 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T11:58:49.587+08:00  INFO 16421 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T11:58:50.860+08:00  INFO 16821 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 16821 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T11:58:50.861+08:00  INFO 16821 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T11:58:51.303+08:00  INFO 16821 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T11:58:51.309+08:00  INFO 16821 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T11:58:51.309+08:00  INFO 16821 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T11:58:51.326+08:00  INFO 16821 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T11:58:51.327+08:00  INFO 16821 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 437 ms
+2025-05-11T11:58:51.607+08:00  INFO 16821 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T11:58:51.612+08:00  INFO 16821 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.958 seconds (process running for 1.173)
+2025-05-11T11:59:14.696+08:00  INFO 16821 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T11:59:14.697+08:00  INFO 16821 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T11:59:14.700+08:00  INFO 16821 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-05-11T11:59:30.939+08:00  INFO 16821 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 添加图书：BookInfo(id=null, bookName=路过的风, author=kevin, count=12, price=23, publish=拉山口大师的, status=1, createTime=null, updateTime=null)
+2025-05-11T11:59:30.953+08:00  INFO 16821 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T11:59:31.042+08:00  INFO 16821 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@30bf6c88
+2025-05-11T11:59:31.043+08:00  INFO 16821 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:15:36.246+08:00  INFO 16821 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T15:15:36.264+08:00  INFO 16821 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T15:15:36.286+08:00  INFO 16821 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:15:36.289+08:00  INFO 16821 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:27:54.464+08:00  INFO 39152 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Starting BookMapperTest using Java 17.0.11 with PID 39152 (started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:27:54.465+08:00  INFO 39152 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:27:55.251+08:00  INFO 39152 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Started BookMapperTest in 0.974 seconds (process running for 1.442)
+2025-05-11T15:27:55.739+08:00  INFO 39152 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:27:55.856+08:00  INFO 39152 --- [Sprint-book-demo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4ca0b9b1
+2025-05-11T15:27:55.857+08:00  INFO 39152 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:27:55.919+08:00  INFO 39152 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:27:55.925+08:00  INFO 39152 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:28:26.808+08:00  INFO 39281 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Starting BookMapperTest using Java 17.0.11 with PID 39281 (started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:28:26.810+08:00  INFO 39281 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:28:27.522+08:00  INFO 39281 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Started BookMapperTest in 0.887 seconds (process running for 1.352)
+2025-05-11T15:28:27.912+08:00  INFO 39281 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:28:28.018+08:00  INFO 39281 --- [Sprint-book-demo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4ca0b9b1
+2025-05-11T15:28:28.020+08:00  INFO 39281 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:28:28.066+08:00  INFO 39281 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:28:28.075+08:00  INFO 39281 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:28:55.998+08:00  INFO 39328 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Starting BookMapperTest using Java 17.0.11 with PID 39328 (started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:28:56.000+08:00  INFO 39328 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:28:56.719+08:00  INFO 39328 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Started BookMapperTest in 0.888 seconds (process running for 1.339)
+2025-05-11T15:28:57.103+08:00  INFO 39328 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:28:57.196+08:00  INFO 39328 --- [Sprint-book-demo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4ca0b9b1
+2025-05-11T15:28:57.197+08:00  INFO 39328 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:28:57.240+08:00  INFO 39328 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:28:57.244+08:00  INFO 39328 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:37:12.891+08:00  INFO 40277 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Starting BookMapperTest using Java 17.0.11 with PID 40277 (started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:37:12.893+08:00  INFO 40277 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:37:13.583+08:00  INFO 40277 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Started BookMapperTest in 0.853 seconds (process running for 1.305)
+2025-05-11T15:37:14.002+08:00  INFO 40277 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:37:14.097+08:00  INFO 40277 --- [Sprint-book-demo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63c84d31
+2025-05-11T15:37:14.098+08:00  INFO 40277 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:37:14.147+08:00  INFO 40277 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:37:14.154+08:00  INFO 40277 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:38:27.556+08:00  INFO 40502 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Starting BookMapperTest using Java 17.0.11 with PID 40502 (started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:38:27.558+08:00  INFO 40502 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:38:28.278+08:00  INFO 40502 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Started BookMapperTest in 0.923 seconds (process running for 1.388)
+2025-05-11T15:38:28.683+08:00  INFO 40502 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:38:28.779+08:00  INFO 40502 --- [Sprint-book-demo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63c84d31
+2025-05-11T15:38:28.780+08:00  INFO 40502 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:38:28.827+08:00  INFO 40502 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:38:28.832+08:00  INFO 40502 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:39:12.513+08:00  INFO 40588 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Starting BookMapperTest using Java 17.0.11 with PID 40588 (started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:39:12.515+08:00  INFO 40588 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:39:13.206+08:00  INFO 40588 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Started BookMapperTest in 0.849 seconds (process running for 1.335)
+2025-05-11T15:39:13.615+08:00  INFO 40588 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:39:13.701+08:00  INFO 40588 --- [Sprint-book-demo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63c84d31
+2025-05-11T15:39:13.702+08:00  INFO 40588 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:39:13.763+08:00  INFO 40588 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:39:13.771+08:00  INFO 40588 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:44:59.944+08:00  INFO 41210 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Starting BookMapperTest using Java 17.0.11 with PID 41210 (started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:44:59.946+08:00  INFO 41210 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:45:00.666+08:00  INFO 41210 --- [Sprint-book-demo] [main] c.k.s.mapper.BookMapperTest              : Started BookMapperTest in 0.892 seconds (process running for 1.34)
+2025-05-11T15:45:01.061+08:00  INFO 41210 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:45:01.165+08:00  INFO 41210 --- [Sprint-book-demo] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63c84d31
+2025-05-11T15:45:01.166+08:00  INFO 41210 --- [Sprint-book-demo] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:45:01.218+08:00  INFO 41210 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:45:01.223+08:00  INFO 41210 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:45:12.681+08:00  INFO 41260 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 41260 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:45:12.682+08:00  INFO 41260 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:45:13.087+08:00  INFO 41260 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T15:45:13.094+08:00  INFO 41260 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T15:45:13.094+08:00  INFO 41260 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T15:45:13.114+08:00  INFO 41260 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T15:45:13.114+08:00  INFO 41260 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 411 ms
+2025-05-11T15:45:13.411+08:00  INFO 41260 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T15:45:13.416+08:00  INFO 41260 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.944 seconds (process running for 1.175)
+2025-05-11T15:46:01.927+08:00  INFO 41260 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T15:46:01.928+08:00  INFO 41260 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T15:46:01.930+08:00  INFO 41260 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-11T15:46:01.971+08:00  INFO 41260 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:46:02.071+08:00  INFO 41260 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4a920683
+2025-05-11T15:46:02.072+08:00  INFO 41260 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:46:30.338+08:00  INFO 41260 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T15:46:30.352+08:00  INFO 41260 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T15:46:30.356+08:00  INFO 41260 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:46:30.364+08:00  INFO 41260 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:46:31.628+08:00  INFO 41433 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 41433 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:46:31.630+08:00  INFO 41433 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:46:32.040+08:00  INFO 41433 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T15:46:32.047+08:00  INFO 41433 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T15:46:32.047+08:00  INFO 41433 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T15:46:32.067+08:00  INFO 41433 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T15:46:32.067+08:00  INFO 41433 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 417 ms
+2025-05-11T15:46:32.408+08:00  INFO 41433 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T15:46:32.413+08:00  INFO 41433 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.987 seconds (process running for 1.219)
+2025-05-11T15:46:35.784+08:00  INFO 41433 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T15:46:35.784+08:00  INFO 41433 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T15:46:35.785+08:00  INFO 41433 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T15:46:35.815+08:00  INFO 41433 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:46:35.900+08:00  INFO 41433 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@76809da5
+2025-05-11T15:46:35.901+08:00  INFO 41433 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:47:23.103+08:00  INFO 41433 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T15:47:23.112+08:00  INFO 41433 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T15:47:23.116+08:00  INFO 41433 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:47:23.122+08:00  INFO 41433 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:47:24.924+08:00  INFO 41543 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 41543 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:47:24.925+08:00  INFO 41543 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:47:25.352+08:00  INFO 41543 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T15:47:25.358+08:00  INFO 41543 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T15:47:25.358+08:00  INFO 41543 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T15:47:25.378+08:00  INFO 41543 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T15:47:25.378+08:00  INFO 41543 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 428 ms
+2025-05-11T15:47:25.671+08:00  INFO 41543 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T15:47:25.676+08:00  INFO 41543 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.956 seconds (process running for 1.161)
+2025-05-11T15:47:29.969+08:00  INFO 41543 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T15:47:29.969+08:00  INFO 41543 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T15:47:29.970+08:00  INFO 41543 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T15:47:30.003+08:00  INFO 41543 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:47:30.088+08:00  INFO 41543 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4b650908
+2025-05-11T15:47:30.089+08:00  INFO 41543 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:48:17.932+08:00  INFO 41543 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T15:48:17.943+08:00  INFO 41543 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T15:48:17.947+08:00  INFO 41543 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:48:17.953+08:00  INFO 41543 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:48:19.686+08:00  INFO 41641 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 41641 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:48:19.687+08:00  INFO 41641 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:48:20.149+08:00  INFO 41641 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T15:48:20.156+08:00  INFO 41641 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T15:48:20.156+08:00  INFO 41641 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T15:48:20.175+08:00  INFO 41641 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T15:48:20.175+08:00  INFO 41641 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 468 ms
+2025-05-11T15:48:20.461+08:00  INFO 41641 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T15:48:20.466+08:00  INFO 41641 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.979 seconds (process running for 1.189)
+2025-05-11T15:48:25.718+08:00  INFO 41641 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T15:48:25.718+08:00  INFO 41641 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T15:48:25.719+08:00  INFO 41641 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T15:48:25.748+08:00  INFO 41641 --- [Sprint-book-demo] [http-nio-8080-exec-1] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10)
+2025-05-11T15:48:25.760+08:00  INFO 41641 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:48:25.882+08:00  INFO 41641 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@556e3c5e
+2025-05-11T15:48:25.883+08:00  INFO 41641 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:53:05.433+08:00  INFO 41641 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T15:53:05.445+08:00  INFO 41641 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T15:53:05.451+08:00  INFO 41641 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:53:05.457+08:00  INFO 41641 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:53:07.313+08:00  INFO 42179 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 42179 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:53:07.314+08:00  INFO 42179 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:53:07.750+08:00  INFO 42179 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T15:53:07.757+08:00  INFO 42179 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T15:53:07.758+08:00  INFO 42179 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T15:53:07.778+08:00  INFO 42179 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T15:53:07.779+08:00  INFO 42179 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 443 ms
+2025-05-11T15:53:08.120+08:00  INFO 42179 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T15:53:08.125+08:00  INFO 42179 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.032 seconds (process running for 1.247)
+2025-05-11T15:53:29.094+08:00  INFO 42179 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T15:53:29.095+08:00  INFO 42179 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T15:53:29.097+08:00  INFO 42179 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-11T15:53:29.457+08:00  INFO 42179 --- [Sprint-book-demo] [http-nio-8080-exec-7] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T15:53:29.475+08:00  INFO 42179 --- [Sprint-book-demo] [http-nio-8080-exec-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:53:29.573+08:00  INFO 42179 --- [Sprint-book-demo] [http-nio-8080-exec-7] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2cec419f
+2025-05-11T15:53:29.574+08:00  INFO 42179 --- [Sprint-book-demo] [http-nio-8080-exec-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:57:26.624+08:00  INFO 42179 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T15:57:26.633+08:00  INFO 42179 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T15:57:26.636+08:00  INFO 42179 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:57:26.644+08:00  INFO 42179 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:57:28.509+08:00  INFO 42740 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 42740 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T15:57:28.511+08:00  INFO 42740 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:57:28.981+08:00  INFO 42740 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T15:57:28.988+08:00  INFO 42740 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T15:57:28.989+08:00  INFO 42740 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T15:57:29.010+08:00  INFO 42740 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T15:57:29.010+08:00  INFO 42740 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 476 ms
+2025-05-11T15:57:29.317+08:00  INFO 42740 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T15:57:29.323+08:00  INFO 42740 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.02 seconds (process running for 1.246)
+2025-05-11T15:57:35.689+08:00  INFO 42740 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T15:57:35.689+08:00  INFO 42740 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T15:57:35.690+08:00  INFO 42740 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T15:57:36.002+08:00  INFO 42740 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T15:57:36.020+08:00  INFO 42740 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:57:36.126+08:00  INFO 42740 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@150d3a3c
+2025-05-11T15:57:36.127+08:00  INFO 42740 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:58:03.265+08:00  INFO 42740 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T15:58:03.278+08:00  INFO 42740 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T15:58:03.282+08:00  INFO 42740 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:58:03.286+08:00  INFO 42740 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T16:03:49.474+08:00  INFO 44662 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 44662 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T16:03:49.477+08:00  INFO 44662 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T16:03:49.914+08:00  INFO 44662 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T16:03:49.920+08:00  INFO 44662 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T16:03:49.921+08:00  INFO 44662 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T16:03:49.941+08:00  INFO 44662 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T16:03:49.942+08:00  INFO 44662 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 441 ms
+2025-05-11T16:03:50.251+08:00  INFO 44662 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T16:03:50.257+08:00  INFO 44662 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.987 seconds (process running for 1.223)
+2025-05-11T16:03:56.190+08:00  INFO 44662 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T16:03:56.191+08:00  INFO 44662 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T16:03:56.192+08:00  INFO 44662 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T16:03:56.443+08:00  INFO 44662 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:03:56.460+08:00  INFO 44662 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T16:03:56.562+08:00  INFO 44662 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7251e7b7
+2025-05-11T16:03:56.563+08:00  INFO 44662 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T16:04:22.753+08:00  INFO 44662 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T16:04:22.763+08:00  INFO 44662 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T16:04:22.767+08:00  INFO 44662 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T16:04:22.772+08:00  INFO 44662 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T16:04:24.049+08:00  INFO 44810 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 44810 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T16:04:24.051+08:00  INFO 44810 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T16:04:24.504+08:00  INFO 44810 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T16:04:24.511+08:00  INFO 44810 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T16:04:24.512+08:00  INFO 44810 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T16:04:24.532+08:00  INFO 44810 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T16:04:24.532+08:00  INFO 44810 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 460 ms
+2025-05-11T16:04:24.841+08:00  INFO 44810 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T16:04:24.847+08:00  INFO 44810 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.007 seconds (process running for 1.232)
+2025-05-11T16:04:38.539+08:00  INFO 44810 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T16:04:38.540+08:00  INFO 44810 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T16:04:38.542+08:00  INFO 44810 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-11T16:04:38.832+08:00  INFO 44810 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:04:38.853+08:00  INFO 44810 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T16:04:38.938+08:00  INFO 44810 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@68b08099
+2025-05-11T16:04:38.939+08:00  INFO 44810 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T16:06:14.075+08:00  INFO 44810 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T16:06:14.084+08:00  INFO 44810 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T16:06:14.088+08:00  INFO 44810 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T16:06:14.096+08:00  INFO 44810 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T16:06:15.318+08:00  INFO 45116 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 45116 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T16:06:15.319+08:00  INFO 45116 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T16:06:15.730+08:00  INFO 45116 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T16:06:15.736+08:00  INFO 45116 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T16:06:15.736+08:00  INFO 45116 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T16:06:15.757+08:00  INFO 45116 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T16:06:15.758+08:00  INFO 45116 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 419 ms
+2025-05-11T16:06:16.114+08:00  INFO 45116 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T16:06:16.125+08:00  INFO 45116 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.014 seconds (process running for 1.233)
+2025-05-11T16:06:22.803+08:00  INFO 45116 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T16:06:22.803+08:00  INFO 45116 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T16:06:22.804+08:00  INFO 45116 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T16:06:23.030+08:00  INFO 45116 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:06:23.053+08:00  INFO 45116 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T16:06:23.141+08:00  INFO 45116 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@71baab1e
+2025-05-11T16:06:23.142+08:00  INFO 45116 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T16:07:23.806+08:00  INFO 45116 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T16:07:23.816+08:00  INFO 45116 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T16:07:23.819+08:00  INFO 45116 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T16:07:23.824+08:00  INFO 45116 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T16:07:25.020+08:00  INFO 45249 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 45249 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T16:07:25.021+08:00  INFO 45249 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T16:07:25.427+08:00  INFO 45249 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T16:07:25.433+08:00  INFO 45249 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T16:07:25.434+08:00  INFO 45249 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T16:07:25.452+08:00  INFO 45249 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T16:07:25.453+08:00  INFO 45249 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 411 ms
+2025-05-11T16:07:25.767+08:00  INFO 45249 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T16:07:25.772+08:00  INFO 45249 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.955 seconds (process running for 1.162)
+2025-05-11T16:07:29.678+08:00  INFO 45249 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T16:07:29.678+08:00  INFO 45249 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T16:07:29.679+08:00  INFO 45249 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T16:07:29.790+08:00  INFO 45249 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:07:29.806+08:00  INFO 45249 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T16:07:29.906+08:00  INFO 45249 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6364bd9d
+2025-05-11T16:07:29.907+08:00  INFO 45249 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T16:10:23.790+08:00  INFO 45249 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T16:10:23.803+08:00  INFO 45249 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T16:10:23.807+08:00  INFO 45249 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T16:10:23.815+08:00  INFO 45249 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T16:10:25.116+08:00  INFO 45574 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 45574 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T16:10:25.117+08:00  INFO 45574 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T16:10:25.544+08:00  INFO 45574 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T16:10:25.551+08:00  INFO 45574 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T16:10:25.551+08:00  INFO 45574 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T16:10:25.570+08:00  INFO 45574 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T16:10:25.570+08:00  INFO 45574 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 428 ms
+2025-05-11T16:10:25.858+08:00  INFO 45574 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T16:10:25.863+08:00  INFO 45574 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.955 seconds (process running for 1.17)
+2025-05-11T16:10:32.788+08:00  INFO 45574 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T16:10:32.788+08:00  INFO 45574 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T16:10:32.789+08:00  INFO 45574 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T16:10:32.937+08:00  INFO 45574 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:10:32.965+08:00  INFO 45574 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T16:10:33.059+08:00  INFO 45574 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5b547493
+2025-05-11T16:10:33.061+08:00  INFO 45574 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T16:13:18.227+08:00  INFO 45574 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T16:13:18.237+08:00  INFO 45574 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T16:13:18.241+08:00  INFO 45574 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T16:13:18.250+08:00  INFO 45574 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T16:13:19.496+08:00  INFO 45883 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 45883 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T16:13:19.498+08:00  INFO 45883 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T16:13:19.919+08:00  INFO 45883 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T16:13:19.927+08:00  INFO 45883 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T16:13:19.927+08:00  INFO 45883 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T16:13:19.949+08:00  INFO 45883 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T16:13:19.949+08:00  INFO 45883 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 429 ms
+2025-05-11T16:13:20.257+08:00  INFO 45883 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T16:13:20.262+08:00  INFO 45883 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.976 seconds (process running for 1.213)
+2025-05-11T16:13:25.651+08:00  INFO 45883 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T16:13:25.651+08:00  INFO 45883 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T16:13:25.652+08:00  INFO 45883 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T16:13:25.986+08:00  INFO 45883 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:13:26.002+08:00  INFO 45883 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T16:13:26.082+08:00  INFO 45883 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@a500c7
+2025-05-11T16:13:26.083+08:00  INFO 45883 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T16:13:28.300+08:00  INFO 45883 --- [Sprint-book-demo] [http-nio-8080-exec-4] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:13:31.417+08:00  INFO 45883 --- [Sprint-book-demo] [http-nio-8080-exec-6] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:13:37.956+08:00  INFO 45883 --- [Sprint-book-demo] [http-nio-8080-exec-8] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:14:15.304+08:00  INFO 45883 --- [Sprint-book-demo] [http-nio-8080-exec-10] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:18:22.126+08:00  INFO 45883 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T16:18:22.137+08:00  INFO 45883 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T16:18:22.141+08:00  INFO 45883 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T16:18:22.148+08:00  INFO 45883 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T16:18:23.442+08:00  INFO 46406 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 46406 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T16:18:23.444+08:00  INFO 46406 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T16:18:23.905+08:00  INFO 46406 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T16:18:23.912+08:00  INFO 46406 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T16:18:23.912+08:00  INFO 46406 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T16:18:23.933+08:00  INFO 46406 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T16:18:23.933+08:00  INFO 46406 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 465 ms
+2025-05-11T16:18:24.243+08:00  INFO 46406 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T16:18:24.249+08:00  INFO 46406 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.038 seconds (process running for 1.291)
+2025-05-11T16:18:28.638+08:00  INFO 46406 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T16:18:28.639+08:00  INFO 46406 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T16:18:28.645+08:00  INFO 46406 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2025-05-11T16:18:28.961+08:00  INFO 46406 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:18:28.972+08:00  INFO 46406 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T16:18:29.054+08:00  INFO 46406 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@509b2765
+2025-05-11T16:18:29.055+08:00  INFO 46406 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T16:18:31.534+08:00  INFO 46406 --- [Sprint-book-demo] [http-nio-8080-exec-4] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:18:33.421+08:00  INFO 46406 --- [Sprint-book-demo] [http-nio-8080-exec-6] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:18:36.110+08:00  INFO 46406 --- [Sprint-book-demo] [http-nio-8080-exec-8] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:18:38.343+08:00  INFO 46406 --- [Sprint-book-demo] [http-nio-8080-exec-10] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:25:44.967+08:00  INFO 46406 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T16:25:44.986+08:00  INFO 46406 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T16:25:44.990+08:00  INFO 46406 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T16:25:44.996+08:00  INFO 46406 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T16:25:46.927+08:00  INFO 47197 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 47197 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T16:25:46.928+08:00  INFO 47197 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T16:25:47.334+08:00  INFO 47197 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T16:25:47.340+08:00  INFO 47197 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T16:25:47.340+08:00  INFO 47197 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T16:25:47.357+08:00  INFO 47197 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T16:25:47.357+08:00  INFO 47197 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 408 ms
+2025-05-11T16:25:47.640+08:00  INFO 47197 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T16:25:47.645+08:00  INFO 47197 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.918 seconds (process running for 1.114)
+2025-05-11T16:25:57.157+08:00  INFO 47197 --- [Sprint-book-demo] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T16:25:57.163+08:00  INFO 47197 --- [Sprint-book-demo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T16:25:57.168+08:00  INFO 47197 --- [Sprint-book-demo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-05-11T16:25:57.473+08:00  INFO 47197 --- [Sprint-book-demo] [http-nio-8080-exec-1] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:25:57.492+08:00  INFO 47197 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T16:25:57.576+08:00  INFO 47197 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3474998e
+2025-05-11T16:25:57.577+08:00  INFO 47197 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T16:25:59.507+08:00  INFO 47197 --- [Sprint-book-demo] [http-nio-8080-exec-4] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:27:03.836+08:00  INFO 47197 --- [Sprint-book-demo] [http-nio-8080-exec-7] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:27:09.460+08:00  INFO 47197 --- [Sprint-book-demo] [http-nio-8080-exec-8] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:28:55.246+08:00  INFO 47197 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T16:28:55.258+08:00  INFO 47197 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T16:28:55.262+08:00  INFO 47197 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T16:28:55.268+08:00  INFO 47197 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T16:28:56.501+08:00  INFO 47627 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 47627 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T16:28:56.502+08:00  INFO 47627 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T16:28:56.947+08:00  INFO 47627 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T16:28:56.954+08:00  INFO 47627 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T16:28:56.954+08:00  INFO 47627 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T16:28:56.984+08:00  INFO 47627 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T16:28:56.985+08:00  INFO 47627 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 462 ms
+2025-05-11T16:28:57.296+08:00  INFO 47627 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T16:28:57.301+08:00  INFO 47627 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.008 seconds (process running for 1.221)
+2025-05-11T16:29:05.014+08:00  INFO 47627 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T16:29:05.015+08:00  INFO 47627 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T16:29:05.016+08:00  INFO 47627 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T16:29:05.131+08:00  INFO 47627 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:29:05.150+08:00  INFO 47627 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T16:29:05.251+08:00  INFO 47627 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@191fa068
+2025-05-11T16:29:05.252+08:00  INFO 47627 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T16:29:11.242+08:00  INFO 47627 --- [Sprint-book-demo] [http-nio-8080-exec-3] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10)
+2025-05-11T16:29:26.512+08:00  INFO 47627 --- [Sprint-book-demo] [http-nio-8080-exec-4] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10)
+2025-05-11T16:31:20.425+08:00  INFO 47627 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T16:31:20.435+08:00  INFO 47627 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T16:31:20.439+08:00  INFO 47627 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T16:31:20.446+08:00  INFO 47627 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T16:31:21.696+08:00  INFO 47939 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 47939 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T16:31:21.698+08:00  INFO 47939 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T16:31:22.140+08:00  INFO 47939 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T16:31:22.148+08:00  INFO 47939 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T16:31:22.148+08:00  INFO 47939 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T16:31:22.168+08:00  INFO 47939 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T16:31:22.168+08:00  INFO 47939 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 449 ms
+2025-05-11T16:31:22.498+08:00  INFO 47939 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T16:31:22.503+08:00  INFO 47939 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.014 seconds (process running for 1.224)
+2025-05-11T16:31:32.325+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T16:31:32.325+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T16:31:32.327+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-11T16:31:32.358+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-1] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10)
+2025-05-11T16:31:32.380+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T16:31:32.461+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@d834376
+2025-05-11T16:31:32.461+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T16:31:45.377+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-3] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10)
+2025-05-11T16:31:48.733+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-5] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:31:50.739+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-7] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10)
+2025-05-11T16:31:52.273+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-9] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=3, pageSize=10)
+2025-05-11T16:31:54.379+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-1] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=4, pageSize=10)
+2025-05-11T16:31:59.515+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-3] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10)
+2025-05-11T16:32:08.830+08:00  INFO 47939 --- [Sprint-book-demo] [http-nio-8080-exec-5] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10)
+2025-05-11T16:47:51.115+08:00  INFO 47939 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T16:47:51.137+08:00  INFO 47939 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T16:47:51.142+08:00  INFO 47939 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T16:47:51.152+08:00  INFO 47939 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T16:47:53.097+08:00  INFO 50286 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 50286 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T16:47:53.098+08:00  INFO 50286 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T16:47:53.534+08:00  INFO 50286 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T16:47:53.540+08:00  INFO 50286 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T16:47:53.541+08:00  INFO 50286 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T16:47:53.558+08:00  INFO 50286 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T16:47:53.559+08:00  INFO 50286 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 440 ms
+2025-05-11T16:47:53.858+08:00  INFO 50286 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T16:47:53.863+08:00  INFO 50286 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.99 seconds (process running for 1.235)
+2025-05-11T16:47:59.751+08:00  INFO 50286 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T16:47:59.752+08:00  INFO 50286 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T16:47:59.753+08:00  INFO 50286 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T16:47:59.922+08:00  INFO 50286 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10, pageOffset=1)
+2025-05-11T16:47:59.946+08:00  INFO 50286 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T16:48:00.097+08:00  INFO 50286 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@423f6f2a
+2025-05-11T16:48:00.098+08:00  INFO 50286 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T16:48:03.869+08:00  INFO 50286 --- [Sprint-book-demo] [http-nio-8080-exec-4] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10, pageOffset=1)
+2025-05-11T16:48:05.451+08:00  INFO 50286 --- [Sprint-book-demo] [http-nio-8080-exec-5] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10, pageOffset=1)
+2025-05-11T16:48:06.947+08:00  INFO 50286 --- [Sprint-book-demo] [http-nio-8080-exec-7] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=3, pageSize=10, pageOffset=1)
+2025-05-11T16:48:08.588+08:00  INFO 50286 --- [Sprint-book-demo] [http-nio-8080-exec-9] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=4, pageSize=10, pageOffset=1)
+2025-05-11T16:48:44.903+08:00  INFO 50286 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T16:48:44.917+08:00  INFO 50286 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T16:48:44.921+08:00  INFO 50286 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T16:48:44.925+08:00  INFO 50286 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T16:48:46.648+08:00  INFO 50427 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 50427 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T16:48:46.649+08:00  INFO 50427 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T16:48:47.049+08:00  INFO 50427 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T16:48:47.056+08:00  INFO 50427 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T16:48:47.056+08:00  INFO 50427 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T16:48:47.076+08:00  INFO 50427 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T16:48:47.077+08:00  INFO 50427 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 405 ms
+2025-05-11T16:48:47.359+08:00  INFO 50427 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T16:48:47.364+08:00  INFO 50427 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.914 seconds (process running for 1.112)
+2025-05-11T16:48:55.564+08:00  INFO 50427 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T16:48:55.565+08:00  INFO 50427 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T16:48:55.566+08:00  INFO 50427 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T16:48:55.684+08:00  INFO 50427 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=4, pageSize=10, pageOffset=30)
+2025-05-11T16:48:55.703+08:00  INFO 50427 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T16:48:55.794+08:00  INFO 50427 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4a200f44
+2025-05-11T16:48:55.795+08:00  INFO 50427 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T16:48:57.517+08:00  INFO 50427 --- [Sprint-book-demo] [http-nio-8080-exec-3] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=3, pageSize=10, pageOffset=20)
+2025-05-11T16:48:59.096+08:00  INFO 50427 --- [Sprint-book-demo] [http-nio-8080-exec-4] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10, pageOffset=10)
+2025-05-11T16:49:00.986+08:00  INFO 50427 --- [Sprint-book-demo] [http-nio-8080-exec-5] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10, pageOffset=0)
+2025-05-11T17:03:11.049+08:00  INFO 50427 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T17:03:11.058+08:00  INFO 50427 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T17:03:11.062+08:00  INFO 50427 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T17:03:11.067+08:00  INFO 50427 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T17:03:12.927+08:00  INFO 52001 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 52001 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T17:03:12.928+08:00  INFO 52001 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T17:03:13.372+08:00  INFO 52001 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T17:03:13.380+08:00  INFO 52001 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T17:03:13.380+08:00  INFO 52001 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T17:03:13.407+08:00  INFO 52001 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T17:03:13.407+08:00  INFO 52001 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 455 ms
+2025-05-11T17:03:13.735+08:00  INFO 52001 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T17:03:13.740+08:00  INFO 52001 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 1.016 seconds (process running for 1.223)
+2025-05-11T17:03:20.163+08:00  INFO 52001 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T17:03:20.164+08:00  INFO 52001 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T17:03:20.175+08:00  INFO 52001 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2025-05-11T17:03:20.330+08:00  INFO 52001 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10, pageOffset=0)
+2025-05-11T17:03:20.363+08:00  INFO 52001 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T17:03:20.475+08:00  INFO 52001 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6185406
+2025-05-11T17:03:20.476+08:00  INFO 52001 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T17:03:23.417+08:00  INFO 52001 --- [Sprint-book-demo] [http-nio-8080-exec-4] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10, pageOffset=10)
+2025-05-11T17:03:25.003+08:00  INFO 52001 --- [Sprint-book-demo] [http-nio-8080-exec-6] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10, pageOffset=0)
+2025-05-11T17:04:04.398+08:00  INFO 52001 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T17:04:04.417+08:00  INFO 52001 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T17:04:04.420+08:00  INFO 52001 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T17:04:04.427+08:00  INFO 52001 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T17:04:06.110+08:00  INFO 52167 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 52167 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T17:04:06.112+08:00  INFO 52167 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T17:04:06.522+08:00  INFO 52167 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T17:04:06.528+08:00  INFO 52167 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T17:04:06.529+08:00  INFO 52167 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T17:04:06.546+08:00  INFO 52167 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T17:04:06.547+08:00  INFO 52167 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 411 ms
+2025-05-11T17:04:06.847+08:00  INFO 52167 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T17:04:06.853+08:00  INFO 52167 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.94 seconds (process running for 1.148)
+2025-05-11T17:04:18.998+08:00  INFO 52167 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T17:04:18.999+08:00  INFO 52167 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T17:04:19.001+08:00  INFO 52167 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-11T17:04:19.120+08:00  INFO 52167 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10, pageOffset=0)
+2025-05-11T17:04:19.141+08:00  INFO 52167 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T17:04:19.241+08:00  INFO 52167 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7f5f9203
+2025-05-11T17:04:19.242+08:00  INFO 52167 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T17:05:16.074+08:00  INFO 52167 --- [Sprint-book-demo] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-11T17:05:16.088+08:00  INFO 52167 --- [Sprint-book-demo] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-11T17:05:16.092+08:00  INFO 52167 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T17:05:16.097+08:00  INFO 52167 --- [Sprint-book-demo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T17:05:17.944+08:00  INFO 52316 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Starting SprintBookDemoApplication using Java 17.0.11 with PID 52316 (/Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo/target/classes started by kevinqiu in /Users/kevinqiu/Desktop/JavaToGithub/JavaEE_Pro/Sprint-book-demo)
+2025-05-11T17:05:17.946+08:00  INFO 52316 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T17:05:18.369+08:00  INFO 52316 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T17:05:18.375+08:00  INFO 52316 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T17:05:18.376+08:00  INFO 52316 --- [Sprint-book-demo] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-11T17:05:18.396+08:00  INFO 52316 --- [Sprint-book-demo] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-11T17:05:18.396+08:00  INFO 52316 --- [Sprint-book-demo] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 430 ms
+2025-05-11T17:05:18.686+08:00  INFO 52316 --- [Sprint-book-demo] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-11T17:05:18.691+08:00  INFO 52316 --- [Sprint-book-demo] [main] c.k.s.SprintBookDemoApplication          : Started SprintBookDemoApplication in 0.945 seconds (process running for 1.148)
+2025-05-11T17:05:31.761+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-11T17:05:31.761+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-11T17:05:31.762+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-11T17:05:31.871+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-2] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10, pageOffset=0)
+2025-05-11T17:05:31.886+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T17:05:31.973+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@651a4f38
+2025-05-11T17:05:31.975+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T17:05:34.690+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-4] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10, pageOffset=10)
+2025-05-11T17:05:40.577+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-6] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=3, pageSize=10, pageOffset=20)
+2025-05-11T17:05:42.686+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-7] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=1, pageSize=10, pageOffset=0)
+2025-05-11T17:06:27.656+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-9] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=2, pageSize=10, pageOffset=10)
+2025-05-11T17:06:31.877+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-1] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=3, pageSize=10, pageOffset=20)
+2025-05-11T17:06:34.454+08:00  INFO 52316 --- [Sprint-book-demo] [http-nio-8080-exec-3] c.k.s.controller.BookController          : 分页查询图书列表，pageRequestPageRequest(currentPage=4, pageSize=10, pageOffset=30)

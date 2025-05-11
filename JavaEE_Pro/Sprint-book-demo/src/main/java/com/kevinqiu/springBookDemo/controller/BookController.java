@@ -1,6 +1,8 @@
 package com.kevinqiu.springBookDemo.controller;
 
 import com.kevinqiu.springBookDemo.model.BookInfo;
+import com.kevinqiu.springBookDemo.model.PageRequest;
+import com.kevinqiu.springBookDemo.model.PageResponse;
 import com.kevinqiu.springBookDemo.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,16 +12,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("book")
 public class BookController {
 
-    private Logger logger = LoggerFactory.getLogger(BookController.class);
+    private final Logger logger = LoggerFactory.getLogger(BookController.class);
 
     @Autowired
     private BookService bookService;
 
-    @RequestMapping("/addBook")
+    @RequestMapping(value = "/addBook")
     public String addBook(@RequestBody BookInfo bookInfo){
         logger.info("添加图书：{}", bookInfo);
         // 校验 bookInfo 的属性
@@ -43,4 +47,17 @@ public class BookController {
         }
 
     }
+
+    @RequestMapping("/getBooks")
+    public PageResponse<BookInfo> getBooks(PageRequest pageRequest){
+        logger.info("分页查询图书列表，pageRequest{}", pageRequest);
+        try {
+            return bookService.getBooks(pageRequest);
+        } catch (Exception e){
+            logger.error("翻页查询图书失败：e", e);
+            return null;
+        }
+    }
+
+
 }
