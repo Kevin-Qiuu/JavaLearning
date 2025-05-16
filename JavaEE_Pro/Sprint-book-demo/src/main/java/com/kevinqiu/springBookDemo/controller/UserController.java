@@ -45,8 +45,8 @@ public class UserController {
 
 
         // 校验成功，返回 1，设置用户的session
-        session.setAttribute("userName", username);
-        session.setAttribute("password", password);
+        session.setAttribute("userId", selectUserInfo.getId());
+//        session.setAttribute("password", password);
         return 1;
     }
 }

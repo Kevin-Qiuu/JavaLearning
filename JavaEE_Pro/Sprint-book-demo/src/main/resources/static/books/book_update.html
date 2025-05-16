@@ -11,60 +11,106 @@
 
 <body>
 
-    <div class="container">
-        <div class="form-inline">
-            <h2 style="text-align: left; margin-left: 10px;"><svg xmlns="http://www.w3.org/2000/svg" width="40"
-                    fill="#17a2b8" class="bi bi-book-half" viewBox="0 0 16 16">
-                    <path
-                        d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
-                </svg>
-                <span>修改图书</span>
-            </h2>
-        </div>
-
-        <form id="updateBook">
-            <input type="hidden" class="form-control" id="bookId" name="id">
-            <div class="form-group">
-                <label for="bookName">图书名称:</label>
-                <input type="text" class="form-control" id="bookName" name="bookName">
-            </div>
-            <div class="form-group">
-                <label for="bookAuthor">图书作者</label>
-                <input type="text" class="form-control" id="bookAuthor" name="author"/>
-            </div>
-            <div class="form-group">
-                <label for="bookStock">图书库存</label>
-                <input type="text" class="form-control" id="bookStock" name="count"/>
-            </div>
-            <div class="form-group">
-                <label for="bookPrice">图书定价：</label>
-                <input type="number" class="form-control" id="bookPrice" name="price">
-            </div>
-            <div class="form-group">
-                <label for="bookPublisher">出版社</label>
-                <input type="text" id="bookPublisher" class="form-control" name="publish"/>
-            </div>
-            <div class="form-group">
-                <label for="bookStatus">图书状态</label>
-                <select class="custom-select" id="bookStatus" name="status">
-                    <option value="1" selected>可借阅</option>
-                    <option value="2">不可借阅</option>
-                </select>
-            </div>
-            <div class="form-group" style="text-align: right">
-                <button type="button" class="btn btn-info btn-lg" onclick="update()">确定</button>
-                <button type="button" class="btn btn-secondary btn-lg" onclick="javascript:history.back()">返回</button>
-            </div>
-        </form>
+<div class="container">
+    <div class="form-inline">
+        <h2 style="text-align: left; margin-left: 10px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40"
+                 fill="#17a2b8" class="bi bi-book-half" viewBox="0 0 16 16">
+                <path
+                        d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+            </svg>
+            <span>修改图书</span>
+        </h2>
     </div>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script>
-        
-        function update() {
-            alert("更新成功");
-            location.href = "book_list.html"
-        }
-    </script>
+
+    <form id="updateBook">
+        <input type="hidden" class="form-control" id="id" name="id" value="">
+        <div class="form-group">
+            <label for="bookName">图书名称:</label>
+            <input type="text" class="form-control" id="bookName" name="bookName">
+        </div>
+        <div class="form-group">
+            <label for="author">图书作者</label>
+            <input type="text" class="form-control" id="author" name="author"/>
+        </div>
+        <div class="form-group">
+            <label for="count">图书库存</label>
+            <input type="text" class="form-control" id="count" name="count"/>
+        </div>
+        <div class="form-group">
+            <label for="price">图书定价：</label>
+            <input type="number" class="form-control" id="price" name="price">
+        </div>
+        <div class="form-group">
+            <label for="publish">出版社</label>
+            <input type="text" id="publish" class="form-control" name="publish"/>
+        </div>
+        <div class="form-group">
+            <label for="status">图书状态</label>
+            <select class="custom-select" id="status" name="status">
+                <option value="1" selected>可借阅</option>
+                <option value="2">不可借阅</option>
+            </select>
+        </div>
+        <div class="form-group" style="text-align: right">
+            <button type="button" class="btn btn-info btn-lg" onclick="update()">确定</button>
+            <button type="button" class="btn btn-secondary btn-lg" onclick="javascript:history.back()">返回</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+    let searchParams = new URLSearchParams(location.search);
+
+    getBookInfo()
+
+    function getBookInfo() {
+        console.log(location.search)
+        // 获取查询字符串参数
+
+        console.log(searchParams.get('id')); // 输出: 8
+        console.log(searchParams.get('page')); // 输出: currentPage
+        $.ajax({
+            type: "GET",
+            url: "/book/getBookById?bookId=" + searchParams.get('id'),
+            success: function (result) {
+                if (result == null) {
+                    alert("无法更新当前图书，请联系 KevinQiu。")
+                    location.href = "/book_list.html"
+                } else {
+                    // console.log("查询成功！")
+                    // console.log(result)
+                    $("#id").val(result.id);
+                    $("#bookName").val(result.bookName);
+                    $("#author").val(result.author);
+                    $("#count").val(result.count);
+                    $("#price").val(result.price);
+                    $("#publish").val(result.publish);
+                    $("#status").val(result.status);
+                }
+            }
+        })
+    }
+
+    function update() {
+        console.log($("#updateBook").serialize())
+        $.ajax({
+            type: "POST",
+            url: "/book/updateBook",
+            data: $("#updateBook").serialize(),
+            success: function (result) {
+                if (result === "") {
+                    alert("更新成功");
+                } else {
+                    alert("更新失败，请联系 KevinQiu");
+                }
+                location.href = "book_list.html?currentPage="+searchParams.get('page')+"&pageSize="+searchParams.get('pSize')
+            }
+
+
+        })
+    }
+</script>
 </body>
 
 </html>

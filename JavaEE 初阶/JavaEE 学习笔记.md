@@ -2041,7 +2041,7 @@ Spring 家族
 
 使用@RequestMapping 中的 produce 参数，设置为"application/json"，在 http 报文状态头位置通知前端后端传递的数据是 json
 
-使用@ResponseBody 修饰方法把对象重新反序列化为 json，但如果类由@RestController 修饰，则所有的方法都会默认自带@ResponseBody
+使用@ResponseBody 修饰方法把对象重新反序列化为 json，但如果类由 @RestController 修饰，则所有的方法都会默认自带 @ResponseBody，表示所有方法返回给前端的对象都会转换为 Json
 
 ---
 
@@ -2255,6 +2255,46 @@ public class UserController {
 }
 ```
 
+#### Spring MVC、Tomcat 和 Servlet 之间的关系
+
+##### 一、技术层级与核心角色
+
+| **组件**    | **层级定位**           | **核心职责**                                        | **类比解释**                                 |
+| ----------- | ---------------------- | --------------------------------------------------- | -------------------------------------------- |
+| `Servlet` | `Java EE` 规范基础层 | 定义 `HTTP` 请求处理的接口规范（如 `doGet` `doPost`） | 类似于“交通规则”，规定车辆如何通行           |
+| `Tomcat`  | `Servlet` 容器实现层 | 实现 `Servlet` 规范，管理 Servlet 生命周期和网络通信  | 相当于“高速公路系统”，提供道路并监管车辆运行 |
+| `Spring`  | 应用框架层         | 基于 `Servlet` 扩展，提供 `MVC`、`IOC`、`AOP` 等高级功能    | 类似“智能导航系统”，优化路线并提供增值服务   |
+
+------
+
+### 二、协作关系与工作原理
+
+#### 1. **请求处理流程**（以 Spring MVC 为例）
+
+```
+用户发起 HTTP 请求 → Tomcat 监听端口接收请求 → Tomcat 调用匹配的 Servlet → Spring 的 DispatcherServlet 接管 → Spring 解析请求并路由到 Controller → Controller 处理业务逻辑 → 返回响应数据 → Tomcat 发送响应给客户端 
+```
+
+#### 2. **依赖关系**
+
+- **Tomcat 依赖 Servlet 规范**：
+  - **Tomcat**（全称 Apache Tomcat）是由 Apache 软件基金会开发的 **开源轻量级 Web 服务器** 和 **Servlet/JSP 容器**，主要用于部署和运行 Java Web 应用程序。
+  - Tomcat 实现了 Servlet API（如 `javax.servlet.http.HttpServlet` ），通过 `web.xml` 或注解配置 Servlet。
+  
+- **Spring MVC 依赖 Servlet**：
+  - Spring 的核心组件 `DispatcherServlet` 本质是一个 Servlet，继承自 `HttpServlet`，用于统一调度请求。
+  - Spring MVC 理论上可适配任何兼容 Servlet 标准的容器（如 Tomcat、Jetty、Undertow 或 IBM WebSphere）。
+
+- **Spring Boot 整合 Tomcat**：
+  - Tomcat 因轻量、开源和易用性成为 Spring 应用的**主流默认容器**（尤其在 Spring Boot 中）。Spring Boot 通过 `spring-boot-starter-web` 自动配置 Servlet 环境。
+  - Spring Web 模块需运行于 Servlet 容器（如 Tomcat）之上，例如 Spring MVC，但 Spring 框架的**非 Web 功能**（如 IOC、AOP、数据访问）可不依赖 Web 服务器独立运行。
+
+
+### Mybatis
+
+#### Mybatis 的使用
+
+#### Mybatis-plus
 
 
 
@@ -2262,8 +2302,11 @@ public class UserController {
 
 
 
+### Spring 拦截器
 
+### Spring 统一处理格式
 
+![image-20250516225117520](JavaEE 学习笔记_markdown_img/image-20250516225117520.png)
 
 
 

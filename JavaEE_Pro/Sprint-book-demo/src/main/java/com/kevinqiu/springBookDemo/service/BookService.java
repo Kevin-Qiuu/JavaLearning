@@ -27,4 +27,16 @@ public class BookService {
         }
         return new PageResponse<>(totalBookNum, bookInfoList, pageRequest);
     }
+
+    public void deleteBooks(List<Integer> ids) {
+        bookMapper.deleteBooks(ids);
+    }
+
+    public void updateBook(BookInfo bookInfo) {
+        bookMapper.updateBook(bookInfo);
+    }
+
+    public BookInfo selectBookById(Integer id) {
+        return bookMapper.selectBookById(id);
+    }
 }

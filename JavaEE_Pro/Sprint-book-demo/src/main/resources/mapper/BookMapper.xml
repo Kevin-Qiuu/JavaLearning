@@ -8,4 +8,42 @@
         select `id`, `book_name`, `author`, `count`, `price`, `publish`, `status`, `create_time`, `update_time`
         from book_info where status != 0 limit #{pageOffset}, #{pageSize}
     </select>
+
+    <select id="selectBookById" resultType="com.kevinqiu.springBookDemo.model.BookInfo">
+        select `id`, `book_name`, `author`, `count`, `price`, `publish`, `status`
+        from book_info where `id` = #{id}
+    </select>
+
+    <delete id="deleteBooks">
+        delete from book_info where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateBook">
+        UPDATE book_info
+        set
+        <if test="bookName!=null">
+            `book_name`=#{bookName},
+        </if>
+        <if test="author!=null">
+            `author`=#{author},
+        </if>
+        <if test="count!=null">
+            `count`=#{count},
+        </if>
+        <if test="price!=null">
+            `price`=#{price},
+        </if>
+        <if test="publish!=null">
+            `publish`=#{publish},
+        </if>
+        <if test="status!=null">
+            `status`=#{status}
+        </if>
+        where `id` = #{id}
+    </update>
+
+
 </mapper>

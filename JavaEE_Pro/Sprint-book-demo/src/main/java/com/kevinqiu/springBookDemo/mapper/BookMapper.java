@@ -22,4 +22,10 @@ public interface BookMapper {
     Integer selectBooksCount();
 
     List<BookInfo> selectBooksByPage(PageRequest pageRequest);
+
+    void deleteBooks(List<Integer> ids);
+
+    void updateBook(BookInfo bookInfo);
+
+    BookInfo selectBookById(Integer id);
 }
