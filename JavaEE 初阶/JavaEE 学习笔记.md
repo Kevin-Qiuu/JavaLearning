@@ -2304,13 +2304,15 @@ public class UserController {
 
 ### Spring 拦截器
 
-### Spring 统一处理格式
+###  Spring 统一处理格式
 
 ![image-20250516225117520](JavaEE 学习笔记_markdown_img/image-20250516225117520.png)
 
 
 
+#### Spring AOP
 
+![img](JavaEE 学习笔记_markdown_img/fa0d89d18fa5937cc57f680bd7406f9f.png)
 
 
 

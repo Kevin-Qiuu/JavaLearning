@@ -151,6 +151,42 @@ public class ThrowsDemo {
 
 ![exception_img](JavaSE 学习笔记_markdown_img/image-20241010115357061-8960296.png)
 
+**产生异常后的代码执行情况：**
+
+```java
+public void processData() {
+    try {
+        step1();        // 可能抛出异常 
+        step2();        // 若 step1 抛异常，此处不执行 
+    } catch (Exception e) {
+        log.error(" 处理异常", e);  // 捕获异常，但未中断 
+    }
+    step3();            // 无论是否异常，都会执行 
+}
+```
+
+- 代码执行流程：
+  - 若 `step1()` 抛异常 → 执行 `catch` 块 → 执行 `step3()`。
+  - 若 `step1()` 无异常 → 执行 `step2()` → 执行 `step3()`。
+
+
+
+```java
+public void processData() throws CustomException {
+    try {
+        step1();        // 可能抛出 IOException 
+    } catch (IOException e) {
+        throw new CustomException("转换异常", e);  // 抛出新异常，方法终止 
+    }
+    step2();            // 若 catch 中抛出异常，此处不执行 
+}
+```
+
+- 代码执行流程：
+  - 若 `step1()` 抛 `IOException` → `catch` 块抛 `CustomException` → 方法终止，异常传递给调用者。
+
+------
+
 #### **try-catch-finally：**
 
 如果一个线程执行任务时，引发了异常，若不采取捕获异常的操作，线程会直接崩溃终止，不会执行异常的后续代码，所以为了提高代码的健壮性，需要捕获异常：
