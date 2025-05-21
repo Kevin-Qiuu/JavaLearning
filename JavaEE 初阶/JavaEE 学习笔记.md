@@ -368,7 +368,7 @@ public static void main(String[] args) throws InterruptedException {
 
 5. **指令重排序。**
 
-​	如果是在单线程情况下，JVM、CPU指令集会对程序代码进⾏优化，在保证逻辑不变化的情况下优化代码，这一点在单线程环境下很容易判断，但是在多线程环境下就没那么容易了，多线程的代码执⾏复杂程度更⾼，编译器很难在编译阶段对代码的执行效果进行预测，因此过于激进的指令重排序很容易导致优化后的逻辑和之前不等价。
+如果是在单线程情况下，JVM、CPU指令集会对程序代码进⾏优化，在保证逻辑不变化的情况下优化代码，这一点在单线程环境下很容易判断，但是在多线程环境下就没那么容易了，多线程的代码执⾏复杂程度更⾼，编译器很难在编译阶段对代码的执行效果进行预测，因此过于激进的指令重排序很容易导致优化后的逻辑和之前不等价。
 
 **在上述五条原因中，1、2 无法控制，所以我们只可以从 3、4、5 来保证线程安全，如下：**
 
@@ -384,9 +384,9 @@ public static void main(String[] args) throws InterruptedException {
 
 **1. `synchronized` 解决了 Java 语句的原子性问题**
 
-​	通过关键词 `synchronized` 修饰，`t1` 先获得到锁，执行加锁的代码块，代码块执行结束后释放锁，其他线程再竞争这个锁，当一个线程再修改一个共享变量时，因为修改变量的代码被加了锁，所以其他线程不可执行这段代码，保证了多个线程不会同时修改一个变量，也**保证了 Java 语句的原子性**，进而把多线程的代码逻辑强制变成单线程运行逻辑，从而解决了线程安全问题，
+通过关键词 `synchronized` 修饰，`t1` 先获得到锁，执行加锁的代码块，代码块执行结束后释放锁，其他线程再竞争这个锁，当一个线程再修改一个共享变量时，因为修改变量的代码被加了锁，所以其他线程不可执行这段代码，保证了多个线程不会同时修改一个变量，也**保证了 Java 语句的原子性**，进而把多线程的代码逻辑强制变成单线程运行逻辑，从而解决了线程安全问题，
 
-​	由于线程是抢占式执行，可能 `t1` 执行到 `ADD` 时被 `CPU` 调度出去，`t2` 获得执行机会，但是此时 `t1` 在持有锁，`t2` 无法执行锁内代码，只能继续等待，直到 `t1` 执行完成其加锁代码块并把锁释放掉之后才能继续执行，`t2` 在等待锁的这个状态就是 `BLOCK`（阻塞 ）。
+由于线程是抢占式执行，可能 `t1` 执行到 `ADD` 时被 `CPU` 调度出去，`t2` 获得执行机会，但是此时 `t1` 在持有锁，`t2` 无法执行锁内代码，只能继续等待，直到 `t1` 执行完成其加锁代码块并把锁释放掉之后才能继续执行，`t2` 在等待锁的这个状态就是 `BLOCK`（阻塞 ）。
 
 下面是 `JMM` 中的原子操作（即在同时给一个变量执行指令时，一瞬时只能执行一条），按照使用流程来排序，分别如下：
 
@@ -435,7 +435,7 @@ public class Demo10_sychronized {
 
 **2. `synchronized` 解决了内存可见性问题**
 
-​	每一个线程都是从主内存中加载变量到自己的工作内存中，在自己的工作内存中修改后再写入主内存中，由于加了锁，一次 `count++` 只能由一个线程完成，每一个线程读到的值都是上一个线程写入内存中的值，因此主内存相当于一个交换空间，线程依次执行读取和写入动作，一个线程的修改动作能够被另一个线程感知到，使得线程彼此之间能够感受到对方的存在，通过这样的方式间接实现了内存可见性。
+每一个线程都是从主内存中加载变量到自己的工作内存中，在自己的工作内存中修改后再写入主内存中，由于加了锁，一次 `count++` 只能由一个线程完成，每一个线程读到的值都是上一个线程写入内存中的值，因此主内存相当于一个交换空间，线程依次执行读取和写入动作，一个线程的修改动作能够被另一个线程感知到，使得线程彼此之间能够感受到对方的存在，通过这样的方式间接实现了内存可见性。
 
 <img src="JavaEE 学习笔记_markdown_img/image-20250220120901436.png" alt="image-20250220120901436" style="zoom:50%;" />
 
@@ -482,11 +482,11 @@ Instance size: 16 bytes
 **/
 ```
 
-​	所以，锁对象的 `markword` 中的锁信息存储的就是当前获取到锁的对象引用，其实本质上锁对象才是那把线程之间竞争的**锁**。当线程 `A` 获取到锁时，锁对象的锁信息指向线程 `A`，此时 CPU 调度到线程 `B` 时，由于锁对象的锁信息没有指向线程 `B`，所以线程 `B` 进入 `BLOCK` 状态，重新调度回线程 `A` 时，锁对象的锁信息指向一致，继续执行 `A` 的逻辑，执行完毕后，线程 `A` 释放锁，锁对象的锁信息指向空，所有线程继续竞争这个锁。
+所以，锁对象的 `markword` 中的锁信息存储的就是当前获取到锁的对象引用，其实本质上锁对象才是那把线程之间竞争的**锁**。当线程 `A` 获取到锁时，锁对象的锁信息指向线程 `A`，此时 CPU 调度到线程 `B` 时，由于锁对象的锁信息没有指向线程 `B`，所以线程 `B` 进入 `BLOCK` 状态，重新调度回线程 `A` 时，锁对象的锁信息指向一致，继续执行 `A` 的逻辑，执行完毕后，线程 `A` 释放锁，锁对象的锁信息指向空，所有线程继续竞争这个锁。
 
-​	因为每一个对象在 JVM 中的内存结构中都会有 `markword` 区域，所以任何对象都可以作为一个锁对象来存储锁信息。锁对象被 `final` 修饰，被 `final` 修饰的引用变量不可以再指向其他对象，保证了锁对象始终都有引用变量指向。
+因为每一个对象在 JVM 中的内存结构中都会有 `markword` 区域，所以任何对象都可以作为一个锁对象来存储锁信息。锁对象被 `final` 修饰，被 `final` 修饰的引用变量不可以再指向其他对象，保证了锁对象始终都有引用变量指向。
 
-​	**注意：多个线程只有使用同一个锁对象才存在竞争关系，才可以进行抢占式竞争，否则与没上锁一样。相当于一个门有多把锁，任意一把锁打开后，门就能开，所以压根就没有把门锁上，这些线程都可以拿到自己的锁对象把门打开，所以锁对象的意义就失去了。**
+**注意：多个线程只有使用同一个锁对象才存在竞争关系，才可以进行抢占式竞争，否则与没上锁一样。相当于一个门有多把锁，任意一把锁打开后，门就能开，所以压根就没有把门锁上，这些线程都可以拿到自己的锁对象把门打开，所以锁对象的意义就失去了。**
 
 ---
 
@@ -569,7 +569,7 @@ myThread_02 has been exited...
 
 上述引发线程安全的本质在于，线程 `2` 修改了 `flag` 变量后，线程 `1` 中的 `flag` 仍然在使用旧的值，所以需要通知线程 `1` 当前所用的值已经失效了，需要重新去主内存中读取，这是解决这个线程问题的中心思想。在 `synchronized` 关键字中，当一个线程的执行逻辑需要读取一个共享变量时，就会对这一段执行逻辑的代码加锁，其他线程只有在这个线程释放锁后，再与这个线程继续参与锁竞争，最终这个执行逻辑就把一个并行处理的代码变成了串行执行。这显然是会影响执行效率的，为此 `volatile` 关键字换了一个思路，加入了一个指令级的锁来提升效率。`volatile` 与 `MESI` 缓存一致性协议共同保障了上述的线程安全问题。
 
- **`MESI` 缓存一致性协议**：该协议规定了处于线程工作内存中变量的四个状态：`Modified`、`Exclusive`、`Shared`、`Invalid`。`Modified` 意味着缓存行已被修改，与主存不同，且只有当前核心有该数据的副本；`Exclusive` 表示缓存行与主存一致，且只有当前核心有副本；`Shared` 表示缓存行与主存一致，但可能有其他核心共享；`Invalid` 则是无效状态，表示缓存行中的数据不可用。
+**`MESI` 缓存一致性协议**：该协议规定了处于线程工作内存中变量的四个状态：`Modified`、`Exclusive`、`Shared`、`Invalid`。`Modified` 意味着缓存行已被修改，与主存不同，且只有当前核心有该数据的副本；`Exclusive` 表示缓存行与主存一致，且只有当前核心有副本；`Shared` 表示缓存行与主存一致，但可能有其他核心共享；`Invalid` 则是无效状态，表示缓存行中的数据不可用。
 
 对于上述的代码中的 while 循环判断，可以简单看成下列的原子操作：
 
@@ -603,15 +603,15 @@ myThread_02 has been exited...
 
 **1、`volatile` 没有解决原子性问题**
 
-​	同样以 `count++` 为例，在多个线程同时执行 `store` 指令时，一样会出现线程安全问题，即使此时变量已经标记为无效了，但是只会在 `CPU` 核心读取工作内存中的变量值时才会发现无效标志，在执行写入指令时，一样会把自己的工作内存的变量值写入主内存，所以没有解决原子性问题。
+同样以 `count++` 为例，在多个线程同时执行 `store` 指令时，一样会出现线程安全问题，即使此时变量已经标记为无效了，但是只会在 `CPU` 核心读取工作内存中的变量值时才会发现无效标志，在执行写入指令时，一样会把自己的工作内存的变量值写入主内存，所以没有解决原子性问题。
 
 **2、`volatile` 解决了内存可见性问题**
 
-​	在一个线程修改了变量值，会立马向主内存重新写入该变量值，进行刷新操作，其他 `CPU` 核心（线程）依靠**总线嗅探机制**发现自己工作内存中的该变量值已经无效了，进而直到主内存中的变量已经被修改了，所以解决了内存可见性问题。
+在一个线程修改了变量值，会立马向主内存重新写入该变量值，进行刷新操作，其他 `CPU` 核心（线程）依靠**总线嗅探机制**发现自己工作内存中的该变量值已经无效了，进而直到主内存中的变量已经被修改了，所以解决了内存可见性问题。
 
 **3、`volatile` 解决了指令重排序问题**
 
-​	`volatile` 引入了内存屏障（`Memory barrier`），一共有以下四种：
+`volatile` 引入了内存屏障（`Memory barrier`），一共有以下四种：
 
 - `LoadLoad`：执行顺序是 `Load1; LoadLoad; Load2` ，其中的 `Load1` 和 `Load2` 都是加载指令。`LoadLoad` 指令能够确保无论发生怎样的指令重排序，`Load1` 都一定会在 `Load2` 之前，。
 
@@ -634,7 +634,7 @@ myThread_02 has been exited...
 - `wait()`方法可以通过传递参数来指定等待的时间，如果时间到了还没有被唤醒，线程会自动醒来并重新尝试获取锁。
 - 在等待过程中，如果线程被中断，那么wait方法会抛出[`InterruptedException`](https://zhida.zhihu.com/search?content_id=250556768&content_type=Article&match_order=1&q=InterruptedException&zhida_source=entity)异常。
 
-​	
+
 
 `notify()`也是`Java`中的一个方法，属于`Object`类，用于唤醒正在等待该对象监视器的单个线程。当某个线程调用了某个对象的`wait()`方法后，该线程会进入等待状态并释放该对象的锁，直到其他线程调用此对象的`notify()`方法或者`notifyAll()`方法，或者等待超时，该线程才会重新获得锁并进入就绪状态。
 
@@ -1055,9 +1055,9 @@ private Thread notifyThread = new Thread(() -> {
 
    读写锁：分为读锁和写锁。
 
-   ​	线程只涉及到读操作（共享锁），就使用读锁，多个读锁可以共存，但是不可以与写锁共存，即若一个变量正在被一个拥有读锁的线程读取，加了写锁的线程不可以修改这个变量。
+   线程只涉及到读操作（共享锁），就使用读锁，多个读锁可以共存，但是不可以与写锁共存，即若一个变量正在被一个拥有读锁的线程读取，加了写锁的线程不可以修改这个变量。
 
-   ​	线程涉及到了写操作（排他锁），就使用写锁，只允许有一个写锁执行任务，表示在同一时刻，只有一个拥有写锁的线程可以修改变量，写锁与其他所有锁都不能共存。
+   线程涉及到了写操作（排他锁），就使用写锁，只允许有一个写锁执行任务，表示在同一时刻，只有一个拥有写锁的线程可以修改变量，写锁与其他所有锁都不能共存。
 
    <img src="JavaEE 学习笔记_markdown_img/image-20250309161101150.png" alt="image-20250309161101150"  />
 
@@ -1125,11 +1125,11 @@ Boolean CAS(address, expectedValue, modifyValue) {
 
 **Step2.** 执行 CAS 操作，CAS 是一个原子类操作，是指令级别，通常是 cmpxchg
 
-​	1）CAS 操作会再次读取共享内存中的变量值，并与预期值比较是否一致。
+1）CAS 操作会再次读取共享内存中的变量值，并与预期值比较是否一致。
 
-​	2）如果一致则表明当前所要修改的这个变量没有被其他线程修改过，所以直接把所要修改的值写入主内存中。
+2）如果一致则表明当前所要修改的这个变量没有被其他线程修改过，所以直接把所要修改的值写入主内存中。
 
-   3）如果不一致则表明当前线程所要修改的这个变量已经被其他线程修改过了，所以缓存中的预期值已经过时了，需重新循环执行第一步，直到 CAS 操作返回的是 true。
+ 3）如果不一致则表明当前线程所要修改的这个变量已经被其他线程修改过了，所以缓存中的预期值已经过时了，需重新循环执行第一步，直到 CAS 操作返回的是 true。
 
 若线程一直处于循环的过程中，就是一个等待锁的操作（认为是阻塞 BLOCKED 状态），而这个阻塞状态实际就是一个不断循环的操作，故将其称为自旋锁。
 
@@ -2306,36 +2306,194 @@ public class UserController {
 
 ###  Spring 统一处理格式
 
-![image-20250516225117520](JavaEE 学习笔记_markdown_img/image-20250516225117520.png)
-
-
-
-#### Spring AOP
-
-![img](JavaEE 学习笔记_markdown_img/fa0d89d18fa5937cc57f680bd7406f9f.png)
+<img  src="JavaEE 学习笔记_markdown_img/image-20250516225117520.png" alt="image-20250516225117520" >
 
 
 
 
+### Spring AOP
+<img  src="JavaEE 学习笔记_markdown_img/fa0d89d18fa5937cc57f680bd7406f9f.png" alt="ifa0d89d18fa5937cc57f680bd7406f9f" >
 
 
 
+#### Spring AOP 使用方式
+
+（1）通过使用execution 表达式实现
+
+```java
+@Slf4j
+@Order(2)
+@Aspect  // 只有被该注解修饰才认为是切面类
+@Component
+public class AspectDemo01 {
+    // 定义切点
+    @Pointcut("execution(* com.kevinqiu.controller.*.*(..))")
+    private void pointcut() {
+    }
+
+
+    // 定义环绕通知
+    @Around("pointcut()")
+    public Object aroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
+        log.info("AspectDemo01 -> aroundAdvice，计时开始");
+        log.info("开始执行方法，计时开始");
+        long startTime = System.currentTimeMillis();
+        Object o = pjp.proceed();
+        long endTime = System.currentTimeMillis();
+        log.info("AspectDemo01 -> aroundAdvice，方法执行完毕，耗时 {} ms", endTime - startTime);
+        return o;
+    }
+}
+```
+
+（2）通过使用自定义注解实现
+
+```java
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyPointCut {
+
+}
+
+```
+
+切面类的代码
+
+```java
+@Slf4j
+@Aspect
+@Component
+public class AspectDemo03 {
+    @Pointcut("@annotation(com.kevinqiu.aspect.MyPointCut)")
+    public void pt(){}
+
+    @Around("pt()")
+    public Object aroundMyAnnotationAdvice(ProceedingJoinPoint pjp) throws Throwable {
+        log.info("AroundDemo03 -> aroundMyAnnotationAdvice: Start.");
+        Object o = pjp.proceed();
+        log.info("AroundDemo03 -> aroundMyAnnotationAdvice: End.");
+        return o;
+    }
+}
+```
+
+（3）通过 XML 的方式实现
+
+XML 的方式是过去的技术，随着框架的不断更新，Spring 将其封装在注解中，通过动态生成 XML 的方式实现 AOP。XML 的方式主要有三种：经典代理、SpringAPI 以及自定义 XML 实现。
+
+可以参考这篇文章：https://cloud.tencent.com/developer/article/2032268
+
+#### Spring AOP 实现原理
+
+Spring AOP 是基于动态代理的方式实现的，在 Java 中，实现动态代理一共有两种方式，一个是 JDK 动态代理，另外一个是 CGLib 动态代理。而在 Spring 源码中，就是通过 JDK 和 CGLib 动态代理实现整体的 AOP 设计模式的。
+
+CGLib 与 JDK 动态代理的不同点在于：JDK 只能实现接口的代理，而 CGLib 既可以进行接口的代理也可以进行类的代理。
+
+`ObjectController`、`DemoController`、`JDKInvocationHandler`、`CGLibInterceptor`
+
+```java
+// 通过 JDK 的方式实现动态代理，进而实现 AOP
+public static void JDKDynamicProxy() {
+  ObjectController objectController = new DemoController();
+  // 创建动态代理对象
+  ObjectController controllerProxy = (ObjectController) Proxy.newProxyInstance(
+    objectController.getClass().getClassLoader(),
+    new Class[]{ObjectController.class},
+    new JDKInvocationHandler(objectController)
+  );
+  // 通过代理调用方法
+  String s = controllerProxy.printResult();
+  log.info("JDKDynamicProxy: {}", s);
+}
+
+// 通过 CGLib 的方式实现动态代理，进而实现 AOP
+// CGLib 与 JDK 动态代理的不同点在于，JDK 只能实现接口的代理，而 CGLib 既可以进行接口的代理也可以进行类的代理
+public static void CGLibDynamicProxy(){
+  DemoController demoController = new DemoController();
+  // 创建动态代理对象
+  DemoController controllerProxy = (DemoController) Enhancer.create(
+    demoController.getClass(), new CGLibInterceptor(demoController));
+  // 通过代理调用方法
+  String s = controllerProxy.printResult();
+  log.info("CGLibDynamicProxy: {}", s);
+}
+
+```
+
+#### JDK 动态代理实现的原理
+
+这里只分析基于 JDK 动态代理的方式实现 AOP 设计模式的代码原理：
+
+在实际运行过程中，JDK 在执行 `Proxy.newProxyInstance` 时，会通过 `ProxyGenerator.generateProxyClass()` 在内存中生成 `.class` 字节码，随后由传入的 `ClassLoader` 加载，进而动态生成一个 `$Proxy0` 类，这个类继承了 `Proxy` 类并且实现了用户传入的接口，并通过用户传入的 `InvocationHandler` 中的 `invoke` 方法实现接口。具体来说就是在接口的重写方法中，通过分析方法签名，调用 `InvocationHandler` 中的 `invoke` 方法，完成接口实现。
+
+举例来说，在调用 `controllerProxy.printResult()` 时，实际调用的是 `$Proxy01` 对象的 `printResult` 方法，而这个方法的实质就是调用 `JDKInvocationHandler` 的 `invoke`方法，最终实现了方法的交付调用，实现了 AOP 设计模式。
 
 
 
+在 `Proxy.newProxyInstance` 的三个参数中，**接口类名和方法名的获取完全依赖第二个参数 `new Class[]{ObjectController.class}`** 。具体逻辑如下：
+
+|       **参数**        |                      **作用**                       |                          **值来源**                          |
+| :-------------------: | :-------------------------------------------------: | :----------------------------------------------------------: |
+|     **类加载器**      | 根据这个加载器在内存中动态生成的代理类（`$Proxy0`） | 通常从目标对象类中提取（如 `objectController.getClass().getClassLoader()` ） |
+|     **接口数组**      |   定义代理类需实现的接口（如 `ObjectController`）   |   开发者显式传入（`new Class[]{ObjectController.class}` ）   |
+| **InvocationHandler** |             处理代理方法的实际调用逻辑              | 开发者自定义实现（如 `new JDKInvocationHandler(objectController)`） |
 
 
 
+**最终实现的`$Proxy0`的伪代码如下：**
+
+```java
+// 动态生成的代理类方法伪代码
+public final class $Proxy0 extends Proxy implements ObjectController {
+  private static Method m1; // 对应 ObjectController.printResult() 
+
+  public $Proxy0(InvocationHandler h) {
+    super(h);
+  }
+
+  static {
+    try {
+      m1 = Class.forName("com.kevinqiu.proxy.ObjectController").getMethod("printResult");
+    } catch (Exception e) { /* ... */ }
+  }
+
+  @Override 
+  public String printResult() {
+    return (String) super.h.invoke(this,  m1, null);
+  }
+}
+```
+
+**上述的 static 方法中，是通过以下方式完成方法路由的映射，设计到反射原理：**
+
+(1) 接口类名获取
+
+- **来源**：通过传入的 `ObjectController.class` 隐式获取其全限定类名（如 `com.example.ObjectController` ）。
+
+- 底层实现伪代码：
+
+  ```java
+  String interfaceName = ObjectController.class.getName();  // 直接反射获取类名 
+  ```
+
+(2) 方法名获取
+
+- **来源**：遍历接口 `ObjectController` 中声明的所有方法（如 `printResult()`）。
+
+- 底层实现伪代码：
+
+  ```java
+  Method[] methods = ObjectController.class.getDeclaredMethods();  // 反射获取接口方法 
+  for (Method method : methods) {
+      // 生成代理类方法（如 m1 = method）
+    	// 类似 m1 = Class.forName(...).getMethod(...)  的代码 
+      addMethodToProxyClass(m1);
+  }
+  ```
 
 
 
-
-
-
-
-
-
-
+**总结：**Spring AOP 是通过 JDK 动态代理和 CGLib 动态代理实现的，但是从 SpringBoot 2.X 开始，默认使用 CGLib 动态代理，我认为是 CGLib 既可以实现接口的代理，也可以实现类的代理，同时性能也更好，所以 Spring 最终选择了 CGLib。
 
 
 

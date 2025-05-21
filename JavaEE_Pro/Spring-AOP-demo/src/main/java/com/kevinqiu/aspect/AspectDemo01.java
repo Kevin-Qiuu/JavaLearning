@@ -20,12 +20,12 @@ public class AspectDemo01 {
     // 定义环绕通知
     @Around("pointcut()")
     public Object aroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
+        log.info("AspectDemo01 -> aroundAdvice，计时开始");
         log.info("开始执行方法，计时开始");
         long startTime = System.currentTimeMillis();
         Object o = pjp.proceed();
         long endTime = System.currentTimeMillis();
-        log.info("方法执行完毕，耗时 {} ms", endTime - startTime);
+        log.info("AspectDemo01 -> aroundAdvice，方法执行完毕，耗时 {} ms", endTime - startTime);
         return o;
     }
-
 }
