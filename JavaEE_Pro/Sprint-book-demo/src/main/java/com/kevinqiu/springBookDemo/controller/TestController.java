@@ -13,7 +13,9 @@ public class TestController {
 
     @RequestMapping("/t1")
     public Integer t1(){
-        int a = 10 / 0;
+//        int a = 10 / 0;
+        if(true)
+            throw new RuntimeException("分母不可为 0");
         return 1;
     }
 
@@ -24,7 +26,6 @@ public class TestController {
 
     @RequestMapping("/t3")
     public String t3(){
-
         return "test";  // Spring 没有设置String 的 Convertor 来进行结果的转化，最终会因为函数调用参数不匹配报错
     }
 

@@ -2300,9 +2300,60 @@ public class UserController {
 
 
 
-
-
 ### Spring 拦截器
+
+通过实现 HandlerInterceptor 接口自定义创建一个拦截器
+
+```java
+// 定义一个登录拦截器，需要实现 HandlerInterceptor
+@Component
+public class LoginInterceptor implements HandlerInterceptor {
+
+  // 调用 Controller 的方法之前
+  @Override
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    HttpSession session = request.getSession(false);  // 设置为 False 表示如果没有 session 则不会自动创建
+    if (session != null && session.getAttribute("userId") != null){
+      return true;
+    }
+    System.out.println(request.getRequestURI());
+    response.setStatus(401);
+    response.setContentType("application/json;charset=UTF-8");
+    String json = "{\"code\":401,\"message\":\"用户未登录，鉴权失败！\"}";
+    response.getWriter().write(json);
+
+    return false;
+  }
+  
+}
+```
+
+然后将拦截器对象进行注册配置（需要实现 WebMvcConfigurer 接口创建一个配置类）
+
+```java
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+  @Autowired
+  private LoginInterceptor loginInterceptor;
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(loginInterceptor)
+      .addPathPatterns("/**")  // * 表示一级路径，**表示全部路径
+      .excludePathPatterns(
+      "/user/login",
+      "/books/**",
+      "/test/**"
+    );
+  }
+}
+```
+
+**拦截器原理概括：**
+
+- 在 Spring 服务启动时，会扫描 IoC 中的所有 Configuration bean，然后遍历其 addInterceptor 方法，把对应的拦截器进行添加。
+- 在 Spring 服务运行时，DispatcherServlet 在匹配 url 与方法路由时，会遍历所有添加的拦截器：
+  - DispatcherSevlet 实现了 Servlet 接口，其核心方法是 doDispath，用于匹配 url 与对应 Controller 和其响应方法，进而实现了接管 Tomcat 交付的url
+  - 在调用 Controller 的方法之前，DispatcherServlet 会调用 applyPreHandle 方法，applyPreHandle 方法则是在遍历所有的拦截器，如果符合拦截规则，则进行方法的拦截处理。
 
 ###  Spring 统一处理格式
 
@@ -2310,15 +2361,21 @@ public class UserController {
 
 
 
-
 ### Spring AOP
+
+在 Spring AOP 中，一个切面由切点和通知组成。Aspect = Pointcut + Advice
+
+切点实则是一个规则，规定了切面控制的连接点的范围，连接点即为需要被切面代码进行增强的类或者方法，来使程序明确需要对哪些代码进行增强。
+
+Advice 表示需要对选中的代码进行怎样的增强，处理的时机和处理的内容。
+
 <img  src="JavaEE 学习笔记_markdown_img/fa0d89d18fa5937cc57f680bd7406f9f.png" alt="ifa0d89d18fa5937cc57f680bd7406f9f" >
 
 
 
 #### Spring AOP 使用方式
 
-（1）通过使用execution 表达式实现
+（1）通过使用 execution 表达式实现
 
 ```java
 @Slf4j
@@ -2347,6 +2404,8 @@ public class AspectDemo01 {
 ```
 
 （2）通过使用自定义注解实现
+
+适用于只想在部分 Controller 的部分方法中添加 AOP 的场景，需要注意，自定义注解只能修饰方法，也就是 `@Target` 的 `value` 传值只能是 `ElementType.METHOD`
 
 ```java
 @Target(ElementType.METHOD)
@@ -2382,6 +2441,8 @@ public class AspectDemo03 {
 XML 的方式是过去的技术，随着框架的不断更新，Spring 将其封装在注解中，通过动态生成 XML 的方式实现 AOP。XML 的方式主要有三种：经典代理、SpringAPI 以及自定义 XML 实现。
 
 可以参考这篇文章：https://cloud.tencent.com/developer/article/2032268
+
+#### Spring AOP
 
 #### Spring AOP 实现原理
 
@@ -2494,6 +2555,56 @@ public final class $Proxy0 extends Proxy implements ObjectController {
 
 
 **总结：**Spring AOP 是通过 JDK 动态代理和 CGLib 动态代理实现的，但是从 SpringBoot 2.X 开始，默认使用 CGLib 动态代理，我认为是 CGLib 既可以实现接口的代理，也可以实现类的代理，同时性能也更好，所以 Spring 最终选择了 CGLib。
+
+
+
+### Spring 事务
+
+@Transactional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

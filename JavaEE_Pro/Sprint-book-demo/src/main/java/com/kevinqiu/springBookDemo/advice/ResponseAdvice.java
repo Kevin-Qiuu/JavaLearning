@@ -2,6 +2,7 @@ package com.kevinqiu.springBookDemo.advice;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 @ControllerAdvice
 @ResponseBody
+@Slf4j
 public class ResponseAdvice implements ResponseBodyAdvice {
 
     @Autowired
@@ -27,6 +29,7 @@ public class ResponseAdvice implements ResponseBodyAdvice {
     // 在返回 Response 前执行，用于对返回的格式进行统一的封装
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+        log.info("beforeBodyWrite..........");
         if(body instanceof String){
             try {
                 // Debug 源码可以看出，beforeBodyWrite 可以正常运行，Result 对象也可以正常建立
