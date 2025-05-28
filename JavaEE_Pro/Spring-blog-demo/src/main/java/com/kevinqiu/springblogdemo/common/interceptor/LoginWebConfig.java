@@ -20,6 +20,7 @@ public class LoginWebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/blog/css/**")
                 .excludePathPatterns("/blog/js/**")
                 .excludePathPatterns("/blog/pic/**")
-                .excludePathPatterns("/blog/**.html");
+                .excludePathPatterns("/blog/**.html")
+                .excludePathPatterns("/favicon.ico");
     }
 }

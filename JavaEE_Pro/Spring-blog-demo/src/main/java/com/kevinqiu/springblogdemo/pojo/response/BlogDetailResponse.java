@@ -6,19 +6,11 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class BlogInfoResponse {
+public class BlogDetailResponse {
     private Integer id;
     private String title;
-    private String desc = "";
+    private String content;
     private Integer userId;
     @JsonFormat(pattern = "yyyy年MM月dd日")
     private LocalDateTime createTime;
-
-    public void setDesc(String content) {
-        if (content.length() < 40) {
-            this.desc = content;
-            return;
-        }
-        this.desc = content.substring(0, 40) + "...";
-    }
 }

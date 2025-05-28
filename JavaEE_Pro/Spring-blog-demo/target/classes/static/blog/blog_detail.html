@@ -26,7 +26,7 @@
     <div class="left">
         <div class="card">
             <img src="pic/doge.jpg" alt="">
-            <h3>比特汤老师</h3>
+            <h3></h3>
             <a href="#">GitHub 地址</a>
             <div class="row">
                 <span>文章</span>
@@ -36,19 +36,14 @@
                 <span>2</span>
                 <span>1</span>
             </div>
+            <input type="hidden" id="blogId" value="">
         </div>
     </div>
     <div class="right">
         <div class="content">
-            <div class="title">我的第一篇博客</div>
-            <div class="date">2021-06-02</div>
-            <div class="detail">
-
-            </div>
-            <div class="operating">
-                <button onclick="window.location.href='blog_update.html'">编辑</button>
-                <button onclick="deleteBlog()">删除</button>
-            </div>
+            <div class="title"></div>
+            <div class="date"></div>
+            <div class="detail" id="detail" style="background-color: transparent;"></div>
         </div>
 
     </div>
@@ -63,25 +58,65 @@
 <script src="js/common.js"></script>
 <script>
 
-    //显示博客作者信息
-    //var userUrl = "/user/getAuthorInfo" + location.search;
-    //getUserInfo(userUrl);
-
+    getAuthorInfo();
     getBlogInfo()
 
     function getBlogInfo() {
         $.ajax({
             type: "get",
-            url: "/blog/getBlogInfo?" + location.href,
+            url: "/blog/getBlogDetail" + location.search,
             success: function (result) {
-                let blogContent = result.desc;
-                $(".right").html(blogContent);
+                if (result.code === 200 && result.data != null) {
+                    $(".title").text(result.data.title);
+                    $(".date").text(result.data.createTime);
+                    $("#blogId").val(result.data.id);
+                    editormd.markdownToHTML("detail", {
+                        markdown: result.data.content,
+                    });
+                    let loginUserId = localStorage.getItem("loginUserId");
+
+                    if (Number(loginUserId) === Number(result.data.userId)) {
+                        let html = "<div class=\"operating\">\n" +
+                            "<button onclick=\"updateBlog()\">编辑</button>\n" +
+                            "<button onclick=\"deleteBlog()\">删除</button>\n" +
+                            "</div>"
+                        $(".content").append(html);
+                    }
+                }
             }
         })
     }
 
+    function getAuthorInfo() {
+        $.ajax({
+            type: "get",
+            url: "/blog/getAuthorInfo" + location.search,
+            success: function (result) {
+                if (result.code === 200 && result.data != null) {
+                    $(".left .card h3").text(result.data.username);
+                    $(".left .card a").attr("href", result.data.githubUrl);
+                }
+            }
+        })
+    }
+
+    function updateBlog() {
+        console.log("blog_update.html?blogId=" + $("#blogId").val())
+        location.href = "blog_update.html?blogId=" + $("#blogId").val();
+    }
+
     function deleteBlog() {
-        alert("删除博客");
+        $.ajax({
+            type: "POST",
+            url: "/blog/deleteBlogInfo?blogId=" + $("#blogId").val(),
+            success: function (result) {
+                if (result.code === 200 && result.data != null) {
+                    location.href = "blog_list.html"
+                } else {
+                    alert("博客删除失败！")
+                }
+            }
+        })
     }
 </script>
 </body>

@@ -1,6 +1,5 @@
 package com.kevinqiu.springblogdemo.common.advice;
 
-import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import com.kevinqiu.springblogdemo.common.exception.BlogException;
 import com.kevinqiu.springblogdemo.common.exception.NotLoginException;
 import com.kevinqiu.springblogdemo.pojo.response.Result;

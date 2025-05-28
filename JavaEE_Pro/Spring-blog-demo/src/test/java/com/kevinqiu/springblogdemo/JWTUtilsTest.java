@@ -26,7 +26,7 @@ public class JWTUtilsTest {
 
     private final String secretString = "KxZ0RthKFPEnIY/jaEADCFDmVz/DjWQpkV9eIovXV+M=";
     private final SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretString));
-    private final long expiration = 10* 1000;
+    private final long expiration = 24 * 60 * 60 * 1000;
 
 
     @Test

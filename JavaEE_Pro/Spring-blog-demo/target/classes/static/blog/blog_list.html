@@ -24,8 +24,8 @@
     <div class="left">
         <div class="card">
             <img src="pic/doge.jpg" alt="">
-            <h3>KevinQiu</h3>
-            <a href="https://github.com/Kevin-Qiuu">GitHub 地址</a>
+            <h3></h3>
+            <a href="">GitHub 地址</a>
             <div class="row">
                 <span>文章</span>
                 <span>分类</span>
@@ -44,6 +44,7 @@
 <script src="js/common.js"></script>
 <script>
     getBlogList();
+    getUserInfo();
 
     function getBlogList() {
         $.ajax({
@@ -53,7 +54,6 @@
                 let finalHtml = "";
 
                 for (let blog of result.data) {
-                    console.log(blog)
                     finalHtml += '<div class="blog">';
                     finalHtml += '<div class="title">' + blog.title + '</div>';
                     finalHtml += '<div class="date">' + blog.createTime + '</div>';
@@ -63,6 +63,20 @@
                     finalHtml += '</div>'
                 }
                 $(".right").html(finalHtml);
+            }
+        })
+    }
+
+    function getUserInfo() {
+        // console.log("loginUserId: " + localStorage.getItem("loginUserId"))
+        $.ajax({
+            type: "get",
+            url: "/user/getUserInfo?userId=" + localStorage.getItem("loginUserId"),
+            success: function (result) {
+                if (result.code === 200 && result.data != null){
+                    $(".left .card h3").text(result.data.username);
+                    $(".left .card a").attr("href",result.data.githubUrl);
+                }
             }
         })
     }
