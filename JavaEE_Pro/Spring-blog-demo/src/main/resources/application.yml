@@ -1,12 +1,6 @@
 spring:
-  application:
-    name: Spring-blog-demo
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/java_blog_spring?characterEncoding=utf8&useSSL=false
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
+  profiles:
+    active: @profile.name@
 
 
 mybatis-plus:
@@ -14,3 +8,11 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mapper/*Mapper.xml
+
+logging:
+  file:
+    name: logger/spring-blog.log
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB
+      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}.%i

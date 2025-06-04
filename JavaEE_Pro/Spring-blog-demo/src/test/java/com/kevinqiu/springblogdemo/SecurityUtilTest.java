@@ -62,7 +62,7 @@ public class SecurityUtilTest {
         但是不保真，只能说 99.9999% 是这种情况
          */
 
-        String md5PasswdSalt = "513cbea569ea1d4583eaee1a19aa845f14185845857d108f266f5b4ca5dd44c1";
+        String md5PasswdSalt = "1aa16353e2176d678d50737dd8737c8b1e4a6bdbc9d94eed9f3925f0679d4ca7";
         String salt = md5PasswdSalt.substring(48) + md5PasswdSalt.substring(16, 32);
         String md5Passwd = md5PasswdSalt.substring(0, 16) + md5PasswdSalt.substring(32, 48);
         String inputPasswd = "1234567";

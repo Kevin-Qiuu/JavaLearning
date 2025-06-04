@@ -16,11 +16,11 @@ public class LoginWebConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/user/**")
-                .excludePathPatterns("/blog/blog-editormd/**")
-                .excludePathPatterns("/blog/css/**")
-                .excludePathPatterns("/blog/js/**")
-                .excludePathPatterns("/blog/pic/**")
-                .excludePathPatterns("/blog/**.html")
+                .excludePathPatterns("/blog-editormd/**")
+                .excludePathPatterns("/css/**")
+                .excludePathPatterns("/js/**")
+                .excludePathPatterns("/pic/**")
+                .excludePathPatterns("/**.html")
                 .excludePathPatterns("/favicon.ico");
     }
 }
