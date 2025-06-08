@@ -1,0 +1,16 @@
+spring:
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 8888
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+          max-wait: 5s
+      timeout: 60s
+#      password: "QiuKevin@666&CJH"
+  application:
+    name: spring-redis-demo
+
