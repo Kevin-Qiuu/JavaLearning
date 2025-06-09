@@ -1,7 +1,7 @@
 spring:
   application:
     name: lottery-system
-
+  # redis 配置
   data:
     redis:
       host: 127.0.0.1
@@ -13,13 +13,18 @@ spring:
           min-idle: 0
           max-wait: 5s
       timeout: 60s
-
+  # 数据库配置
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/lottery_system?characterEncoding=utf8&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+# logfile 文件配置
+logging:
+  config: classpath:logback-spring.xml
+
+# mybatis-plus 配置
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

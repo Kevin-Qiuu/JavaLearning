@@ -7,7 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LotterySystemApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LotterySystemApplication.class, args);
+//        SpringApplication.run(LotterySystemApplication.class, args);
+        try {
+            SpringApplication.run(LotterySystemApplication.class, args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
