@@ -2359,7 +2359,9 @@ public class WebConfig implements WebMvcConfigurer {
 
 <img  src="JavaEE 学习笔记_markdown_img/image-20250516225117520.png" alt="image-20250516225117520" >
 
+正常情况下，直接走到ResponseBodyAdvice 的 BeforeBodyWrite 方法写入 HttpResponse 中
 
+如果出现了异常，则会走到最近的@Exceptional 方法下，执行完毕后如果方法有返回值，仍然会给到 ResponseBodyAdvice 的 BeforeBodyWrite 方法，只有 void 方法和手动使用 HttpResponseServlet 写入的操作才不会调用 ResponseBodyAdvice 方法。
 
 ### Spring AOP
 

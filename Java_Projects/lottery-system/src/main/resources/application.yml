@@ -1,6 +1,8 @@
 spring:
   application:
     name: lottery-system
+  profiles:
+    active: dev
   # redis 配置
   data:
     redis:
@@ -30,3 +32,4 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mapper/*Mapper.xml
+  type-handlers-package: com.kevinqiu.lotterysystem.dao.handler

@@ -25,11 +25,10 @@ public class UserController {
 
     @RequestMapping("/register")
     public CommonResult<UserRegisterResult> userRegister(@Validated @RequestBody UserRegisterParam param){
-        log.info("userRegister->UserRegisterParam: {}", JacksonUtil.writeValueAsString(param));
+        log.info("userRegister -> UserRegisterParam: {}", JacksonUtil.writeValueAsString(param));
         UserRegisterDTO userRegisterDTO = userService.register(param);
         return CommonResult.success(convertUserRegisterDTO(userRegisterDTO));
     }
-
 
 
 
