@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class JacksonUtil {
@@ -61,4 +62,14 @@ public class JacksonUtil {
         });
     }
 
+    /**
+     * 反序列化 Map 操作
+     */
+    public static <K, V> Map<K,V> readMapValue(String content, Class<K> keyType, Class<V> valueType){
+        return tryParse(() -> {
+            JavaType javaType = objectMapper.getTypeFactory()
+                    .constructParametricType(Map.class, keyType, valueType);
+            return objectMapper.readValue(content, javaType);
+        });
+    }
 }

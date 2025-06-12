@@ -2355,9 +2355,7 @@ public class WebConfig implements WebMvcConfigurer {
   - DispatcherSevlet 实现了 Servlet 接口，其核心方法是 doDispath，用于匹配 url 与对应 Controller 和其响应方法，进而实现了接管 Tomcat 交付的url
   - 在调用 Controller 的方法之前，DispatcherServlet 会调用 applyPreHandle 方法，applyPreHandle 方法则是在遍历所有的拦截器，如果符合拦截规则，则进行方法的拦截处理。
 
-###  Spring 统一处理格式
-
-<img  src="JavaEE 学习笔记_markdown_img/image-20250516225117520.png" alt="image-20250516225117520" >
+###  Spring 统一格式处理<img  src="JavaEE 学习笔记_markdown_img/image-20250516225117520.png" alt="image-20250516225117520" >
 
 正常情况下，直接走到ResponseBodyAdvice 的 BeforeBodyWrite 方法写入 HttpResponse 中
 

@@ -14,7 +14,7 @@ public class CommonResult<T> {
     /**
      * 异常错误信息
      */
-    private String message;
+    private String msg;
 
     /**
      * 正常返回的数据
@@ -31,7 +31,7 @@ public class CommonResult<T> {
     public static <T> CommonResult<T> error(Integer code, String message){
         CommonResult<T> commonResult = new CommonResult<>();
         commonResult.setCode(code);
-        commonResult.setMessage(message);
+        commonResult.setMsg(message);
         return commonResult;
     }
 

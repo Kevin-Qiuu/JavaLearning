@@ -1,13 +1,14 @@
 package com.kevinqiu.lotterysystem.controller;
 
-import com.kevinqiu.lotterysystem.common.exception.ControllerException;
 import com.kevinqiu.lotterysystem.common.pojo.CommonResult;
 import com.kevinqiu.lotterysystem.common.utils.JacksonUtil;
+import com.kevinqiu.lotterysystem.controller.param.UserMessageLoginParam;
+import com.kevinqiu.lotterysystem.controller.param.UserPasswordLoginParam;
+import com.kevinqiu.lotterysystem.controller.result.UserLoginResult;
 import com.kevinqiu.lotterysystem.controller.param.UserRegisterParam;
 import com.kevinqiu.lotterysystem.controller.result.UserRegisterResult;
 import com.kevinqiu.lotterysystem.service.UserService;
 import com.kevinqiu.lotterysystem.service.dto.UserRegisterDTO;
-import com.kevinqiu.lotterysystem.service.impl.UserServiceImpl;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -30,6 +31,17 @@ public class UserController {
         return CommonResult.success(convertUserRegisterDTO(userRegisterDTO));
     }
 
+    @RequestMapping("/password/login")
+    public CommonResult<UserLoginResult> userLoginByPassword(@Validated @RequestBody UserPasswordLoginParam param){
+        log.info("userLoginByPassword -> UserPasswordLoginParam: {}", JacksonUtil.writeValueAsString(param));
+        UserLoginDTO userLoginDTO = userService.login(param);
+        return CommonResult.success(converUserLoginDTO(userLoginDTO));
+    }
+
+    @RequestMapping("/message/login")
+    public CommonResult<UserLoginResult> userLoginByMessage(@Validated @RequestBody UserMessageLoginParam param){
+        return null;
+    }
 
 
     private UserRegisterResult convertUserRegisterDTO(UserRegisterDTO userRegisterDTO){

@@ -8,9 +8,7 @@ import com.kevinqiu.lotterysystem.common.utils.JacksonUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @SpringBootTest
 public class JacksonUtilTest {
@@ -71,10 +69,25 @@ public class JacksonUtilTest {
             for (CommonResult commonResult : list1) {
                 System.out.println(commonResult);
             }
-            System.out.println(list1.get(1).getMessage());
+            System.out.println(list1.get(1).getMsg());
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Test
+    void writeAndReadMap() {
+        Map<String, String> map = new HashMap<>();
+        map.put("name", "抽奖");
+        map.put("code", "6666");
+        map.put("targets", "13354427769");
+        String s = JacksonUtil.writeValueAsString(map);
+        System.out.println(s);
+        Map<String, String> jackMap = JacksonUtil.readMapValue(s, String.class, String.class);
+        for (Map.Entry entry : jackMap.entrySet()){
+            System.out.println(entry);
+        }
+
     }
 
 

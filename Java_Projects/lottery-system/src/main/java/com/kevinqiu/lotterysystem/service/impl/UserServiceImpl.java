@@ -59,6 +59,16 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(ServiceErrorCodeConstants.PHONE_NUMBER_IS_ILLEGAL);
         }
 
+         // 校验邮箱是否被使用
+        if (userMapper.countByMail(param.getMail()) > 0){
+            throw new ServiceException(ServiceErrorCodeConstants.MAIL_IS_EXISTED);
+        }
+
+        // 校验手机号是否被使用（使用 TypeHandler）
+        if(userMapper.countByPhone(new Encrypt((param.getPhoneNumber()))) > 0 ){
+            throw new ServiceException(ServiceErrorCodeConstants.PHONE_NUMBER_IS_EXISTED);
+        }
+
         // 校验身份信息
         if (null == UserIdentityEnum.forName(param.getIdentity())){
             throw new ServiceException(ServiceErrorCodeConstants.IDENTITY_IS_ILLEGAL);
@@ -73,16 +83,6 @@ public class UserServiceImpl implements UserService {
         // 校验密码强调
         if (!RegexUtil.checkPassword(param.getPassword())){
             throw new ServiceException(ServiceErrorCodeConstants.PASSWORD_IS_ILLEGAL);
-        }
-
-        // 校验邮箱是否被使用
-        if (userMapper.countByMail(param.getMail()) > 0){
-            throw new ServiceException(ServiceErrorCodeConstants.MAIL_IS_EXISTED);
-        }
-
-        // 校验手机号是否被使用（使用 TypeHandler）
-        if(userMapper.countByPhone(new Encrypt((param.getPhoneNumber()))) > 0 ){
-            throw new ServiceException(ServiceErrorCodeConstants.PHONE_NUMBER_IS_EXISTED);
         }
 
     }

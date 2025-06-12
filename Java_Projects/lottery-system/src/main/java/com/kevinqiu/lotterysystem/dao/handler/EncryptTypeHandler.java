@@ -16,7 +16,7 @@ import java.sql.SQLException;
  * 这个类用于将 SQL 语句中指定的类型转换成另一个类型的类
  * 通过指定 SQL 中的索引未知，在向数据库查询（加密）和从数据库获取（解密）数据时进行转化
  */
-@MappedTypes(Encrypt.class) // 被转换的类型
+@MappedTypes(Encrypt.class) // 指定的类型
 @MappedJdbcTypes(JdbcType.VARCHAR) // 转换以后的类型
 public class EncryptTypeHandler extends BaseTypeHandler<Encrypt> {
 

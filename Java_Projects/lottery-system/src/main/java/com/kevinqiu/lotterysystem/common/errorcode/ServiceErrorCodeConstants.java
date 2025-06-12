@@ -10,6 +10,7 @@ public interface ServiceErrorCodeConstants {
     ErrorCode PASSWORD_IS_ILLEGAL = new ErrorCode(105, "密码强度非法！");
     ErrorCode MAIL_IS_EXISTED = new ErrorCode(106, "邮箱已存在！");
     ErrorCode PHONE_NUMBER_IS_EXISTED = new ErrorCode(107, "电话号码已存在！");
+    ErrorCode VERIFICATION_CODE_CREATE_ERROR = new ErrorCode(108, "验证码生成失败！");
 
     // ------ 奖品模块错误码 --------
 
