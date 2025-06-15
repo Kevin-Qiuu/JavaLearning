@@ -11,7 +11,7 @@ public enum UserIdentityEnum {
 
     public static String forName(String identityName){
         for (UserIdentityEnum userIdentityEnum : UserIdentityEnum.values()){
-            if (userIdentityEnum.name().equals(identityName)){
+            if (userIdentityEnum.name().equalsIgnoreCase(identityName)){
                 return userIdentityEnum.name();
             }
         }

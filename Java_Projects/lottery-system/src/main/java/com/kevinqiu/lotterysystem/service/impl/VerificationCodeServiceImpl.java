@@ -30,7 +30,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     private RedisUtil redisUtil;
 
     @Override
-    public void sendVerificationCode(String phoneNumber) {
+    public Boolean sendVerificationCode(String phoneNumber) {
 
         // 校验手机号
         if (!RegexUtil.checkMobile(phoneNumber)) {
@@ -59,6 +59,8 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         if (!redisUtil.set(verificationKey, verificationCode, TIME_OUT)) {
             throw new ServiceException(ServiceErrorCodeConstants.VERIFICATION_CODE_CREATE_ERROR);
         }
+
+        return true;
 
     }
 

@@ -11,6 +11,11 @@ public interface ServiceErrorCodeConstants {
     ErrorCode MAIL_IS_EXISTED = new ErrorCode(106, "邮箱已存在！");
     ErrorCode PHONE_NUMBER_IS_EXISTED = new ErrorCode(107, "电话号码已存在！");
     ErrorCode VERIFICATION_CODE_CREATE_ERROR = new ErrorCode(108, "验证码生成失败！");
+    ErrorCode LOGIN_USER_INFO_IS_NULL = new ErrorCode(109, "用户登录信息为空！");
+    ErrorCode USER_IS_NOT_EXISTED = new ErrorCode(110, "当前用户不存在！");
+    ErrorCode PASSWORD_IS_WRONG = new ErrorCode(111, "密码错误！");
+    ErrorCode VERIFICATION_CODE_IS_ERROR = new ErrorCode(112, "验证码错误！");
+    ErrorCode LOGIN_NAME_IS_ILLEGAL = new ErrorCode(113, "用户名格式非法！");
 
     // ------ 奖品模块错误码 --------
 

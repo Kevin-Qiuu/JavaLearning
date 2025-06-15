@@ -174,7 +174,7 @@
               url: '/message/login',
               type: 'POST',
               contentType: 'application/json',
-              data: JSON.stringify({loginMobile: loginMobile , verificationCode: verificationCode, mandatoryIdentity: "ADMIN"}),
+              data: JSON.stringify({phoneNumber: loginMobile , verificationCode: verificationCode, mandatoryIdentity: "ADMIN"}),
               success: function(result) {
                   if (result.code != 200) {
                       alert("登录失败！" + result.msg);

@@ -3,23 +3,39 @@ package com.kevinqiu.lotterysystem.service.impl;
 import cn.hutool.core.lang.Validator;
 import com.kevinqiu.lotterysystem.common.errorcode.ServiceErrorCodeConstants;
 import com.kevinqiu.lotterysystem.common.exception.ServiceException;
+import com.kevinqiu.lotterysystem.common.utils.JWTUtil;
 import com.kevinqiu.lotterysystem.common.utils.RegexUtil;
+import com.kevinqiu.lotterysystem.common.utils.SecureUtil;
+import com.kevinqiu.lotterysystem.controller.param.UserLoginParam;
+import com.kevinqiu.lotterysystem.controller.param.UserMessageLoginParam;
+import com.kevinqiu.lotterysystem.controller.param.UserPasswordLoginParam;
 import com.kevinqiu.lotterysystem.controller.param.UserRegisterParam;
 import com.kevinqiu.lotterysystem.dao.dataobject.Encrypt;
 import com.kevinqiu.lotterysystem.dao.dataobject.UserDO;
 import com.kevinqiu.lotterysystem.dao.mapper.UserMapper;
 import com.kevinqiu.lotterysystem.service.UserService;
+import com.kevinqiu.lotterysystem.service.VerificationCodeService;
+import com.kevinqiu.lotterysystem.service.dto.UserLoginDTO;
 import com.kevinqiu.lotterysystem.service.dto.UserRegisterDTO;
 import com.kevinqiu.lotterysystem.service.enums.UserIdentityEnum;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class UserServiceImpl implements UserService {
 
     @Resource(name = "userMapper")
     private UserMapper userMapper;
+
+    @Resource(name = "secureUtil")
+    private SecureUtil secureUtil;
+
+    @Resource(name = "verificationCodeServiceImpl")
+    private VerificationCodeService verificationCodeService;
 
     @Override
     public UserRegisterDTO register(UserRegisterParam param) {
@@ -29,9 +45,11 @@ public class UserServiceImpl implements UserService {
         // 加密私密信息，构造 DAO 层请求数据
         UserDO userDO = new UserDO();
         userDO.setUserName(param.getName());
-        userDO.setMail(param.getMail());
+        userDO.setEmail(param.getMail());
         userDO.setPhoneNumber(new Encrypt(param.getPhoneNumber()));
-        userDO.setPassword(new Encrypt(param.getPassword()));
+        if (StringUtils.hasText(param.getPassword())) {
+            userDO.setPassword(secureUtil.encryptPassword(param.getPassword()));
+        }
         userDO.setIdentity(param.getIdentity());
 
         // 保存信息
@@ -41,6 +59,113 @@ public class UserServiceImpl implements UserService {
         UserRegisterDTO userRegisterDTO = new UserRegisterDTO();
         userRegisterDTO.setUserId(userDO.getId());
         return userRegisterDTO;
+    }
+
+    @Override
+    public UserLoginDTO login(UserLoginParam loginParam) {
+        // todo
+        // 判断用户的登录方式（密码还是验证码）
+        // 使用 instance 来判断当前用户的登录方式
+        if (loginParam instanceof UserPasswordLoginParam passwordLoginParam) {
+            return loginByPassword(passwordLoginParam);
+        } else if (loginParam instanceof UserMessageLoginParam messageLoginParam) {
+            return loginByMessage(messageLoginParam);
+        } else {
+            throw new ServiceException(ServiceErrorCodeConstants.LOGIN_USER_INFO_IS_NULL);
+        }
+    }
+
+    private UserLoginDTO loginByPassword(UserPasswordLoginParam loginParam) {
+        // todo
+        UserDO userDO = null;
+        // 判断当前用户的登录方式（邮箱还是手机）
+        if (RegexUtil.checkMail(loginParam.getLoginName())) {
+            // 邮箱登录
+            // 校验邮箱是否存在
+            userDO = userMapper.selectByMail(loginParam.getLoginName());
+        } else if (RegexUtil.checkMobile(loginParam.getLoginName())) {
+            // 手机登录
+            // 校验手机是否存在
+            userDO = userMapper.selectByMobile(new Encrypt(loginParam.getLoginName()));
+        } else {
+            // 用户名不存在
+            throw new ServiceException(ServiceErrorCodeConstants.LOGIN_NAME_IS_ILLEGAL);
+        }
+
+        // 强制校验用户身份，管理员必须输入密码
+        if (null == userDO) {
+            throw new ServiceException(ServiceErrorCodeConstants.USER_IS_NOT_EXISTED);
+        }
+
+        // 校验用户身份信息
+        checkUserIdentity(loginParam.getMandatoryIdentity(), userDO.getIdentity());
+
+        // 校验密码
+        if (loginParam.getMandatoryIdentity()
+                .equalsIgnoreCase(UserIdentityEnum.ADMIN.name())) {
+            if (!secureUtil.validatePassword(loginParam.getPassword(), userDO.getPassword())) {
+                throw new ServiceException(ServiceErrorCodeConstants.PASSWORD_IS_WRONG);
+            }
+        }
+
+        // 颁发 JWT 令牌
+        return promUserJWT(userDO);
+    }
+
+    private UserLoginDTO loginByMessage(UserMessageLoginParam loginParam) {
+        // 判断用户电话号码是否合法
+        if (!RegexUtil.checkMobile(loginParam.getPhoneNumber())) {
+            throw new ServiceException(ServiceErrorCodeConstants.LOGIN_NAME_IS_ILLEGAL);
+        }
+
+        // 判断电话号码是否存在
+        UserDO userDO = userMapper.selectByMobile(new Encrypt(loginParam.getPhoneNumber()));
+        if (null == userDO) {
+            throw new ServiceException(ServiceErrorCodeConstants.USER_IS_NOT_EXISTED);
+        }
+
+        // 校验用户身份信息
+        checkUserIdentity(loginParam.getMandatoryIdentity(), userDO.getIdentity());
+
+        // 判断验证码是否存在和验证码是否正确
+        String systemVerificationCode = verificationCodeService.getVerificationCode(loginParam.getPhoneNumber());
+        if (!StringUtils.hasText(systemVerificationCode)
+                || !systemVerificationCode.equals(loginParam.getVerificationCode())) {
+            throw new ServiceException((ServiceErrorCodeConstants.VERIFICATION_CODE_IS_ERROR));
+        }
+
+        // 颁布 JWT
+        return promUserJWT(userDO);
+    }
+
+    private void checkUserIdentity(String loginIdentity, String userDOIdentity) {
+        if (!StringUtils.hasText(userDOIdentity)
+                || !StringUtils.hasText(loginIdentity)
+                || !StringUtils.hasText(UserIdentityEnum.forName(loginIdentity))
+                || !userDOIdentity.equalsIgnoreCase(loginIdentity)) {
+            /*
+            1. 用户登录信息中没有身份信息
+            2. 用户登录信息中的身份信息与系统规定角色不匹配
+            3. 用户登录信息与数据库中存储信息不匹配
+             */
+            throw new ServiceException(ServiceErrorCodeConstants.IDENTITY_IS_ILLEGAL);
+        }
+    }
+
+    private UserLoginDTO promUserJWT(UserDO userDO) {
+        // 颁发 JWT 令牌
+        // JWT 中存放用户的 ID 和身份信息
+        Map<String, Object> userClaims = new HashMap<>();
+        userClaims.put("userId", userDO.getId());
+        userClaims.put("identity", userDO.getIdentity());
+        String userToken = JWTUtil.genJwt(userClaims);
+
+        // 创建 UserLoginDTO
+        UserLoginDTO userLoginDTO = new UserLoginDTO();
+        userLoginDTO.setToken(userToken);
+        userLoginDTO.setIdentity(userDO.getIdentity());
+
+        return userLoginDTO;
     }
 
     private void checkRegisterInfo(UserRegisterParam param) {
@@ -59,29 +184,29 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(ServiceErrorCodeConstants.PHONE_NUMBER_IS_ILLEGAL);
         }
 
-         // 校验邮箱是否被使用
-        if (userMapper.countByMail(param.getMail()) > 0){
+        // 校验邮箱是否被使用
+        if (userMapper.countByMail(param.getMail()) > 0) {
             throw new ServiceException(ServiceErrorCodeConstants.MAIL_IS_EXISTED);
         }
 
         // 校验手机号是否被使用（使用 TypeHandler）
-        if(userMapper.countByPhone(new Encrypt((param.getPhoneNumber()))) > 0 ){
+        if (userMapper.countByPhone(new Encrypt((param.getPhoneNumber()))) > 0) {
             throw new ServiceException(ServiceErrorCodeConstants.PHONE_NUMBER_IS_EXISTED);
         }
 
         // 校验身份信息
-        if (null == UserIdentityEnum.forName(param.getIdentity())){
+        if (null == UserIdentityEnum.forName(param.getIdentity())) {
             throw new ServiceException(ServiceErrorCodeConstants.IDENTITY_IS_ILLEGAL);
         }
 
         // 校验管理员密码必填
         if (param.getIdentity().equals(UserIdentityEnum.ADMIN.name())
-                && !StringUtils.hasLength(param.getPassword())){
+                && !StringUtils.hasLength(param.getPassword())) {
             throw new ServiceException(ServiceErrorCodeConstants.ADMIN_PASSWORD_IS_NULL);
         }
 
         // 校验密码强调
-        if (!RegexUtil.checkPassword(param.getPassword())){
+        if (!RegexUtil.checkPassword(param.getPassword())) {
             throw new ServiceException(ServiceErrorCodeConstants.PASSWORD_IS_ILLEGAL);
         }
 

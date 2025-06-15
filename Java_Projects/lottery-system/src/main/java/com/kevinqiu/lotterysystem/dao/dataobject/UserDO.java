@@ -18,7 +18,7 @@ public class UserDO extends BaseDO{
     /**
      * 用户邮箱
      */
-    private String mail;
+    private String email;
 
     /**
      * 电话号码
@@ -28,7 +28,7 @@ public class UserDO extends BaseDO{
     /**
      * 密码
      */
-    private Encrypt password;
+    private String password;
 
     /**
      * 用户身份

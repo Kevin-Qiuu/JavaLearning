@@ -22,7 +22,7 @@ public class JWTUtil {
     /**
      * 密钥：Base64编码的密钥
      */
-    private static final String SECRET = "AxXaJxL+Q163qLi+7Nr3hsR99VKy96AUN6cQocLww/Q=";
+    private static final String SECRET = "l0zF3f0id4EQnEpXNSHEfvQzfgmt2HIIdSQ0uSBUiJw=";
     /**
      * 生成安全密钥：将一个Base64编码的密钥解码并创建一个HMAC SHA密钥。
      */

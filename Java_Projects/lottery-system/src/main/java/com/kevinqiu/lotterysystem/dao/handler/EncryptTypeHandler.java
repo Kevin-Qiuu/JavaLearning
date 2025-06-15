@@ -6,6 +6,7 @@ import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
 import org.apache.ibatis.type.MappedTypes;
+import org.springframework.util.StringUtils;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -50,19 +51,26 @@ public class EncryptTypeHandler extends BaseTypeHandler<Encrypt> {
      */
     @Override
     public Encrypt getNullableResult(ResultSet rs, String columnName) throws SQLException {
-        String decryptRet = SecureUtil.aes(KEY).decryptStr(rs.getBytes(columnName));
+        String decryptRet = decrypt(rs.getString(columnName));
         return new Encrypt(decryptRet);
     }
 
     @Override
     public Encrypt getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
-        String decryptRet = SecureUtil.aes(KEY).decryptStr(rs.getBytes(columnIndex));
+        String decryptRet = decrypt(rs.getString(columnIndex));
         return new Encrypt(decryptRet);
     }
 
     @Override
     public Encrypt getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
-        String decryptRet = SecureUtil.aes(KEY).decryptStr(cs.getBytes(columnIndex));
+        String decryptRet = decrypt(cs.getString(columnIndex));
         return new Encrypt(decryptRet);
+    }
+
+    private String decrypt(String str){
+        if(!StringUtils.hasText(str)){
+            return null;
+        }
+        return SecureUtil.aes(KEY).decryptStr(str);
     }
 }

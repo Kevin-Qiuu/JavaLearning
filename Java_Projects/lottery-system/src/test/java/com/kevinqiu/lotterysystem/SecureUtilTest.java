@@ -4,10 +4,14 @@ import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.crypto.symmetric.AES;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class SecureUtilTest {
+
+    @Autowired
+    com.kevinqiu.lotterysystem.common.utils.SecureUtil secureUtil;
 
     @Test
     void aesEncryptTest(){
@@ -26,6 +30,17 @@ public class SecureUtilTest {
         String secretInfo = "13344447777";
         String s = DigestUtil.sha256Hex(secretInfo);
         System.out.println(s);
+    }
+
+    @Test
+    void passwdEncryptTest(){
+        System.out.println(secureUtil.encryptPassword("123456"));
+    }
+
+    @Test
+    void validateTest(){
+        System.out.println(secureUtil.validatePassword("123456"
+                , "0a46d462ea85d9e0a9a062b75e3d9c3a42a013b93338adb676e0172c3247537bccdfb0b0c83d4ef096d48e8aa4531dc3"));
     }
 
 

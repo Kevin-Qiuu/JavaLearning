@@ -1,6 +1,8 @@
 package com.kevinqiu.lotterysystem;
 
+import com.kevinqiu.lotterysystem.common.utils.JacksonUtil;
 import com.kevinqiu.lotterysystem.dao.dataobject.Encrypt;
+import com.kevinqiu.lotterysystem.dao.dataobject.UserDO;
 import com.kevinqiu.lotterysystem.dao.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +20,11 @@ public class SqlTest {
     @Test
     void countByPhoneTest(){
         System.out.println(userMapper.countByPhone(new Encrypt("13344447777")));
+    }
+
+    @Test
+    void selectUserByEmail(){
+        UserDO userDO = userMapper.selectByMail("1477527150@qq.com");
+        System.out.println(JacksonUtil.writeValueAsString(userDO));
     }
 }

@@ -10,11 +10,17 @@ public interface UserMapper {
     @Select("select count(1) from user where email = #{email}")
     int countByMail(@Param("email") String mail);
 
-    @Select("select  count(1) from user where phone_number = #{phoneNumber}")
+    @Select("select count(1) from user where phone_number = #{phoneNumber}")
     int countByPhone(@Param("phoneNumber") Encrypt phoneNumber);
 
     @Insert("insert into user (user_name, email, phone_number, password, identity)" +
-            " values (#{userName}, #{mail}, #{phoneNumber}, #{password}, #{identity})")
+            " values (#{userName}, #{email}, #{phoneNumber}, #{password}, #{identity})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     void insertRegisterUser(UserDO userDO);
+
+    @Select("select * from user where email = #{email}")
+    UserDO selectByMail(@Param("email") String loginName);
+
+    @Select("select * from user where phone_number = #{phoneNumber}")
+    UserDO selectByMobile(@Param("phoneNumber") Encrypt loginName);
 }

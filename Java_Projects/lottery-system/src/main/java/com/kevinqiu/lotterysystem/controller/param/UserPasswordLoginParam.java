@@ -17,7 +17,6 @@ public class UserPasswordLoginParam extends UserLoginParam{
     /**
      * 用户登录密码
      */
-    @NotBlank(message = "登录密码为空！")
     private String password;
 
 }
