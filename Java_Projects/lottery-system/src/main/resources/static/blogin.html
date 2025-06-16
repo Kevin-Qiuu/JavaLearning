@@ -19,17 +19,17 @@
           <span class="active tab-span" data-form="loginForm">密码登录</span>
           <span class="tab-span" data-form="codeForm">验证码登录</span>
       </div>
-      <form id="loginForm">
+      <form id="loginForm" autocomplete="off">
           <div class="form-group">
               <label for="phoneNumber">手机号</label>
               <input class="form-control" type="text" id="phoneNumber"
-                  name="phoneNumber"
+                  autocomplete="off"
                   required placeholder="请输入手机号">
           </div>
           <div class="form-group">
               <label for="password">密码</label>
               <input class="form-control" type="password"
-                  id="password" name="password"
+                  id="password" autocomplete="off"
                   required placeholder="请输入密码">
           </div>
           <button type="submit"
@@ -37,18 +37,18 @@
           <div class="error"></div>
       </form>
       <!-- 验证码登录框 -->
-      <form id="codeForm" style="display: none;">
+      <form id="codeForm" style="display: none;" autocomplete="off">
           <div class="form-group">
               <label for="loginMobile">手机号</label>
               <input class="form-control" type="text" id="loginMobile"
-                     name="loginMobile"
+                     autocomplete="off"
                      required placeholder="请输入手机号">
           </div>
           <div class="form-group">
               <label for="verificationCode">验证码</label>
               <div class="code-box">
-                  <input class="form-control" type="text"
-                         id="verificationCode" name="verificationCode"
+                  <input class="form-control" type="text" autocomplete="off"
+                         id="verificationCode"
                          required placeholder="请输入验证码">
                   <div class="btn btn-primary " id="getVerificationCode">获取验证码</div>
               </div>
@@ -174,7 +174,7 @@
               url: '/message/login',
               type: 'POST',
               contentType: 'application/json',
-              data: JSON.stringify({phoneNumber: loginMobile , verificationCode: verificationCode, mandatoryIdentity: "ADMIN"}),
+              data: JSON.stringify({loginMobile: loginMobile , verificationCode: verificationCode, mandatoryIdentity: "ADMIN"}),
               success: function(result) {
                   if (result.code != 200) {
                       alert("登录失败！" + result.msg);

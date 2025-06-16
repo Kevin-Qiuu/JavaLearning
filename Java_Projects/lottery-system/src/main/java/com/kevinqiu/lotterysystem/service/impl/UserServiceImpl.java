@@ -11,10 +11,12 @@ import com.kevinqiu.lotterysystem.controller.param.UserMessageLoginParam;
 import com.kevinqiu.lotterysystem.controller.param.UserPasswordLoginParam;
 import com.kevinqiu.lotterysystem.controller.param.UserRegisterParam;
 import com.kevinqiu.lotterysystem.dao.dataobject.Encrypt;
+import com.kevinqiu.lotterysystem.dao.dataobject.UserBaseInfoDO;
 import com.kevinqiu.lotterysystem.dao.dataobject.UserDO;
 import com.kevinqiu.lotterysystem.dao.mapper.UserMapper;
 import com.kevinqiu.lotterysystem.service.UserService;
 import com.kevinqiu.lotterysystem.service.VerificationCodeService;
+import com.kevinqiu.lotterysystem.service.dto.UserBaseInfoDTO;
 import com.kevinqiu.lotterysystem.service.dto.UserLoginDTO;
 import com.kevinqiu.lotterysystem.service.dto.UserRegisterDTO;
 import com.kevinqiu.lotterysystem.service.enums.UserIdentityEnum;
@@ -23,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -73,6 +76,12 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new ServiceException(ServiceErrorCodeConstants.LOGIN_USER_INFO_IS_NULL);
         }
+    }
+
+    @Override
+    public List<UserBaseInfoDTO> findUserBaseInfo(String identity) {
+        // 如果 identity 为 null 则查询全部用户
+        List<UserBaseInfoDO> userBaseInfoDOList = userMapper.selectByIdentity(identity);
     }
 
     private UserLoginDTO loginByPassword(UserPasswordLoginParam loginParam) {

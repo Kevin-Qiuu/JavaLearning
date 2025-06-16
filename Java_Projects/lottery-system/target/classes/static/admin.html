@@ -164,36 +164,36 @@
   <div class="sidebar">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <div class="nav-link active huodong">
+        <div class="nav-link active activity">
           <img src="./pic/huodong.png" class="white-img"  alt="">
           <img src="./pic/huodong-0.png" class="gray-img"  alt="">
           <span>活动管理</span>
         </div>
         <ul class="nav flex-column sub-category">
-          <li><a class="nav-link" id="activitiesList" data-desc="huodong" href="activities-list.html">活动列表</a></li>
-          <li><a class="nav-link" id="createActivity" data-desc="huodong" href="create-activity.html">新建抽奖活动</a></li>
+          <li><a class="nav-link" id="activitiesList" data-desc="activity" href="activities-list.html">活动列表</a></li>
+          <li><a class="nav-link" id="createActivity" data-desc="activity" href="create-activity.html">新建抽奖活动</a></li>
         </ul>
       </li>
       <li class="nav-item">
-        <div class="nav-link jiangpin">
+        <div class="nav-link price">
           <img src="./pic/jiangpin.png" class="white-img" style="display: none;" alt="">
           <img src="./pic/jiangpin-0.png" class="gray-img"  alt="">
           <span>奖品管理</span>
         </div>
         <ul class="nav flex-column sub-category">
-          <li><a class="nav-link" data-desc="jiangpin" href="prizes-list.html">奖品列表</a></li>
-          <li><a class="nav-link" data-desc="jiangpin" href="create-prizes.html">创建奖品</a></li>
+          <li><a class="nav-link" data-desc="price" href="prizes-list.html">奖品列表</a></li>
+          <li><a class="nav-link" data-desc="price" href="create-prizes.html">创建奖品</a></li>
         </ul>
       </li>
       <li class="nav-item">
-        <div class="nav-link renyuan">
+        <div class="nav-link users">
           <img src="./pic/renyuan.png" class="white-img" style="display: none;" alt="">
           <img src="./pic/renyuan-0.png" class="gray-img"  alt="">
           <span>人员管理</span>
         </div>
         <ul class="nav flex-column sub-category">
-          <li><a class="nav-link" id="userList" data-desc="renyuan" href="user-list.html">人员列表</a></li>
-          <li><a class="nav-link" id="register" data-desc="renyuancreate" href="register.html">注册用户</a></li>
+          <li><a class="nav-link" id="userList" data-desc="users" href="user-list.html">人员列表</a></li>
+          <li><a class="nav-link" id="register" data-desc="usersCreate" href="register.html">注册用户</a></li>
         </ul>
       </li>
     </ul>
@@ -207,7 +207,8 @@
 
 <!-- 引入jQuery和Bootstrap的JavaScript -->
 <script
-        src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js">
+</script>
 <script>
   // 活动新建完成之后，自动跳转到活动列表页
   // 创建普通员工后，自动跳转到人员列表页
@@ -244,7 +245,8 @@
     // 获取当前点击的链接的data-desc属性值
     var dataDesc = $(this).data('desc');
     var page = '';
-    if (dataDesc === "renyuancreate") {
+    if (dataDesc === "usersCreate") {
+      console.log("dataDesc === usersCreate")
       page = $(this).attr('href') + "?param=" + randomParam + "&jumpList=true&admin=false";
     } else {
       page = $(this).attr('href') + "?param=" + randomParam;

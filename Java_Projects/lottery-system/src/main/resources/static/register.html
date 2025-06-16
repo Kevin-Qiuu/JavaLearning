@@ -19,7 +19,6 @@
             margin: 0;
             padding: 0;
         }
-
         .register-container {
             max-width: 600px;
             margin: 50px auto;
@@ -27,8 +26,7 @@
             background-color: #fff;
             border-radius: 5px;
         }
-
-        .register-container h2 {
+        .register-container h2{
             font-weight: 600;
             font-size: 32px;
             letter-spacing: 1px;
@@ -37,7 +35,6 @@
             text-align: center;
             margin-bottom: 60px;
         }
-
         .show-password {
             float: right;
             cursor: pointer;
@@ -71,18 +68,18 @@
                    name="password" placeholder="请输入密码" required>
         </div>
         <button type="submit"
-                class="btn btn-primary btn-block">注册
-        </button>
+                class="btn btn-primary btn-block">注册</button>
     </form>
 </div>
 
 <script>
     // 获取链接参数
     var params = new URLSearchParams(window.location.search);
+    var jumpList = params.get('jumpList');
     var admin = params.get('admin');
 
     // 判断是否隐藏密码输入框
-    if (admin === 'false') {
+    if(admin === 'false') {
         // 隐藏密码输入框
         $('#password').closest('div.form-group').css('display', 'none');
     }
@@ -110,7 +107,7 @@
                 minlength: "密码长度至少为6个字符"
             }
         },
-        submitHandler: function (form) {
+        submitHandler: function(form) {
             var formData = {
                 name: $('#name').val(),
                 mail: $('#mail').val(),
@@ -118,18 +115,29 @@
                 password: $('#password').val(),
                 identity: (admin == null || admin === 'true') ? "ADMIN" : "NORMAL"
             };
+
             // 表单验证通过后，发送AJAX请求
             $.ajax({
                 url: '/register',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(formData),
-                success: function (result) {
+                success: function(result) {
                     if (result.code != 200) {
                         alert("注册失败！" + result.msg);
                     } else {
-                        alert("注册成功，去登录！");
-                        location.assign("test.html");
+                        if (jumpList === 'true') {
+                            // 给父页面发消息，表示要跳转到人员列表页
+                            window.parent.postMessage(
+                                {
+                                    from: 'user-list.html',
+                                    id: '#userList'
+                                }, '*'
+                            );
+                        } else {
+                            alert("注册成功，去登录！");
+                            location.assign("blogin.html");
+                        }
                     }
 
                 }

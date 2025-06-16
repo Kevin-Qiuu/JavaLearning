@@ -2302,7 +2302,7 @@ public class UserController {
 
 ### Spring 拦截器
 
-通过实现 HandlerInterceptor 接口自定义创建一个拦截器
+通过实现 **`HandlerInterceptor`** 接口自定义创建一个拦截器
 
 ```java
 // 定义一个登录拦截器，需要实现 HandlerInterceptor
@@ -2379,7 +2379,7 @@ Advice 表示需要对选中的代码进行怎样的增强，处理的时机和�
 
 ```java
 @Slf4j
-@Order(2)
+@Order(2) // 切面执行优先级
 @Aspect  // 只有被该注解修饰才认为是切面类
 @Component
 public class AspectDemo01 {
@@ -2387,7 +2387,6 @@ public class AspectDemo01 {
     @Pointcut("execution(* com.kevinqiu.controller.*.*(..))")
     private void pointcut() {
     }
-
 
     // 定义环绕通知
     @Around("pointcut()")
@@ -2444,7 +2443,7 @@ XML 的方式是过去的技术，随着框架的不断更新，Spring 将其封
 
 #### Spring AOP
 
-#### Spring AOP 实现原理
+##### Spring AOP 实现原理
 
 Spring AOP 是基于动态代理的方式实现的，在 Java 中，实现动态代理一共有两种方式，一个是 JDK 动态代理，另外一个是 CGLib 动态代理。而在 Spring 源码中，就是通过 JDK 和 CGLib 动态代理实现整体的 AOP 设计模式的。
 
@@ -2481,15 +2480,103 @@ public static void CGLibDynamicProxy(){
 
 ```
 
-#### JDK 动态代理实现的原理
+##### JDK 动态代理实现的原理
 
-这里只分析基于 JDK 动态代理的方式实现 AOP 设计模式的代码原理：
+**通过 JDK 动态代理实现 AOP**：
 
-在实际运行过程中，JDK 在执行 `Proxy.newProxyInstance` 时，会通过 `ProxyGenerator.generateProxyClass()` 在内存中生成 `.class` 字节码，随后由传入的 `ClassLoader` 加载，进而动态生成一个 `$Proxy0` 类，这个类继承了 `Proxy` 类并且实现了用户传入的接口，并通过用户传入的 `InvocationHandler` 中的 `invoke` 方法实现接口。具体来说就是在接口的重写方法中，通过分析方法签名，调用 `InvocationHandler` 中的 `invoke` 方法，完成接口实现。
+1. **定义切面逻辑**：在 `InvocationHandler` 中实现增强逻辑：
 
-举例来说，在调用 `controllerProxy.printResult()` 时，实际调用的是 `$Proxy01` 对象的 `printResult` 方法，而这个方法的实质就是调用 `JDKInvocationHandler` 的 `invoke`方法，最终实现了方法的交付调用，实现了 AOP 设计模式。
+```java
+public class LoggingInvocationHandler implements InvocationHandler {
+    private final Object target; // 目标对象（如 UserService）
+ 
+    @Override 
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        // 1. 前置增强：日志/权限校验 
+        System.out.println("▶️  方法调用: " + method.getName()  + " | 参数: " + Arrays.toString(args)); 
+        
+        // 2. 执行目标方法 
+        Object result = method.invoke(target,  args);
+        
+        // 3. 后置增强：结果处理/事务提交 
+        System.out.println("✅  返回结果: " + result);
+        return result;
+    }
+}
+```
+
+2. **创建代理对象**：通过 `Proxy.newProxyInstance` 绑定切面与目标对象
+
+```java
+UserService target = new UserServiceImpl();
+UserService userServiceProxy = (UserService) Proxy.newProxyInstance( 
+    target.getClass().getClassLoader(),
+    new Class[]{UserService.class},  // 代理接口 
+    new LoggingInvocationHandler(target) // 注入切面逻辑 
+);
+```
+
+3. **通过代理调用方法**
+
+```java
+userServiceProxy.createUser(" 张三", 25); // 自动触发增强逻辑 
+```
+
+---
+
+**底层工作原理**
+
+1. **动态构建代理类 `$Proxy`**
+
+	- 在实际运行过程中，`JDK` 在执行 `Proxy.newProxyInstance` 时，会通过 `ProxyGenerator.generateProxyClass()` 在内存中生成 `.class` 字节码，这一过程会遍历用户传入的接口数组（如 `UserService.class` ），**精确解析并实现每个接口的方法签名**（包括方法名、参数类型、返回类型等），并生成对应的 `.class` 字节码文件（如 `$Proxy0.class` ）。随后由传入的 `ClassLoader` 加载，进而动态生成一个 `$Proxy0` 类，这个类继承了 `Proxy` 类并且实现了用户传入的接口（如 `public final class $Proxy0 extends Proxy implements UserService`）
+
+2. 将接口中的所有方法进行汇总与映射
+
+	- 在创建 JDK 动态代理时，JDK 首先会根据传入的代理接口，把接口中的方法签名与动态构建的代理类的方法签名进行映射，这一过程中，代理类为每个接口方法生成一个对应的静态 `Method` 对象（如 `m1 = ObjectController.class.getMethod("printResult")` ），建立 **方法签名 → `Method` 对象** 的映射表。
+	
+	- **示例伪代码**
+	
+	  ```java
+	  public class $Proxy0 extends Proxy implements UserService {
+	      private static Method m1; // 映射 printResult()
+	    	private static Method m2; // 映射 getRequest()
+	      static {
+	        	// 实际会自动获取 Userservice 的全部方法签名并一一映射
+	          m1 = UserService.class.getMethod("printResult"); 
+	          m2 = UserService.class.getMethod("getRequest");
+	      }
+	      // ...
+	  }
+	  ```
+	
+	  
 
 
+3. 实现用户传入的所有代理接口：
+
+	- 代理类重写的接口方法（如 `printResult()`）**固定调用父类 `Proxy` 中的 `InvocationHandler.invoke()`** ，实现逻辑集中路由。
+	
+	- **示例伪代码**
+	
+	  ```java
+	  public class $Proxy0 extends Proxy implements ObjectController {
+	    // ...
+	    @Override
+	    public String printResult() {
+	      return super.h.invoke(this, m1, null);
+	    }
+	    
+	    @Override
+	     public String getRequest() {
+	      return super.h.invoke(this, m2, null);
+	    }
+	    // 这里的 super.h 是 Proxy 的成员变量，类型为 InvocationHandler，会在动态构建代理类是自动将用户传入的 Handler 进行赋值
+	  }
+	  ```
+	
+	  ​	
+
+总体来说，在调用 `controllerProxy.printResult()` 时，实际调用的是 `$Proxy0` 对象的 `printResult` 方法，而这个方法的实质就是调用 `JDKInvocationHandler` 的 `invoke` 方法，最终实现了方法的交付调用，实现了 `AOP` 设计模式。
 
 在 `Proxy.newProxyInstance` 的三个参数中，**接口类名和方法名的获取完全依赖第二个参数 `new Class[]{ObjectController.class}`** 。具体逻辑如下：
 
@@ -2498,61 +2585,6 @@ public static void CGLibDynamicProxy(){
 |     **类加载器**      | 根据这个加载器在内存中动态生成的代理类（`$Proxy0`） | 通常从目标对象类中提取（如 `objectController.getClass().getClassLoader()` ） |
 |     **接口数组**      |   定义代理类需实现的接口（如 `ObjectController`）   |   开发者显式传入（`new Class[]{ObjectController.class}` ）   |
 | **InvocationHandler** |             处理代理方法的实际调用逻辑              | 开发者自定义实现（如 `new JDKInvocationHandler(objectController)`） |
-
-
-
-**最终实现的`$Proxy0`的伪代码如下：**
-
-```java
-// 动态生成的代理类方法伪代码
-public final class $Proxy0 extends Proxy implements ObjectController {
-  private static Method m1; // 对应 ObjectController.printResult() 
-
-  public $Proxy0(InvocationHandler h) {
-    super(h);
-  }
-
-  static {
-    try {
-      m1 = Class.forName("com.kevinqiu.proxy.ObjectController").getMethod("printResult");
-    } catch (Exception e) { /* ... */ }
-  }
-
-  @Override 
-  public String printResult() {
-    return (String) super.h.invoke(this,  m1, null);
-  }
-}
-```
-
-**上述的 static 方法中，是通过以下方式完成方法路由的映射，设计到反射原理：**
-
-(1) 接口类名获取
-
-- **来源**：通过传入的 `ObjectController.class` 隐式获取其全限定类名（如 `com.example.ObjectController` ）。
-
-- 底层实现伪代码：
-
-  ```java
-  String interfaceName = ObjectController.class.getName();  // 直接反射获取类名 
-  ```
-
-(2) 方法名获取
-
-- **来源**：遍历接口 `ObjectController` 中声明的所有方法（如 `printResult()`）。
-
-- 底层实现伪代码：
-
-  ```java
-  Method[] methods = ObjectController.class.getDeclaredMethods();  // 反射获取接口方法 
-  for (Method method : methods) {
-      // 生成代理类方法（如 m1 = method）
-    	// 类似 m1 = Class.forName(...).getMethod(...)  的代码 
-      addMethodToProxyClass(m1);
-  }
-  ```
-
-
 
 **总结：**Spring AOP 是通过 JDK 动态代理和 CGLib 动态代理实现的，但是从 SpringBoot 2.X 开始，默认使用 CGLib 动态代理，我认为是 CGLib 既可以实现接口的代理，也可以实现类的代理，同时性能也更好，所以 Spring 最终选择了 CGLib。
 

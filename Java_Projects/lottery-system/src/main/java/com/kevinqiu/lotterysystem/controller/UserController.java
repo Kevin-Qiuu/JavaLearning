@@ -5,19 +5,24 @@ import com.kevinqiu.lotterysystem.common.utils.JacksonUtil;
 import com.kevinqiu.lotterysystem.common.utils.RegexUtil;
 import com.kevinqiu.lotterysystem.controller.param.UserMessageLoginParam;
 import com.kevinqiu.lotterysystem.controller.param.UserPasswordLoginParam;
+import com.kevinqiu.lotterysystem.controller.result.UserBaseInfoResult;
 import com.kevinqiu.lotterysystem.controller.result.UserLoginResult;
 import com.kevinqiu.lotterysystem.controller.param.UserRegisterParam;
 import com.kevinqiu.lotterysystem.controller.result.UserRegisterResult;
 import com.kevinqiu.lotterysystem.service.UserService;
 import com.kevinqiu.lotterysystem.service.VerificationCodeService;
+import com.kevinqiu.lotterysystem.service.dto.UserBaseInfoDTO;
 import com.kevinqiu.lotterysystem.service.dto.UserLoginDTO;
 import com.kevinqiu.lotterysystem.service.dto.UserRegisterDTO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -66,11 +71,27 @@ public class UserController {
         return CommonResult.success(convertUserLoginDTO(userLoginDTO));
     }
 
+    /**
+     * 发送验证码
+     * @param phoneNumber 电话号码
+     * @return CommonResult
+     */
     @RequestMapping("/verification-code/send")
     public CommonResult<Boolean> sendVerificationCode(String phoneNumber){
         log.info("sendVerificationCode -> phoneNumber: {}", phoneNumber);
         verificationCodeService.sendVerificationCode(phoneNumber);
         return CommonResult.success(Boolean.TRUE);
+    }
+
+    /**
+     * 查看用户信息
+     * @param userLoginDTO
+     * @return
+     */
+    @RequestMapping("/base-user/find-list")
+    public CommonResult<List<UserBaseInfoResult>> findUserBaseInfo(String identity){
+        log.info("findUserBaseInfo");
+        List<UserBaseInfoDTO> userBaseInfoDTOS = userService.findUserBaseInfo(identity);
     }
 
     private UserLoginResult convertUserLoginDTO(UserLoginDTO userLoginDTO) {

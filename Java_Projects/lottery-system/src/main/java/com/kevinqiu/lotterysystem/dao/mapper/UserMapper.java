@@ -1,8 +1,11 @@
 package com.kevinqiu.lotterysystem.dao.mapper;
 
 import com.kevinqiu.lotterysystem.dao.dataobject.Encrypt;
+import com.kevinqiu.lotterysystem.dao.dataobject.UserBaseInfoDO;
 import com.kevinqiu.lotterysystem.dao.dataobject.UserDO;
 import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -23,4 +26,6 @@ public interface UserMapper {
 
     @Select("select * from user where phone_number = #{phoneNumber}")
     UserDO selectByMobile(@Param("phoneNumber") Encrypt loginName);
+
+    List<UserBaseInfoDO> selectByIdentity(@Param("identity") String identity);
 }

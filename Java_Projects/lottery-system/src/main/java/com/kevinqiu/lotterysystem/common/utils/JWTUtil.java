@@ -54,7 +54,7 @@ public class JWTUtil {
      * 验证密钥
      */
     public static Claims parseJWT(String jwt){
-        if (!StringUtils.hasLength(jwt)){
+        if (!StringUtils.hasLength(jwt) || jwt.equals("null")){
             return null;
         }
         // 创建解析器, 设置签名密钥
