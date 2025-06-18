@@ -19,7 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         String userToken = request.getHeader("user_token");
         log.info("从请求中获取 Token: {}", userToken);
         log.info("请求路径: {}", request.getRequestURI());
-
+        log.info("请求 Content-Type: {}", request.getHeader("Content-Type"));
         // 解析 JWT
         Claims claims = JWTUtil.parseJWT(userToken);
         if (null == claims) {
@@ -27,6 +27,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             response.setStatus(401);
             return false;
         }
+        log.info("JWT 解析成功，授权访问！");
 
         return true;
     }

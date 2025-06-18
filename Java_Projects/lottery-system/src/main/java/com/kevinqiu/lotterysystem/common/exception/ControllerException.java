@@ -22,16 +22,16 @@ public class ControllerException extends RuntimeException{
     public String message;
 
     // 为了序列化
-    ControllerException(){
+    public ControllerException(){
 
     }
 
-    ControllerException(Integer code, String message){
+    public ControllerException(Integer code, String message){
         this.code = code;
         this.message = message;
     }
 
-    ControllerException(ErrorCode errorCode){
+    public ControllerException(ErrorCode errorCode){
         this.code = errorCode.getCode();
         this.message = errorCode.getMessage();
     }

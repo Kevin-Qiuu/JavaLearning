@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>活动列表</title>
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="./css/base.css">
   <style>
     body {
@@ -135,13 +135,12 @@
       };
       // 发送AJAX请求
       $.ajax({
-          url: '/activity/find-list',
-          type: 'GET',
+          url: '',
+          type: '',
           data: dataToSend, // 将分页参数作为请求数据发送
           dataType: 'json',
           headers: {
             // jwt
-            "user_token": userToken
           },
           success: function(result) {
             if (result.code != 200) {

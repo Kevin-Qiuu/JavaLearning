@@ -2728,7 +2728,24 @@ Spring 会使用到 **`@ComponentScan`** 和 **`@EnableAutoConfiguration`** 两�
   - `Registrar` 与 `ImportSelector` 二者通过 `@EnableAutoConfiguration` 协同工作，但**职责完全分离**
   
 
+---
 
+#### @RequestParam 和 @RequestPart
+
+```java
+@RequestMapping("/prize/test")
+public String testUpload(@Validated @RequestPart("param") PrizeCreateParam param) {
+  log.info("createPrize -> PrizeCreateParam: {}",param);
+  return "ok";
+}
+
+```
+
+对于存储表单数据的 Http 报文，Spring 会把一个个表单元素认为一个个小的 Http 报文。
+
+这两个两个注解都可以接收并处理表单（Content-type=multipart/form-data）中的数据，区别在于@ReqeustPart 需要在客户端发来的报文中明确把 Content-type 设置为 application/json，如果字段缺失了 Content-Type，Spring 默认会认为当前的报文Content-type 为 application/octet-stream，然后需要将application/octet-stream 类型的报文转换成指定的对象，而Spring 并没有提供这种 converter，导致找不到 converter，进而抛出 HttpMediaTypeNotSupportedException，异常内容就是不支持 application/octet-stream 的 Content-type。
+
+而 @RequestParam 就不会管这个，无论前端传递什么样的 Content-type，都会将其内容当作字符串进行传参，用户可以自行再进行反序列化，这样即使前端没有设置 Content-type 或者 Content-type 设置为 text-plain 等，都会将报文中载荷设置为字符串进行传递，这样就稳得多了，但需要注意，需要使用 String 进行接收参数。
 
 
 

@@ -18,6 +18,8 @@ public interface ServiceErrorCodeConstants {
     ErrorCode LOGIN_NAME_IS_ILLEGAL = new ErrorCode(113, "用户名格式非法！");
 
     // ------ 奖品模块错误码 --------
+    ErrorCode PAGE_LIST_IS_NULL = new ErrorCode(201, "奖品页面列表为空！");
+
 
 
     // ------ 活动模块错误码 --------
@@ -26,4 +28,9 @@ public interface ServiceErrorCodeConstants {
     // ------ 抽奖错误码 --------
 
 
+    // ------ 文件上传错误码 ------
+    ErrorCode MAKE_DIR_ERROR = new ErrorCode(501, "创建文件夹失败！");
+    ErrorCode ORIGINAL_FILE_ERROR = new ErrorCode(502, "上传文件错误！");
+    ErrorCode FILE_SAVE_ERROR = new ErrorCode(503, "文件存储失败！");
+    ErrorCode MAX_UPLOAD_SIZE_EXCEEDED = new ErrorCode(504, "上传的文件体积过大！");
 }

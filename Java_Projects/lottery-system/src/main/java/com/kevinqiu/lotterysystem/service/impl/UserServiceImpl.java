@@ -40,6 +40,11 @@ public class UserServiceImpl implements UserService {
     @Resource(name = "verificationCodeServiceImpl")
     private VerificationCodeService verificationCodeService;
 
+    /**
+     * 用户注册
+     * @param param
+     * @return
+     */
     @Override
     public UserRegisterDTO register(UserRegisterParam param) {
         // 校验注册信息
@@ -64,6 +69,11 @@ public class UserServiceImpl implements UserService {
         return userRegisterDTO;
     }
 
+    /**
+     * 用户登录接口
+     * @param loginParam
+     * @return
+     */
     @Override
     public UserLoginDTO login(UserLoginParam loginParam) {
         // todo
@@ -78,12 +88,30 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * 查找用户基础信息
+     * @param identity
+     * @return
+     */
     @Override
     public List<UserBaseInfoDTO> findUserBaseInfo(String identity) {
         // 如果 identity 为 null 则查询全部用户
         List<UserBaseInfoDO> userBaseInfoDOList = userMapper.selectByIdentity(identity);
+        // 使用 List 的 stream 进行快速操作
+        return userBaseInfoDOList.stream().map(userBaseInfoDO -> {
+            UserBaseInfoDTO userBaseInfoDTO = new UserBaseInfoDTO();
+            userBaseInfoDTO.setUserName(userBaseInfoDO.getUserName());
+            userBaseInfoDTO.setUserId(userBaseInfoDO.getId().toString());
+            userBaseInfoDTO.setIdentity(UserIdentityEnum.forIdentityMessage(userBaseInfoDO.getIdentity()));
+            return userBaseInfoDTO;
+        }).toList();
     }
 
+    /**
+     * 通过密码进行登录
+     * @param loginParam 密码登录参数
+     * @return UserLoginDTO
+     */
     private UserLoginDTO loginByPassword(UserPasswordLoginParam loginParam) {
         // todo
         UserDO userDO = null;
@@ -121,6 +149,11 @@ public class UserServiceImpl implements UserService {
         return promUserJWT(userDO);
     }
 
+    /**
+     * 通过短信验证码就行登录
+     * @param loginParam 短信验证码登录参数
+     * @return UserLoginDTO
+     */
     private UserLoginDTO loginByMessage(UserMessageLoginParam loginParam) {
         // 判断用户电话号码是否合法
         if (!RegexUtil.checkMobile(loginParam.getPhoneNumber())) {
@@ -147,6 +180,11 @@ public class UserServiceImpl implements UserService {
         return promUserJWT(userDO);
     }
 
+    /**
+     * 校验用户身份信息
+     * @param loginIdentity 登录身份
+     * @param userDOIdentity 对应数据库中的用户身份
+     */
     private void checkUserIdentity(String loginIdentity, String userDOIdentity) {
         if (!StringUtils.hasText(userDOIdentity)
                 || !StringUtils.hasText(loginIdentity)

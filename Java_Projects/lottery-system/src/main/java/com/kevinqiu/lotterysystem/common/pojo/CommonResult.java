@@ -3,9 +3,13 @@ package com.kevinqiu.lotterysystem.common.pojo;
 import com.kevinqiu.lotterysystem.common.errorcode.ErrorCode;
 import com.kevinqiu.lotterysystem.common.errorcode.GlobalErrorCodeConstants;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 @Data
-public class CommonResult<T> {
+@NoArgsConstructor
+public class CommonResult<T> implements Serializable {
     /**
      * 异常错误码
      */

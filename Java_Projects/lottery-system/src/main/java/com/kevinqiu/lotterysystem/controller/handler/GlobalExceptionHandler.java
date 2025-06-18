@@ -1,6 +1,7 @@
 package com.kevinqiu.lotterysystem.controller.handler;
 
 import com.kevinqiu.lotterysystem.common.errorcode.GlobalErrorCodeConstants;
+import com.kevinqiu.lotterysystem.common.errorcode.ServiceErrorCodeConstants;
 import com.kevinqiu.lotterysystem.common.exception.ControllerException;
 import com.kevinqiu.lotterysystem.common.exception.ServiceException;
 import com.kevinqiu.lotterysystem.common.pojo.CommonResult;
@@ -11,6 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,6 +49,19 @@ public class GlobalExceptionHandler {
         });
         return CommonResult.error(GlobalErrorCodeConstants.ERROR.getCode(),
                 errorMsg.toString());
+    }
+
+    @ExceptionHandler(value = Exception.class)
+    public CommonResult<?> AllExceptionHandler(Exception ex){
+        log.error("AllExceptionHandler -> Exception: ", ex);
+        return CommonResult.error(GlobalErrorCodeConstants.ERROR.getCode(),
+                ex.toString());
+    }
+
+    @ExceptionHandler(value = MaxUploadSizeExceededException.class)
+    public CommonResult<?> MaxUploadSizeExceededExceptionHandler(Exception exception){
+        log.error("MaxUploadSizeExceededExceptionHandler -> exception");
+        return CommonResult.error(ServiceErrorCodeConstants.MAX_UPLOAD_SIZE_EXCEEDED);
     }
 
 }

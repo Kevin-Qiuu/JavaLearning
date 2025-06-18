@@ -1,5 +1,7 @@
 package com.kevinqiu.lotterysystem.controller;
 
+import com.kevinqiu.lotterysystem.common.errorcode.ControllerErrorCodeConstants;
+import com.kevinqiu.lotterysystem.common.exception.ControllerException;
 import com.kevinqiu.lotterysystem.common.pojo.CommonResult;
 import com.kevinqiu.lotterysystem.common.utils.JacksonUtil;
 import com.kevinqiu.lotterysystem.common.utils.RegexUtil;
@@ -85,16 +87,26 @@ public class UserController {
 
     /**
      * 查看用户信息
-     * @param userLoginDTO
-     * @return
+     * @param identity 用户身份
+     * @return CommonResult
      */
     @RequestMapping("/base-user/find-list")
     public CommonResult<List<UserBaseInfoResult>> findUserBaseInfo(String identity){
         log.info("findUserBaseInfo");
-        List<UserBaseInfoDTO> userBaseInfoDTOS = userService.findUserBaseInfo(identity);
+        List<UserBaseInfoDTO> userBaseInfoDTOList = userService.findUserBaseInfo(identity);
+        return CommonResult.success(userBaseInfoDTOList.stream().map(userBaseInfoDTO -> {
+            UserBaseInfoResult userBaseInfoResult = new UserBaseInfoResult();
+            userBaseInfoResult.setUserName(userBaseInfoDTO.getUserName());
+            userBaseInfoResult.setUserId(userBaseInfoDTO.getUserId());
+            userBaseInfoResult.setIdentity(userBaseInfoDTO.getIdentity());
+            return userBaseInfoResult;
+        }).toList());
     }
 
     private UserLoginResult convertUserLoginDTO(UserLoginDTO userLoginDTO) {
+        if(null == userLoginDTO){
+            throw new ControllerException(ControllerErrorCodeConstants.USER_LOGIN_FAILED);
+        }
         UserLoginResult userLoginResult = new UserLoginResult();
         userLoginResult.setIdentity(userLoginDTO.getIdentity());
         userLoginResult.setToken(userLoginDTO.getToken());
@@ -102,6 +114,9 @@ public class UserController {
     }
 
     private UserRegisterResult convertUserRegisterDTO(UserRegisterDTO userRegisterDTO){
+        if (null == userRegisterDTO){
+            throw new ControllerException(ControllerErrorCodeConstants.USER_REGISTER_FAILED);
+        }
         UserRegisterResult userRegisterResult = new UserRegisterResult();
         userRegisterResult.setUserId(userRegisterDTO.getUserId());
         return userRegisterResult;

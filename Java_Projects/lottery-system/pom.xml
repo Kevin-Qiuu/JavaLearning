@@ -105,6 +105,12 @@
             <version>5.18.0</version>
         </dependency>
 
+        <!-- 如果使用内嵌 Tomcat -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

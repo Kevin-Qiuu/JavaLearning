@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>奖品列表</title>
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="./css/base.css"></link>
     <style>
     body {
@@ -145,12 +145,12 @@
 </div>
 
 
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="./js/jquery.min.js"></script>
 <script>
     var userToken = localStorage.getItem("user_token");
 
     var currentPage = 1;
-    var pageSize = 10;
+    var pageSize = 6;
     var totalPages;
 
     // 发送AJAX请求的函数
@@ -184,8 +184,7 @@
             if (result.code != 200) {
                 alert("查询奖品列表失败！" + result.msg);
             } else {
-                var prizes = result.data.records;
-                var prizesHtml = '';
+                var prizes = result.data.prizeInfoList;
                 // 清空现有的表格内容
                 var prizeList = $('#prizeList');
                 prizeList.empty();

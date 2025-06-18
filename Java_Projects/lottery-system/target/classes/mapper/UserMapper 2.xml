@@ -5,11 +5,12 @@
 <!--    namespace 的根目录是src/main/java    -->
 <mapper namespace="com.kevinqiu.lotterysystem.dao.mapper.UserMapper">
     <!--  resultType 表示返回对象的类型是什么，如果返回的对象是一个 List，则类型为 List 元素的类型  -->
+    <!--  if 标签中的 test 的变量是方法中传递对象的属性，而不是数据库的字段  -->
     <select id="selectByIdentity" resultType="com.kevinqiu.lotterysystem.dao.dataobject.UserBaseInfoDO">
         select * from user
         <if test="identity != null">
             where identity = #{identity}
         </if>
-        order by id desc 
+        order by id desc
     </select>
 </mapper>

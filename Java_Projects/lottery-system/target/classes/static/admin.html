@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>后台管理</title>
-  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/twitter-bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="./css/base.css">
   <style>
     .admin-page{
@@ -164,36 +164,36 @@
   <div class="sidebar">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <div class="nav-link active activity">
+        <div class="nav-link active huodong">
           <img src="./pic/huodong.png" class="white-img"  alt="">
           <img src="./pic/huodong-0.png" class="gray-img"  alt="">
           <span>活动管理</span>
         </div>
         <ul class="nav flex-column sub-category">
-          <li><a class="nav-link" id="activitiesList" data-desc="activity" href="activities-list.html">活动列表</a></li>
-          <li><a class="nav-link" id="createActivity" data-desc="activity" href="create-activity.html">新建抽奖活动</a></li>
+          <li><a class="nav-link" id="activitiesList" data-desc="huodong" href="activities-list.html">活动列表</a></li>
+          <li><a class="nav-link" id="createActivity" data-desc="huodong" href="create-activity.html">新建抽奖活动</a></li>
         </ul>
       </li>
       <li class="nav-item">
-        <div class="nav-link price">
+        <div class="nav-link jiangpin">
           <img src="./pic/jiangpin.png" class="white-img" style="display: none;" alt="">
           <img src="./pic/jiangpin-0.png" class="gray-img"  alt="">
           <span>奖品管理</span>
         </div>
         <ul class="nav flex-column sub-category">
-          <li><a class="nav-link" data-desc="price" href="prizes-list.html">奖品列表</a></li>
-          <li><a class="nav-link" data-desc="price" href="create-prizes.html">创建奖品</a></li>
+          <li><a class="nav-link" id="prizeList" data-desc="prizeList" href="prizes-list.html">奖品列表</a></li>
+          <li><a class="nav-link" id="prizeCreate" data-desc="prizeCreate" href="create-prizes.html">创建奖品</a></li>
         </ul>
       </li>
       <li class="nav-item">
-        <div class="nav-link users">
+        <div class="nav-link renyuan">
           <img src="./pic/renyuan.png" class="white-img" style="display: none;" alt="">
           <img src="./pic/renyuan-0.png" class="gray-img"  alt="">
           <span>人员管理</span>
         </div>
         <ul class="nav flex-column sub-category">
-          <li><a class="nav-link" id="userList" data-desc="users" href="user-list.html">人员列表</a></li>
-          <li><a class="nav-link" id="register" data-desc="usersCreate" href="register.html">注册用户</a></li>
+          <li><a class="nav-link" id="userList" data-desc="userList" href="user-list.html">人员列表</a></li>
+          <li><a class="nav-link" id="register" data-desc="userCreate" href="register.html">注册用户</a></li>
         </ul>
       </li>
     </ul>
@@ -206,24 +206,18 @@
 </div>
 
 <!-- 引入jQuery和Bootstrap的JavaScript -->
-<script
-        src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js">
-</script>
+<script src="./js/jquery.min.js"></script>
 <script>
-  // 活动新建完成之后，自动跳转到活动列表页
-  // 创建普通员工后，自动跳转到人员列表页
   // 监听子message事件,实现子页面向父页面传递
   window.addEventListener('message', function(e){
     console.log('子页面传递的数据', e.data)
     if(e.data && e.data.from){
-      // from : activities-list.html
-      // id ： activitiesList
       var pages = e.data.from+'?param=' +  new Date().getTime()
       $('#contentFrame').attr('src', pages);
       let id = e.data.id
       // 移除所有链接的激活样式
       $('ul.nav .nav-link').removeClass('active');
-      // 为当前子页面发送的链接添加激活样式
+      // 为当前点击的链接添加激活样式
       $(id).addClass('active');
       $(id).parent().parent('.sub-category').prev().addClass('active');
     }
@@ -244,10 +238,11 @@
     var randomParam = new Date().getTime();
     // 获取当前点击的链接的data-desc属性值
     var dataDesc = $(this).data('desc');
-    var page = '';
-    if (dataDesc === "usersCreate") {
-      console.log("dataDesc === usersCreate")
-      page = $(this).attr('href') + "?param=" + randomParam + "&jumpList=true&admin=false";
+    var page = $(this).attr('href') + "?param=" + randomParam
+    if (dataDesc === "userCreate") {
+      page += "&jumpList=true&admin=false";
+    } else if(dataDesc === "prizeCreate") {
+      page += "&jumpList=true";
     } else {
       page = $(this).attr('href') + "?param=" + randomParam;
     }

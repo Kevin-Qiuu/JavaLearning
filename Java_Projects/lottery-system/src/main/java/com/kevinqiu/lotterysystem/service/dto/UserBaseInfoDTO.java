@@ -1,5 +1,8 @@
 package com.kevinqiu.lotterysystem.service.dto;
 
+import lombok.Data;
+
+@Data
 public class UserBaseInfoDTO {
     /**
      * 用户 Id
