@@ -1,0 +1,20 @@
+# 定义项目占用端口号
+server:
+  port: 9090
+
+# 定义项目名称
+spring:
+  application:
+    name: product-service
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/cloud_product?characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# 定义 mybatis
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置 mybatis 的日志打印
+    map-underscore-to-camel-case: true
+
