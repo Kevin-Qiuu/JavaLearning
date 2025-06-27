@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: langchain4j-demo
+
+# web服务访问端口
+server:
+  port: 8080
+
+# 阿里百炼平台
+langchain4j:
+  community:
+    dashscope:
+      chat-model:
+        api-key: sk-d77a9ebd93c943be8bae5158585871f0
+        model-name: qwen-plus
