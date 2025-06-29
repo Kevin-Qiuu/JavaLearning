@@ -1,7 +1,22 @@
 spring:
   application:
     name: langchain4j-demo
+  data:
+    #MongoDB连接配置
+    mongodb:
+      uri: mongodb://localhost:27017/chat_memory_db
+# 基本数据源配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/guiguxiaozhi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
+# 开启 SQL 日志打印
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
 # web服务访问端口
 server:
   port: 8080
@@ -11,5 +26,12 @@ langchain4j:
   community:
     dashscope:
       chat-model:
+        api-key: sk-d77a9ebd93c943be8bae5158585871f0
+        model-name: qwen-plus
+        # 集成阿里通义千问-通用文本向量-v3
+      embedding-model:
+        api-key: sk-d77a9ebd93c943be8bae5158585871f0
+        model-name: text-embedding-v3
+      streaming-chat-model:
         api-key: sk-d77a9ebd93c943be8bae5158585871f0
         model-name: qwen-plus

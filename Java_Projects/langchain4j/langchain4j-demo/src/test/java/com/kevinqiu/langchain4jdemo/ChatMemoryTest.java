@@ -95,4 +95,24 @@ public class ChatMemoryTest {
         System.out.println(answer3);
     }
 
+    @Test
+    public void testChatMemory5(){
+        String answer = separateChatAssistant.chat(1, "我是老 kevin");
+        System.out.println(answer);
+        String answer2 = separateChatAssistant.chat(1, "那我叫啥？");
+        System.out.println(answer2);
+    }
+
+    @Test
+    public void testChatMemory6() {
+        String answer = separateChatAssistant.chat(2, "你是谁？");
+        System.out.println(answer);
+    }
+
+    @Test
+    public void testChatMemory7() {
+        String answer = separateChatAssistant.chat(3, "我是谁？", "Kevin", 18);
+        System.out.println(answer);
+    }
+
 }
