@@ -23,6 +23,12 @@ public interface ServiceErrorCodeConstants {
 
 
     // ------ 活动模块错误码 --------
+    ErrorCode CREATE_ACTIVITY_INFO_IS_EMPTY = new ErrorCode(301, "活动信息为空！");
+    ErrorCode ACTIVITY_USER_INFO_ERROR = new ErrorCode(302, "活动人员信息错误！");
+    ErrorCode ACTIVITY_PRIZE_INFO_ERROR = new ErrorCode(302, "活动奖品信息错误！");
+    ErrorCode ACTIVITY_USER_COUNT_LESS_THAN_PRIZE_COUNT = new ErrorCode(303, "活动人员数量小于奖品数量！");
+    ErrorCode ACTIVITY_PRIZE_TIERS_ERROR = new ErrorCode(304, "奖品等级参数错误！");
+    ErrorCode CACHE_ACTIVITY_INFO_IS_NULL = new ErrorCode(306, "缓存奖品信息为空！");
 
 
     // ------ 抽奖错误码 --------

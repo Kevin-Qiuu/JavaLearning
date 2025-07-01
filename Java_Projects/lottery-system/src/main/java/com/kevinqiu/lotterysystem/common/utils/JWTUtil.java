@@ -1,6 +1,7 @@
 package com.kevinqiu.lotterysystem.common.utils;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtParserBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -57,7 +58,7 @@ public class JWTUtil {
         if (!StringUtils.hasLength(jwt) || jwt.equals("null")){
             return null;
         }
-        // 创建解析器, 设置签名密钥
+        // 设置签名密钥 创建解析器,
         JwtParserBuilder jwtParserBuilder = Jwts.parserBuilder().setSigningKey(SECRET_KEY);
         Claims claims = null;
         try {
@@ -65,7 +66,8 @@ public class JWTUtil {
             claims = jwtParserBuilder.build().parseClaimsJws(jwt).getBody();
         }catch (Exception e){
             // 签名验证失败
-            logger.error("解析令牌错误,jwt:{}", jwt, e);
+            logger.error("解析令牌错误,jwt:{}", jwt);
+            return null;
         }
         return claims;
 

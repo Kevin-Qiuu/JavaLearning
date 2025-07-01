@@ -22,7 +22,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     // redis 里面的 key 需要标准化，为了区分不同业务，需要给 Key 定义前缀
 
     private static final String VERIFICATION_CODE_PREFIX = "VERIFICATION_CODE_"; // 验证码 Key 前缀
-    private static final Long TIME_OUT = 3L; // 单位：分钟
+    private static final Long TIME_OUT = 60 * 3L; // 单位：秒
     private static final String TEMPLATE_ID = "V4v6k855D38GY2gD"; //模板 ID
     private static final RandomGenerator CODE_GENERATOR = new RandomGenerator("0123456789", 4); // 随机生成四位数字
 

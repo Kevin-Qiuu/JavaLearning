@@ -28,4 +28,6 @@ public interface UserMapper {
     UserDO selectByMobile(@Param("phoneNumber") Encrypt loginName);
 
     List<UserBaseInfoDO> selectByIdentity(@Param("identity") String identity);
+
+    List<Long> selectByIds(List<Long> userIdList);
 }

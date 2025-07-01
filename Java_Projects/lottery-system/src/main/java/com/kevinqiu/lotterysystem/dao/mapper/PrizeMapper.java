@@ -19,4 +19,9 @@ public interface PrizeMapper {
     @Select("select * from prize order by id desc limit #{offset}, #{pageSize}")
     List<PrizeInfoDO> selectPrizePageList(@Param("offset") Integer offset,
                                           @Param("pageSize") Integer pageSize);
+
+    List<PrizeInfoDO> selectByIds(@Param("items") List<Long> prizeIds);
+
+    @Select("select * from prize")
+    List<PrizeInfoDO> selectAll();
 }

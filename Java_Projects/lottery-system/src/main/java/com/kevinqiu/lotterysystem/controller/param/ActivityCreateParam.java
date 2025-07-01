@@ -4,11 +4,18 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ActivityCreateParam implements Serializable {
 
     /**
@@ -26,7 +33,7 @@ public class ActivityCreateParam implements Serializable {
     /**
      * 当前活动关联的奖品列表
      */
-    @NotEmpty(message = "活动列表为空！")
+    @NotEmpty(message = "奖品列表为空！")
     @Valid
     private List<PrizeByActivityCreateParam> activityPrizeList;
 

@@ -51,7 +51,7 @@ public class RedisUtil {
     public boolean set(String key, String value, Long existTime) {
         try {
             stringRedisTemplate.opsForValue()
-                .set(key, value, existTime, TimeUnit.MINUTES);
+                .set(key, value, existTime, TimeUnit.SECONDS);
             return true;
         } catch (Exception e){
             log.error("RedisUtil error, set(key: {}, value: {}, existTime: {}), e: ",

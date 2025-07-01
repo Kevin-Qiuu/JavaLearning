@@ -8,6 +8,7 @@ public interface ControllerErrorCodeConstants {
 
     // ------ 奖品模块错误码 --------
     ErrorCode PAGE_LIST_IS_NULL = new ErrorCode(302,"奖品页面获取失败！");
+    ErrorCode PRIZE_INFO_IS_NULL = new ErrorCode(303, "奖品信息获取失败！");
 
 
     // ------ 活动模块错误码 --------

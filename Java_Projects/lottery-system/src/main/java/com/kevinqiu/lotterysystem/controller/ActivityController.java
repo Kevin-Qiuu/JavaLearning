@@ -26,7 +26,6 @@ public class ActivityController {
     @RequestMapping("/activity/create")
     public CommonResult<ActivityCreateResult> activityCreate(@Validated @RequestBody
                                                              ActivityCreateParam param) {
-
         log.info("activityCreate -> ActivityCreateParam: {}", JacksonUtil.writeValueAsString(param));
         return CommonResult.success(convertToActivityCreateDTO(activityService.activityCreate(param)));
     }

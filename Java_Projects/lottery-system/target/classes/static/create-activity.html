@@ -174,7 +174,7 @@
 <!-- 人员选择模态框 -->
 <div id="usersModal" class="modal">
     <div class="modal-content">
-        <h2>人员列表<span class="close"  onclick="hideUsersModal()">&times;</span></h2>
+        <h2>人员列表<span class="close" onclick="hideUsersModal()">&times;</span></h2>
         <div id="usersContainer">
             <!-- 奖品列表将动态插入这里 -->
         </div>
@@ -186,12 +186,12 @@
 </div>
 
 <!-- JavaScript代码 -->
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script  src="https://cdn.bootcdn.net/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="./js/jquery.min.js"></script>
+<script  src="./js/jquery.validate.min.js"></script>
 <script src="./js/toastr.min.js"></script>
 <script>
     var userToken = localStorage.getItem("user_token");
-    // 初始时奖品列表为空
+    // 初始时奖品列表为空：勾选的奖品存放
     var selectedPrizes = [];
     // 显示奖品选择模态框
     function showPrizesModal() {
@@ -204,15 +204,15 @@
     // 获取奖品列表的函数
     function fetchPrizes() {
         $.ajax({
-            url: '',
-            type: '',
+            url: '/prize/find-all',
+            type: 'GET',
             dataType: 'json',
-            data: { currentPage: 1, pageSize: 100},
             headers: {
                 // jwt
+                "user_token": userToken
             },
             success: function(result) {
-                var prizes = result.data.records;
+                var prizes = result.data.prizeInfoList;
                 var prizesContainer = $('#prizesContainer');
                 prizesContainer.empty(); // 清空当前奖品列表
                 prizes.forEach(function(prize) {
@@ -244,7 +244,7 @@
     // 提交奖品数据的函数
     function submitPrizes() {
         selectedPrizes = [];
-        // 将选中的奖品信息存储在selectedPrizes
+        // 将选中的奖品信息存储在 selectedPrizes
         $('.prize-item input[type="checkbox"]:checked').each(function() {
             var prizeId = +$(this).val();
             var prizeAmount = +$('input[name="quantity-' + prizeId + '"]').val();
@@ -266,7 +266,7 @@
         }
     }
 
-    // 初始时人员列表为空
+    // 初始时人员列表为空，存放的勾选人员信息
     var selectedUsers = [];
     // 显示人员选择模态框
     function showUsersModal() {
@@ -279,12 +279,13 @@
     // 获取人员列表的函数
     function fetchUsers() {
         $.ajax({
-            url: '',
-            type: '',
+            url: '/base-user/find-list',
+            type: 'GET',
             dataType: 'json',
-            data: { identity: '' },
+            data: { identity: 'NORMAL' },
             headers: {
                 // jwt
+                "user_token": userToken
             },
             success: function(result) {
                 var users = result.data;
@@ -380,12 +381,13 @@
     // 提交活动信息接口
     function submitActivity(data){
         $.ajax({
-            url: '',
-            type: '',
+            url: '/activity/create',
+            type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
             headers: {
                 // jwt
+                "user_token": userToken
             },
             success: function(result) {
                 if (result.code != 200) {
@@ -400,6 +402,15 @@
 
                 }
             },
+            error:function(err){
+                console.log(err);
+                if(err!=null && err.status==401){
+                    alert("用户未登录, 即将跳转到登录页!");
+                    // 跳转登录页
+                    window.location.href = "/blogin.html";
+                    window.parent.location.href = "/blogin.html";//让父页面一起跳转
+                }
+            }
         });
     }
     // 获取奖品/人员列表并填充模态框

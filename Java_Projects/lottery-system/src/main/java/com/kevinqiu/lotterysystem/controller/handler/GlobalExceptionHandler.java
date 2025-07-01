@@ -5,17 +5,11 @@ import com.kevinqiu.lotterysystem.common.errorcode.ServiceErrorCodeConstants;
 import com.kevinqiu.lotterysystem.common.exception.ControllerException;
 import com.kevinqiu.lotterysystem.common.exception.ServiceException;
 import com.kevinqiu.lotterysystem.common.pojo.CommonResult;
-import com.kevinqiu.lotterysystem.common.utils.JWTUtil;
-import com.kevinqiu.lotterysystem.common.utils.JacksonUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 处理全局产生的异常
@@ -63,5 +57,6 @@ public class GlobalExceptionHandler {
         log.error("MaxUploadSizeExceededExceptionHandler -> exception");
         return CommonResult.error(ServiceErrorCodeConstants.MAX_UPLOAD_SIZE_EXCEEDED);
     }
+
 
 }

@@ -8,6 +8,7 @@ public interface GlobalErrorCodeConstants {
 
     ErrorCode SUCCESS = new ErrorCode(200, "成功！");
     ErrorCode ERROR = new ErrorCode(500, "错误！");
+    ErrorCode JWT_TIME_OUT = new ErrorCode(600, "用户登录过期！");
     ErrorCode UNKNOWN = new ErrorCode(999, "未知错误！");
 
 }

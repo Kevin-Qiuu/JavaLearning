@@ -1,5 +1,7 @@
 package com.kevinqiu.lotterysystem.service.impl;
 
+import com.kevinqiu.lotterysystem.common.errorcode.ServiceErrorCodeConstants;
+import com.kevinqiu.lotterysystem.common.exception.ServiceException;
 import com.kevinqiu.lotterysystem.controller.param.PageParam;
 import com.kevinqiu.lotterysystem.controller.param.PrizeCreateParam;
 import com.kevinqiu.lotterysystem.dao.dataobject.PrizeInfoDO;
@@ -46,16 +48,28 @@ public class PrizeServiceImpl implements PrizeService {
         List<PrizeInfoDO> pageListDO
                 = prizeMapper.selectPrizePageList(param.offset(), param.getPageSize());
 
-        List<PrizeInfoDTO> pageList = pageListDO.stream().map(prizeInfoDO -> {
-            PrizeInfoDTO prizeInfoDTO = new PrizeInfoDTO();
-            prizeInfoDTO.setPrizeId(prizeInfoDO.getId());
-            prizeInfoDTO.setPrizeName(prizeInfoDO.getName());
-            prizeInfoDTO.setPrice(prizeInfoDO.getPrice());
-            prizeInfoDTO.setDescription(prizeInfoDO.getDescription());
-            prizeInfoDTO.setImageUrl(prizeInfoDO.getImageUrl());
-            return prizeInfoDTO;
-        }).toList();
+        List<PrizeInfoDTO> pageList = makePrizeInfoDTOList(pageListDO);
 
         return new PageListDTO<>(prizeTotalCount, pageList);
     }
+
+    @Override
+    public List<PrizeInfoDTO> findAllPrize() {
+        List<PrizeInfoDO> prizeInfoDOList = prizeMapper.selectAll();
+        return makePrizeInfoDTOList(prizeInfoDOList);
+    }
+
+    private List<PrizeInfoDTO> makePrizeInfoDTOList(List<PrizeInfoDO> prizeInfoDOList) {
+        return prizeInfoDOList.stream()
+                .map(prizeInfoDO -> {
+                    PrizeInfoDTO prizeInfoDTO = new PrizeInfoDTO();
+                    prizeInfoDTO.setPrizeId(prizeInfoDO.getId());
+                    prizeInfoDTO.setPrizeName(prizeInfoDO.getName());
+                    prizeInfoDTO.setPrice(prizeInfoDO.getPrice());
+                    prizeInfoDTO.setDescription(prizeInfoDO.getDescription());
+                    prizeInfoDTO.setImageUrl(prizeInfoDO.getImageUrl());
+                    return prizeInfoDTO;
+                }).toList();
+    }
+
 }

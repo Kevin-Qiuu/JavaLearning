@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--    namespace 的根目录是src/main/java    -->
+<mapper namespace="com.kevinqiu.lotterysystem.dao.mapper.ActivityPrizeMapper">
+
+    <insert id="batchCreateActivityPrize">
+        insert into activity_prize (activity_id, prize_id, prize_amount, prize_tiers, status)
+        <if test="activityPrizeDOList != null">
+            values
+            <foreach collection="activityPrizeDOList" item="item" separator=",">
+                (#{item.activityId}, #{item.prizeId}, #{item.prizeAmount}, #{item.prizeTiers}, #{item.status})
+            </foreach>
+        </if>
+    </insert>
+
+</mapper>

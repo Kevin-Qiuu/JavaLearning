@@ -1,26 +1,19 @@
 package com.kevinqiu.lotterysystem.controller;
 
 import com.kevinqiu.lotterysystem.common.errorcode.ControllerErrorCodeConstants;
-import com.kevinqiu.lotterysystem.common.errorcode.ServiceErrorCodeConstants;
 import com.kevinqiu.lotterysystem.common.exception.ControllerException;
-import com.kevinqiu.lotterysystem.common.exception.ServiceException;
 import com.kevinqiu.lotterysystem.common.pojo.CommonResult;
 import com.kevinqiu.lotterysystem.common.utils.JacksonUtil;
 import com.kevinqiu.lotterysystem.controller.param.PageParam;
 import com.kevinqiu.lotterysystem.controller.param.PrizeCreateParam;
-import com.kevinqiu.lotterysystem.controller.param.UserLoginParam;
+import com.kevinqiu.lotterysystem.controller.result.PrizeInfoListResult;
 import com.kevinqiu.lotterysystem.controller.result.PrizeListPageResult;
 import com.kevinqiu.lotterysystem.service.FileService;
 import com.kevinqiu.lotterysystem.service.PrizeService;
 import com.kevinqiu.lotterysystem.service.dto.PageListDTO;
 import com.kevinqiu.lotterysystem.service.dto.PrizeInfoDTO;
 import jakarta.annotation.Resource;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.validator.internal.constraintvalidators.bv.time.futureorpresent.FutureOrPresentValidatorForReadableInstant;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -59,6 +52,33 @@ public class PrizeController {
         PageListDTO<PrizeInfoDTO> pageListDTO = prizeService.findPrizeList(param);
         return CommonResult.success(convertToPrizeListPageResult(pageListDTO));
     }
+
+    @RequestMapping("prize/find-all")
+    public CommonResult<PrizeInfoListResult> findALlPrizeInfo() {
+        log.info("findAllPrizeInfo");
+        List<PrizeInfoDTO> prizeInfoDTOList = prizeService.findAllPrize();
+        return CommonResult.success(convertToPrizeInfoListResult(prizeInfoDTOList));
+    }
+
+    private PrizeInfoListResult convertToPrizeInfoListResult(List<PrizeInfoDTO> prizeInfoDTOList) {
+        if (null == prizeInfoDTOList) {
+            throw new ControllerException(ControllerErrorCodeConstants.PRIZE_INFO_IS_NULL);
+        }
+        PrizeInfoListResult prizeInfoListResult = new PrizeInfoListResult();
+        List<PrizeInfoListResult.PrizeInfo> prizeInfoList = prizeInfoDTOList.stream()
+                .map(prizeInfoDTO -> {
+                    PrizeInfoListResult.PrizeInfo prizeInfo = new PrizeInfoListResult.PrizeInfo();
+                    prizeInfo.setPrizeId(prizeInfoDTO.getPrizeId());
+                    prizeInfo.setPrizeName(prizeInfoDTO.getPrizeName());
+                    prizeInfo.setDescription(prizeInfoDTO.getDescription());
+                    prizeInfo.setImageUrl(prizeInfoDTO.getImageUrl());
+                    prizeInfo.setPrice(prizeInfoDTO.getPrice());
+                    return prizeInfo;
+                }).toList();
+        prizeInfoListResult.setPrizeInfoList(prizeInfoList);
+        return prizeInfoListResult;
+    }
+
 
     private PrizeListPageResult convertToPrizeListPageResult(PageListDTO<PrizeInfoDTO> pageListDTO){
         //todo 参数校验
