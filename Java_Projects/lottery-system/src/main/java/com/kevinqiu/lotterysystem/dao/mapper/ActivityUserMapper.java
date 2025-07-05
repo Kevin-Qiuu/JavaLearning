@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface ActivityUserMapper {
     void batchCreateActivityUser(List<ActivityUserDO> activityUserDOList);
+
+    List<ActivityUserDO> selectByActivityId(Long activityId);
 }

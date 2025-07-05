@@ -465,10 +465,10 @@
     // 抽奖页面加载逻辑
     function drawPage() {
         // 判断活动是否有效:进行中
-        if (valid == "true") {
+        if (valid === "true") {
             // 判断是用户还是管理员，只有管理员有权限抽奖
             var identity = localStorage.getItem("user_identity");
-            if (identity == "ADMIN") {
+            if (identity === "ADMIN") {
                 // 在页面加载完成后，调用reloadConf函数并传入nextStep作为回调函数，以初始化页面显示。
                 reloadConf(nextStep)
             } else {

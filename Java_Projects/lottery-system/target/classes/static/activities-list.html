@@ -116,7 +116,7 @@
 <script src="./js/toastr.min.js"></script>
 <script>
     var currentPage = 1;
-    var pageSize = 10;
+    var pageSize = 8;
     var totalPages;
     var userToken = localStorage.getItem("user_token");
 
@@ -133,17 +133,19 @@
         currentPage: currentPage,
         pageSize: pageSize
       };
+      console.log(dataToSend)
       // 发送AJAX请求
       $.ajax({
-          url: '',
-          type: '',
+          url: '/activity/find-page',
+          type: 'GET',
           data: dataToSend, // 将分页参数作为请求数据发送
           dataType: 'json',
           headers: {
             // jwt
+            "user_token": userToken
           },
           success: function(result) {
-            if (result.code != 200) {
+            if (result.code !== 200) {
                 alert("查询活动列表失败！" + result.msg);
             } else {
                 var activities = result.data.records; // 假设返回的数据中活动列表字段为 'records'
@@ -174,6 +176,8 @@
                 $('#activities').html(activitiesHtml);
                 // 更新分页控件的总页数
                 totalPages = Math.ceil(result.data.total / pageSize);
+                console.log("result.data.total" + result.data.total)
+                console.log("totalPages" + totalPages)
                 // 更新输入框的值
                 $('#pageInput').val(currentPage);
               } // else end

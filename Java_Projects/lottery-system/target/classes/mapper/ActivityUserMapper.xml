@@ -15,4 +15,7 @@
         </if>
     </insert>
 
+    <select id="selectByActivityId" resultType="com.kevinqiu.lotterysystem.dao.dataobject.ActivityUserDO">
+        select * from activity_user where activity_id = #{activityId}
+    </select>
 </mapper>

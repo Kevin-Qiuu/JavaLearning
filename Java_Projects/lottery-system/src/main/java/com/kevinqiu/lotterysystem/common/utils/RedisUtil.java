@@ -68,7 +68,7 @@ public class RedisUtil {
     public String get(String key) {
         try {
             String verificationCode = stringRedisTemplate.opsForValue().get(key);
-            stringRedisTemplate.delete(key);
+//            stringRedisTemplate.delete(key);
             return verificationCode;
         } catch (Exception e){
             log.error("RedisUtil error, get(key: {}), e: ",key, e);

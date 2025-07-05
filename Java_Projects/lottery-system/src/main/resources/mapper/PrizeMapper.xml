@@ -6,7 +6,7 @@
 <mapper namespace="com.kevinqiu.lotterysystem.dao.mapper.PrizeMapper">
     
     <select id="selectByIds" resultType="com.kevinqiu.lotterysystem.dao.dataobject.PrizeInfoDO">
-        select id from prize
+        select * from prize
         <if test="items != null">
             where id in
             <foreach collection="items" item="item" separator="," open="(" close=")">

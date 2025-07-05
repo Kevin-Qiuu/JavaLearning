@@ -48,7 +48,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public CommonResult<?> AllExceptionHandler(Exception ex){
         log.error("AllExceptionHandler -> Exception: ", ex);
-        return CommonResult.error(GlobalErrorCodeConstants.ERROR.getCode(),
+        return CommonResult.error(GlobalErrorCodeConstants.UNKNOWN.getCode(),
                 ex.toString());
     }
 

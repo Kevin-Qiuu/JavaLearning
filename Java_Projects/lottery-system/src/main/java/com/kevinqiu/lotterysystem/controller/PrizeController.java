@@ -49,6 +49,9 @@ public class PrizeController {
     @RequestMapping("/prize/find-list")
     public CommonResult<PrizeListPageResult> findPrizeList(PageParam param) {
         log.info("findPrizeList -> param: {}", JacksonUtil.writeValueAsString(param));
+        if (null == param) {
+            throw new ControllerException(ControllerErrorCodeConstants.PRIZE_PAGE_PARAM_IS_NULL);
+        }
         PageListDTO<PrizeInfoDTO> pageListDTO = prizeService.findPrizeList(param);
         return CommonResult.success(convertToPrizeListPageResult(pageListDTO));
     }
@@ -83,7 +86,7 @@ public class PrizeController {
     private PrizeListPageResult convertToPrizeListPageResult(PageListDTO<PrizeInfoDTO> pageListDTO){
         //todo 参数校验
         if (null == pageListDTO){
-            throw new ControllerException(ControllerErrorCodeConstants.PAGE_LIST_IS_NULL);
+            throw new ControllerException(ControllerErrorCodeConstants.PRIZE_PAGE_LIST_IS_NULL);
         }
         PrizeListPageResult prizeListPageResult = new PrizeListPageResult();
         prizeListPageResult.setTotal(pageListDTO.getPrizeTotalCount());

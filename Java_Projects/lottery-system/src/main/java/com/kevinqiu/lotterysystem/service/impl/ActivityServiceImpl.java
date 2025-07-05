@@ -5,6 +5,7 @@ import com.kevinqiu.lotterysystem.common.exception.ServiceException;
 import com.kevinqiu.lotterysystem.common.utils.JacksonUtil;
 import com.kevinqiu.lotterysystem.common.utils.RedisUtil;
 import com.kevinqiu.lotterysystem.controller.param.ActivityCreateParam;
+import com.kevinqiu.lotterysystem.controller.param.PageParam;
 import com.kevinqiu.lotterysystem.controller.param.PrizeByActivityCreateParam;
 import com.kevinqiu.lotterysystem.controller.param.UserByActivityCreateParam;
 import com.kevinqiu.lotterysystem.dao.dataobject.ActivityDO;
@@ -15,6 +16,7 @@ import com.kevinqiu.lotterysystem.dao.mapper.*;
 import com.kevinqiu.lotterysystem.service.ActivityService;
 import com.kevinqiu.lotterysystem.service.dto.ActivityCreateDTO;
 import com.kevinqiu.lotterysystem.service.dto.ActivityDetailDTO;
+import com.kevinqiu.lotterysystem.service.dto.ActivityListPageDTO;
 import com.kevinqiu.lotterysystem.service.enums.ActivityPrizeStatusEnum;
 import com.kevinqiu.lotterysystem.service.enums.ActivityPrizeTiersEnum;
 import com.kevinqiu.lotterysystem.service.enums.ActivityStatusEnum;
@@ -26,7 +28,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.function.Function;
 
 @Service
 public class ActivityServiceImpl implements ActivityService {
@@ -120,6 +121,100 @@ public class ActivityServiceImpl implements ActivityService {
 
         // 构造返回的 DTO 数据
         return new ActivityCreateDTO(activityDO.getId());
+    }
+
+    @Override
+    public ActivityListPageDTO findActivityList(PageParam param) {
+        Integer count = activityMapper.count();
+        List<ActivityDO> activityPageList = activityMapper
+                .selectActivityPageList(param.offset(), param.getPageSize());
+
+        ActivityListPageDTO activityListPageDTO = new ActivityListPageDTO();
+        activityListPageDTO.setTotal(count);
+        activityListPageDTO.setAcivityInfoList(activityPageList
+                .stream()
+                .map(activityDO -> {
+                    ActivityListPageDTO.ActivityInfo activityInfo = new ActivityListPageDTO.ActivityInfo();
+                    activityInfo.setActivityId(activityDO.getId());
+                    activityInfo.setActivityName(activityDO.getActivityName());
+                    activityInfo.setDescription(activityDO.getDescription());
+                    activityInfo.setStatusEnum(ActivityStatusEnum.forName(activityDO.getStatus()));
+                    return activityInfo;
+                }).toList());
+
+        return activityListPageDTO;
+    }
+
+    @Override
+    public ActivityDetailDTO findActivityDetail(Long activityId) {
+
+        // 从 Redis 缓存中读取 ActivityDetail
+        ActivityDetailDTO cacheActivity = getCacheActivity(activityId);
+        if (null != cacheActivity) {
+            return cacheActivity;
+        }
+
+        // Redis 缓存未命中，查询数据库
+        ActivityDetailDTO activityDetailDTO = new ActivityDetailDTO();
+        ActivityDO activityDO = activityMapper.selectById(activityId);
+        List<ActivityUserDO> activityUserDOList = activityUserMapper.selectByActivityId(activityId);
+        List<ActivityPrizeDO> activityPrizeDOList = activityPrizeMapper.selectByActivityId(activityId);
+        List<PrizeInfoDO> prizeInfoDOList = prizeMapper.selectByIds(activityPrizeDOList.stream().map(ActivityPrizeDO::getPrizeId).toList());
+
+        // 处理活动信息
+        activityDetailDTO.setActivityId(activityDO.getId());
+        activityDetailDTO.setActivityName(activityDO.getActivityName());
+        activityDetailDTO.setDesc(activityDO.getDescription());
+        activityDetailDTO.setStatus(ActivityStatusEnum.forName(activityDO.getStatus()));
+
+        // 处理活动奖品信息
+        activityDetailDTO.setPrizeDTOList(activityPrizeDOList.stream()
+                .map(activityPrizeDO -> {
+                    ActivityDetailDTO.PrizeDTO prizeDTO = new ActivityDetailDTO.PrizeDTO();
+                    prizeInfoDOList.stream()
+                            .filter(prizeInfoDO -> activityPrizeDO.getPrizeId().equals(prizeInfoDO.getId()))
+                            .findFirst()
+                            .ifPresent(prizeInfoDO -> {
+                                prizeDTO.setPrizeId(prizeInfoDO.getId());
+                                prizeDTO.setName(prizeInfoDO.getName());
+                                prizeDTO.setImageUrl(prizeInfoDO.getImageUrl());
+                                prizeDTO.setPrice(prizeInfoDO.getPrice());
+                                prizeDTO.setDescription(prizeInfoDO.getDescription());
+                            });
+                    prizeDTO.setTiers(ActivityPrizeTiersEnum.forName(activityPrizeDO.getPrizeTiers()));
+                    prizeDTO.setPrizeAmount(activityPrizeDO.getPrizeAmount());
+                    prizeDTO.setStatus(ActivityPrizeStatusEnum.forName(activityPrizeDO.getStatus()));
+                    return prizeDTO;
+                }).toList());
+
+        // 处理活动人员信息
+        activityDetailDTO.setUserDTOList(activityUserDOList.stream()
+                .map(activityUserDO -> {
+                    ActivityDetailDTO.UserDTO userDTO = new ActivityDetailDTO.UserDTO();
+                    userDTO.setUserId(activityUserDO.getUserId());
+                    userDTO.setUserName(activityUserDO.getUserName());
+                    userDTO.setStatus(ActivityUserStatusEnum.forName(activityUserDO.getStatus()));
+                    return userDTO;
+                }).toList());
+
+        // 存入 Redis 缓存中
+        cacheActivity(activityDetailDTO);
+        return activityDetailDTO;
+    }
+
+    private ActivityDetailDTO getCacheActivity(Long activityId) {
+
+        ActivityDetailDTO activityDetailDTO = null;
+
+        try {
+            String activityDetailStr = redisUtil.get(ACTIVITY_PREFIX + activityId);
+            activityDetailDTO = JacksonUtil.readValue(activityDetailStr, ActivityDetailDTO.class);
+        } catch (Exception e) {
+            log.error("获取缓存活动异常，ActivityId={}, e", activityId, e);
+            return null;
+        }
+
+        return activityDetailDTO;
     }
 
     private void cacheActivity(ActivityDetailDTO activityDetailDTO) {
