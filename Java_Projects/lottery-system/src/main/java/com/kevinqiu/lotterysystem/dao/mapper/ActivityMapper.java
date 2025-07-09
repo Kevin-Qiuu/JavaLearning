@@ -1,10 +1,7 @@
 package com.kevinqiu.lotterysystem.dao.mapper;
 
 import com.kevinqiu.lotterysystem.dao.dataobject.ActivityDO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -24,4 +21,7 @@ public interface ActivityMapper {
 
     @Select("select * from activity where id = #{activityId}")
     ActivityDO selectById(Long activityId);
+
+    @Update("update activity set status = #{statusName} where id = #{activityId}")
+    void updateStatus(Long activityId, String statusName);
 }

@@ -18,4 +18,23 @@
     <select id="selectByActivityId" resultType="com.kevinqiu.lotterysystem.dao.dataobject.ActivityUserDO">
         select * from activity_user where activity_id = #{activityId}
     </select>
+
+    <select id="batchByActivityIdAndUserId" resultType="com.kevinqiu.lotterysystem.dao.dataobject.ActivityUserDO">
+        select * from activity_user
+        where activity_id = #{aId}
+        and user_id in
+        <foreach collection="uIds" item="userId" separator="," open="(" close=")">
+            #{userId}
+        </foreach>
+    </select>
+
+    <update id="updateStatusByActivityIdAndUserIds">
+        update activity_user set status = #{status}
+        where activity_id = #{aId}
+        and user_id in
+        <foreach collection="uIds" item="userId" separator="," open="(" close=")">
+            #{userId}
+        </foreach>
+    </update>
+
 </mapper>

@@ -155,7 +155,44 @@ public class ActivityServiceImpl implements ActivityService {
         }
 
         // Redis 缓存未命中，查询数据库
+        ActivityDetailDTO activityDetailDTO = getActivityDetailDTOFromDO(activityId);
+        // 存入 Redis 缓存中
+        cacheActivity(activityDetailDTO);
+        return activityDetailDTO;
+    }
+
+    private ActivityDetailDTO getCacheActivity(Long activityId) {
+
+        ActivityDetailDTO activityDetailDTO = null;
+
+        try {
+            String activityDetailStr = redisUtil.get(ACTIVITY_PREFIX + activityId);
+            activityDetailDTO = JacksonUtil.readValue(activityDetailStr, ActivityDetailDTO.class);
+        } catch (Exception e) {
+            log.error("获取缓存活动异常，ActivityId={}, e", activityId, e);
+            return null;
+        }
+
+        return activityDetailDTO;
+    }
+
+    @Override
+    public void cacheActivity(Long activityId) {
+        if (null == activityId) {
+            throw new ServiceException(ServiceErrorCodeConstants.ACTIVITY_ID_IS_NULL);
+        }
+
+        ActivityDO activityDO = activityMapper.selectById(activityId);
+        if (null == activityDO) {
+            throw new ServiceException(ServiceErrorCodeConstants.CACHE_ACTIVITY_INFO_IS_NULL);
+        }
+
+        cacheActivity(getActivityDetailDTOFromDO(activityId));
+    }
+
+    private ActivityDetailDTO getActivityDetailDTOFromDO(Long activityId) {
         ActivityDetailDTO activityDetailDTO = new ActivityDetailDTO();
+
         ActivityDO activityDO = activityMapper.selectById(activityId);
         List<ActivityUserDO> activityUserDOList = activityUserMapper.selectByActivityId(activityId);
         List<ActivityPrizeDO> activityPrizeDOList = activityPrizeMapper.selectByActivityId(activityId);
@@ -197,27 +234,10 @@ public class ActivityServiceImpl implements ActivityService {
                     return userDTO;
                 }).toList());
 
-        // 存入 Redis 缓存中
-        cacheActivity(activityDetailDTO);
         return activityDetailDTO;
     }
 
-    private ActivityDetailDTO getCacheActivity(Long activityId) {
-
-        ActivityDetailDTO activityDetailDTO = null;
-
-        try {
-            String activityDetailStr = redisUtil.get(ACTIVITY_PREFIX + activityId);
-            activityDetailDTO = JacksonUtil.readValue(activityDetailStr, ActivityDetailDTO.class);
-        } catch (Exception e) {
-            log.error("获取缓存活动异常，ActivityId={}, e", activityId, e);
-            return null;
-        }
-
-        return activityDetailDTO;
-    }
-
-    private void cacheActivity(ActivityDetailDTO activityDetailDTO) {
+    public void cacheActivity(ActivityDetailDTO activityDetailDTO) {
 
         if (null == activityDetailDTO) {
             throw new ServiceException(ServiceErrorCodeConstants.CACHE_ACTIVITY_INFO_IS_NULL);

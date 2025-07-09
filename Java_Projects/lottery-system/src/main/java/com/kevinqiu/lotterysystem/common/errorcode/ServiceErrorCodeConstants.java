@@ -29,9 +29,16 @@ public interface ServiceErrorCodeConstants {
     ErrorCode ACTIVITY_USER_COUNT_LESS_THAN_PRIZE_COUNT = new ErrorCode(303, "活动人员数量小于奖品数量！");
     ErrorCode ACTIVITY_PRIZE_TIERS_ERROR = new ErrorCode(304, "奖品等级参数错误！");
     ErrorCode CACHE_ACTIVITY_INFO_IS_NULL = new ErrorCode(306, "缓存奖品信息为空！");
+    ErrorCode ACTIVITY_ID_IS_NULL = new ErrorCode(307, "活动 Id 为空！");
 
 
     // ------ 抽奖错误码 --------
+    ErrorCode ACTIVITY_OR_PRIZE_IS_NULL = new ErrorCode(401, "活动或者其关联奖品信息不存在！");
+    ErrorCode ACTIVITY_IS_COMPLETED = new ErrorCode(402, "当前活动已完成，不可抽奖！");
+    ErrorCode ACTIVITY_PRIZE_IS_COMPLETED = new ErrorCode(403, "当前活动下的此奖品已经完成抽奖！");
+    ErrorCode WINNER_PRIZE_AMOUNT_ERROR = new ErrorCode(404, "活动的奖品数量与中奖者人数不一致！");
+    ErrorCode ACTIVITY_STATUS_CONVERT_ERROR = new ErrorCode(405, "活动状态转换失败！");
+
 
 
     // ------ 文件上传错误码 ------
