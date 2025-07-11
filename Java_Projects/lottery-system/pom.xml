@@ -117,6 +117,12 @@
             <artifactId>tomcat-embed-core</artifactId>
         </dependency>
 
+        <!-- 邮箱服务 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
     </dependencies>
 
     <build>

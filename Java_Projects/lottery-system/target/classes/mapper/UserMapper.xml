@@ -14,8 +14,8 @@
         order by id desc
     </select>
 
-    <select id="selectByIds" resultType="long">
-        select id from user
+    <select id="selectByIds" resultType="com.kevinqiu.lotterysystem.dao.dataobject.UserDO">
+        select * from user
         <if test="userIdList != null">
             where id in
             <foreach item="item" collection="userIdList" separator="," open="(" close=")">

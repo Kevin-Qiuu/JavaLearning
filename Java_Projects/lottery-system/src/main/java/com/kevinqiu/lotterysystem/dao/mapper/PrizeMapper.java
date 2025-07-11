@@ -24,4 +24,7 @@ public interface PrizeMapper {
 
     @Select("select * from prize")
     List<PrizeInfoDO> selectAll();
+
+    @Select("select * from prize where id = #{prizeId}")
+    PrizeInfoDO selectById(Long prizeId);
 }

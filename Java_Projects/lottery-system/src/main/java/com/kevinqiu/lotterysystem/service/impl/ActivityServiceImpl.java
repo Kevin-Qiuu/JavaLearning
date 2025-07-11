@@ -8,10 +8,7 @@ import com.kevinqiu.lotterysystem.controller.param.ActivityCreateParam;
 import com.kevinqiu.lotterysystem.controller.param.PageParam;
 import com.kevinqiu.lotterysystem.controller.param.PrizeByActivityCreateParam;
 import com.kevinqiu.lotterysystem.controller.param.UserByActivityCreateParam;
-import com.kevinqiu.lotterysystem.dao.dataobject.ActivityDO;
-import com.kevinqiu.lotterysystem.dao.dataobject.ActivityPrizeDO;
-import com.kevinqiu.lotterysystem.dao.dataobject.ActivityUserDO;
-import com.kevinqiu.lotterysystem.dao.dataobject.PrizeInfoDO;
+import com.kevinqiu.lotterysystem.dao.dataobject.*;
 import com.kevinqiu.lotterysystem.dao.mapper.*;
 import com.kevinqiu.lotterysystem.service.ActivityService;
 import com.kevinqiu.lotterysystem.service.dto.ActivityCreateDTO;
@@ -190,6 +187,8 @@ public class ActivityServiceImpl implements ActivityService {
         cacheActivity(getActivityDetailDTOFromDO(activityId));
     }
 
+
+
     private ActivityDetailDTO getActivityDetailDTOFromDO(Long activityId) {
         ActivityDetailDTO activityDetailDTO = new ActivityDetailDTO();
 
@@ -313,8 +312,10 @@ public class ActivityServiceImpl implements ActivityService {
                 .stream()
                 .map(UserByActivityCreateParam::getUserId)
                 .toList();
-        List<Long> userIdListDB = userMapper.selectByIds(userIdList);
-        if (null == userIdListDB) {
+        List<Long> userIdListDB = userMapper.selectByIds(userIdList)
+                .stream().map(UserDO::getId).toList();
+
+        if (userIdListDB.isEmpty()) {
             throw new ServiceException(ServiceErrorCodeConstants.ACTIVITY_USER_INFO_ERROR);
         }
         userIdList.forEach(userId -> {

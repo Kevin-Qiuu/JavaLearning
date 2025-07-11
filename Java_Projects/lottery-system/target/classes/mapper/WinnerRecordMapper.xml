@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--    namespace 的根目录是src/main/java    -->
+<mapper namespace="com.kevinqiu.lotterysystem.dao.mapper.WinnerRecordMapper">
+
+    <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO winning_record
+            (activity_id, activity_name, prize_id, prize_name, prize_tier,
+             winner_id, winner_name, winner_email, winner_phone_number, winning_time)
+        values
+            <foreach collection="winningRecordDOList" item="winningRecord" separator=",">
+                (#{winningRecord.activityId}, #{winningRecord.activityName},
+                 #{winningRecord.prizeId}, #{winningRecord.prizeName}, #{winningRecord.prizeTier},
+                 #{winningRecord.winnerId}, #{winningRecord.winnerName}, #{winningRecord.winnerEmail},
+                 #{winningRecord.winnerPhoneNumber}, #{winningRecord.winningTime})
+            </foreach>
+    </insert>
+
+</mapper>

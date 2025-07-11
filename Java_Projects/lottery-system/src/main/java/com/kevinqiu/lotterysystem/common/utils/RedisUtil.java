@@ -37,7 +37,7 @@ public class RedisUtil {
             return true;
         } catch (Exception e){
             log.error("RedisUtil error, set(key: {}, value: {}), e: ", key, value, e);
-            return false;
+            throw e;
         }
     };
 
@@ -56,7 +56,7 @@ public class RedisUtil {
         } catch (Exception e){
             log.error("RedisUtil error, set(key: {}, value: {}, existTime: {}), e: ",
                     key, value, existTime, e);
-            return false;
+            throw e;
         }
     };
 
@@ -72,7 +72,7 @@ public class RedisUtil {
             return verificationCode;
         } catch (Exception e){
             log.error("RedisUtil error, get(key: {}), e: ",key, e);
-            return null;
+            throw e;
         }
     };
 
@@ -94,7 +94,7 @@ public class RedisUtil {
             return true;
         } catch (Exception e){
             log.error("RedisUtil error, del(keys: {}), e: ", keys, e);
-            return false;
+            throw e;
         }
     };
 
@@ -109,7 +109,7 @@ public class RedisUtil {
                     && Boolean.TRUE.equals(stringRedisTemplate.hasKey(key));
         } catch (Exception e){
             log.error("RedisUtil error, hasKey(key: {}), e: ", key, e);
-            return false;
+            throw e;
         }
     };
 

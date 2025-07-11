@@ -29,5 +29,5 @@ public interface UserMapper {
 
     List<UserBaseInfoDO> selectByIdentity(@Param("identity") String identity);
 
-    List<Long> selectByIds(List<Long> userIdList);
+    List<UserDO> selectByIds(List<Long> userIdList);
 }
