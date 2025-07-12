@@ -9,6 +9,7 @@ import com.kevinqiu.lotterysystem.service.dto.ConvertActivityStatusDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.HashMap;
@@ -32,6 +33,7 @@ public class ActivityStatusManagerImpl implements ActivityStatusManager {
 
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void handlerEvent(ConvertActivityStatusDTO convertActivityStatusDTO) {
 
         // 判断操作的 map 是否为空
@@ -57,6 +59,28 @@ public class ActivityStatusManagerImpl implements ActivityStatusManager {
         if (isUpdate) {
             activityService.cacheActivity(convertActivityStatusDTO.getActivityId());
         }
+
+    }
+
+    @Override
+    public void rollBackHandlerEvent(ConvertActivityStatusDTO convertActivityStatusDTO) {
+
+        if (null == convertActivityStatusDTO) {
+            log.warn("所要回滚的 ConvertActivityStatusDTO 为空!");
+            return;
+        }
+
+        // 回滚全部状态：活动、人员、奖品
+        // 使用策略模式
+
+        Map<String, AbstractActivityOperator> curMap = new HashMap<>(operatorMap);
+        for (Map.Entry<String, AbstractActivityOperator> stringAbstractActivityOperatorEntry : curMap.entrySet()) {
+            AbstractActivityOperator activityOperator = stringAbstractActivityOperatorEntry.getValue();
+            activityOperator.convert(convertActivityStatusDTO);
+        }
+
+        // 更新缓存
+        activityService.cacheActivity(convertActivityStatusDTO.getActivityId());
 
     }
 

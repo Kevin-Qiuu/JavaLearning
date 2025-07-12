@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--    namespace 的根目录是src/main/java    -->
-<mapper namespace="com.kevinqiu.lotterysystem.dao.mapper.WinnerRecordMapper">
+<mapper namespace="com.kevinqiu.lotterysystem.dao.mapper.WinningRecordMapper">
 
     <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         INSERT INTO winning_record
@@ -17,5 +17,14 @@
                  #{winningRecord.winnerPhoneNumber}, #{winningRecord.winningTime})
             </foreach>
     </insert>
+
+    <delete id="deleteByActivityIdAndPrizeId">
+        DELETE from winning_record
+        where activity_id = #{aId}
+        <if test="pId != null">
+            and prize_id = #{pId}
+        </if>
+
+    </delete>
 
 </mapper>

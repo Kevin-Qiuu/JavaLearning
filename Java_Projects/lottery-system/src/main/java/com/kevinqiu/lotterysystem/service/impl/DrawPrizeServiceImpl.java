@@ -32,7 +32,7 @@ public class DrawPrizeServiceImpl implements DrawPrizeService {
     @Autowired
     private ActivityPrizeMapper activityPrizeMapper;
     @Autowired
-    private WinnerRecordMapper winnerRecordMapper;
+    private WinningRecordMapper winningRecordMapper;
     @Autowired
     private PrizeMapper prizeMapper;
     @Autowired
@@ -88,6 +88,29 @@ public class DrawPrizeServiceImpl implements DrawPrizeService {
     }
 
     @Override
+    public void deleteWinnerRecords(Long activityId, Long prizeId) {
+
+        // 当传递的奖品 Id 为空时，则默认把传来的 activityId 的整个活动相关的中奖记录库表+缓存都删除
+
+        if (null == activityId) {
+            log.warn("要删除的中奖记录的活动 Id 为空！");
+            return;
+        }
+
+        // 直接删除记录
+        winningRecordMapper.deleteByActivityIdAndPrizeId(activityId, prizeId);
+
+        if (null != prizeId) {
+            // 删除活动下奖品缓存
+            deleteCacheWinningRecords(makeCacheWinningRecordId(activityId, prizeId));
+        }
+
+        // 活动的状态一定不是 COMPLETED ，所以必须要删除活动缓存
+        deleteCacheWinningRecords(String.valueOf(prizeId));
+
+    }
+
+    @Override
     public List<WinningRecordDO> saveWinnerRecords(DrawPrizeParam param) {
         // 查询活动信息、关联奖品信息、中奖者人员信息
         ActivityDO activityDO = activityMapper.selectById(param.getActivityId());
@@ -115,25 +138,38 @@ public class DrawPrizeServiceImpl implements DrawPrizeService {
                     return winningRecordDO;
                 }).toList();
 
-        winnerRecordMapper.batchInsert(winningRecordDOList);
-
+        winningRecordMapper.batchInsert(winningRecordDOList);
 
         // 缓存当前奖品中奖信息
-        cacheWinningRecords(param.getActivityId() + "_" + param.getPrizeId(),
+        cacheWinningRecords(makeCacheWinningRecordId(param.getActivityId(), param.getPrizeId()),
                 winningRecordDOList);
 
         // 缓存当前活动中奖信息，需要判断活动是否完成，存储的是这个活动的全部奖品的中奖信息
-        if( activityDO.getStatus()
+        if (activityDO.getStatus()
                 .equalsIgnoreCase(ActivityStatusEnum.FINISHED.name())) {
-            cacheWinningRecords(String.valueOf(param.getActivityId()),
-                    winnerRecordMapper.selectByActivityId(param.getActivityId()));
-        }
 
+            cacheWinningRecords(String.valueOf(param.getActivityId()),
+                    winningRecordMapper.selectByActivityId(param.getActivityId()));
+
+        }
 
         return winningRecordDOList;
     }
 
-    void cacheWinningRecords(String cacheId, List<WinningRecordDO> winningRecordDOList) {
+    private void deleteCacheWinningRecords(String cacheId) {
+
+        try {
+            if (redisUtil.hasKey(WINNING_RECORDS_PREFIX + cacheId)) {
+                redisUtil.del(WINNING_RECORDS_PREFIX + cacheId);
+            }
+        } catch (Exception e) {
+            log.error("winningRecords 缓存删除失败，cacheId: {}", WINNING_RECORDS_PREFIX + cacheId);
+        }
+
+    }
+
+
+    private void cacheWinningRecords(String cacheId, List<WinningRecordDO> winningRecordDOList) {
         try {
 
             redisUtil.set(WINNING_RECORDS_PREFIX + cacheId,
@@ -142,6 +178,10 @@ public class DrawPrizeServiceImpl implements DrawPrizeService {
             log.error("winningRecordDOList 缓存失败，winningRecordDOList: {}, e",
                     JacksonUtil.writeValueAsString(winningRecordDOList), e);
         }
+    }
+
+    private String makeCacheWinningRecordId(Long activityId, Long prizeId) {
+        return activityId + "_" + prizeId;
     }
 
 }
