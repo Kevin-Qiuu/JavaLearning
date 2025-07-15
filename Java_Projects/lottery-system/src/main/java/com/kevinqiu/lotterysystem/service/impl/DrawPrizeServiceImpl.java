@@ -6,6 +6,7 @@ import com.kevinqiu.lotterysystem.common.exception.ServiceException;
 import com.kevinqiu.lotterysystem.common.utils.JacksonUtil;
 import com.kevinqiu.lotterysystem.common.utils.RedisUtil;
 import com.kevinqiu.lotterysystem.controller.param.DrawPrizeParam;
+import com.kevinqiu.lotterysystem.controller.param.ShowWinningRecordParam;
 import com.kevinqiu.lotterysystem.dao.dataobject.*;
 import com.kevinqiu.lotterysystem.dao.mapper.*;
 import com.kevinqiu.lotterysystem.service.DrawPrizeService;
@@ -54,11 +55,12 @@ public class DrawPrizeServiceImpl implements DrawPrizeService {
     }
 
     @Override
-    public void checkDrawPrizeParam(DrawPrizeParam param) {
+    public Boolean checkDrawPrizeParam(DrawPrizeParam param) {
 
         // 验证非空
         if (null == param) {
-            throw new ServiceException(ServiceErrorCodeConstants.DRAW_PRIZE_PARAM_IS_NULL);
+//            throw new ServiceException(ServiceErrorCodeConstants.DRAW_PRIZE_PARAM_IS_NULL);
+            return false;
         }
 
         // 验证活动和奖品是否存在
@@ -67,23 +69,31 @@ public class DrawPrizeServiceImpl implements DrawPrizeService {
         ActivityPrizeDO activityPrizeDO = activityPrizeMapper
                 .selectByActivityAndPrizeId(param.getActivityId(), param.getPrizeId());
         if (null == activityDO || null == activityPrizeDO) {
-            throw new ServiceException(ServiceErrorCodeConstants.ACTIVITY_OR_PRIZE_IS_NULL);
+//            throw new ServiceException(ServiceErrorCodeConstants.ACTIVITY_OR_PRIZE_IS_NULL);
+            return false;
         }
+
 
         // 验证活动是否有效
         if (!activityDO.getStatus().equalsIgnoreCase(ActivityStatusEnum.RUNNING.name())) {
-            throw new ServiceException(ServiceErrorCodeConstants.ACTIVITY_IS_COMPLETED);
+//            throw new ServiceException(ServiceErrorCodeConstants.ACTIVITY_IS_COMPLETED);
+            return false;
         }
+
 
         // 验证奖品是否有效
         if (!activityPrizeDO.getStatus().equalsIgnoreCase(ActivityPrizeStatusEnum.INIT.name())) {
-            throw new ServiceException(ServiceErrorCodeConstants.ACTIVITY_PRIZE_IS_COMPLETED);
+//            throw new ServiceException(ServiceErrorCodeConstants.ACTIVITY_PRIZE_IS_COMPLETED);
+            return false;
         }
 
         // 验证奖品的数量是否等于中奖人数
         if (param.getWinnerList().size() != activityPrizeDO.getPrizeAmount()) {
-            throw new ServiceException(ServiceErrorCodeConstants.WINNER_PRIZE_AMOUNT_ERROR);
+//            throw new ServiceException(ServiceErrorCodeConstants.WINNER_PRIZE_AMOUNT_ERROR);
+            return false;
         }
+
+        return true;
 
     }
 
@@ -154,6 +164,14 @@ public class DrawPrizeServiceImpl implements DrawPrizeService {
         }
 
         return winningRecordDOList;
+    }
+
+    @Override
+    public List<WinningRecordDO> findWinnerRecords(ShowWinningRecordParam param) {
+
+        return winningRecordMapper
+                .selectByActivityIdAndPrizeId(param.getActivityId(), param.getPrizeId());
+
     }
 
     private void deleteCacheWinningRecords(String cacheId) {

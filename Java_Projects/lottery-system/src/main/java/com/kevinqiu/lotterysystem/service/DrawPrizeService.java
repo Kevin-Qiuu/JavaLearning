@@ -1,6 +1,7 @@
 package com.kevinqiu.lotterysystem.service;
 
 import com.kevinqiu.lotterysystem.controller.param.DrawPrizeParam;
+import com.kevinqiu.lotterysystem.controller.param.ShowWinningRecordParam;
 import com.kevinqiu.lotterysystem.dao.dataobject.WinningRecordDO;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface DrawPrizeService {
      *
      * @param param
      */
-    void checkDrawPrizeParam(DrawPrizeParam param);
+    Boolean checkDrawPrizeParam(DrawPrizeParam param);
 
     /**
      * 保存中奖记录
@@ -35,5 +36,15 @@ public interface DrawPrizeService {
      * @param prizeId
      */
     void deleteWinnerRecords(Long activityId, Long prizeId);
+
+
+    /**
+     * 查询中奖记录
+     *
+     * @param param
+     * @return
+     */
+    List<WinningRecordDO> findWinnerRecords(ShowWinningRecordParam param);
+
 
 }

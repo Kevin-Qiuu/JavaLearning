@@ -61,7 +61,24 @@ public class DrawPrizeTest {
         mqReceiver.statusConvert(param);
 
         List<WinningRecordDO> winnerRecordsDOList = drawPrizeService.saveWinnerRecords(param);
+    }
 
+    @Test
+    void drawPrizeExceptionTest() {
+
+        DrawPrizeParam param = new DrawPrizeParam();
+
+        param.setActivityId(32L);
+        param.setPrizeId(22L);
+        param.setWinningTime(DateTime.now());
+        List<DrawPrizeParam.Winner> winnerList = new LinkedList<>();
+        DrawPrizeParam.Winner winner = new DrawPrizeParam.Winner();
+        winner.setUserId(52L);
+        winner.setUserName("邱俊俊");
+        winnerList.add(winner);
+        param.setWinnerList(winnerList);
+
+        drawPrizeService.drawPrize(param);
 
     }
 

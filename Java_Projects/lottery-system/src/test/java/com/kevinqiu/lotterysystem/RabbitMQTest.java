@@ -1,7 +1,10 @@
 package com.kevinqiu.lotterysystem;
 
+import com.kevinqiu.lotterysystem.common.configuration.DirectRabbitConfig;
 import com.rabbitmq.client.*;
 import org.junit.jupiter.api.Test;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
@@ -10,6 +13,14 @@ import java.util.concurrent.TimeoutException;
 
 @SpringBootTest
 public class RabbitMQTest {
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    @Test
+    public void restfulTest() {
+        rabbitTemplate.convertAndSend(DirectRabbitConfig.EXCHANGE_NAME, "hello" , "restFulTest");
+    }
 
     @Test
     public void publishTest() throws IOException, TimeoutException {

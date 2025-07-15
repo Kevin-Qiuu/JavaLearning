@@ -263,6 +263,7 @@
             spans.push(span)
         }
 
+        // todo 研究动画实现的细节
         // doBlink函数用于实现文字的闪烁效果，通过window.requestAnimationFrame来循环调用。
         function doBlink() {
             if (state == 'showBlink') {
@@ -421,7 +422,7 @@
                 changeNextButtonText('已抽完，下一步')
             }
         } else if (state == 'showBlink') {
-            // 从names中移除幸运儿，并将幸运儿存放起来
+            // splice 方法会从 names中移除幸运儿，并将幸运儿存放起来
             var luck = names.splice(0, data.prizeAmount)
             // 只存放当前奖项的人员信息，下次抽奖会被覆盖
             data.list = luck.map(x => x)

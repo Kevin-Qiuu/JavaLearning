@@ -29,8 +29,7 @@ public class AppConfig implements WebMvcConfigurer {
             "/**/login",
             "/register",
             "/verification-code/send",
-            "/winning-records/show",
-            "/activity-detail/find"
+            "/winning-records/show"
     );
 
     @Override

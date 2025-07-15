@@ -20,7 +20,6 @@ public class DirectRabbitConfig {
     /**
      * 队列 起名：DirectQueue
      *
-     * @return
      */
     @Bean
     public Queue directQueue() {

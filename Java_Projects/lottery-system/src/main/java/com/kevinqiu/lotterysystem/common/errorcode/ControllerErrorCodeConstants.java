@@ -21,5 +21,6 @@ public interface ControllerErrorCodeConstants {
 
 
     // ------ 抽奖错误码 --------
+    ErrorCode WINNER_RECORD_LIST_IS_NULL = new ErrorCode(501, "中奖记录为空！");
 
 }

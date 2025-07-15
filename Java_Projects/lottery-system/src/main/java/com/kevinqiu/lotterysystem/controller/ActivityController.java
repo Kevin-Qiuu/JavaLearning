@@ -6,10 +6,14 @@ import com.kevinqiu.lotterysystem.common.pojo.CommonResult;
 import com.kevinqiu.lotterysystem.common.utils.JacksonUtil;
 import com.kevinqiu.lotterysystem.controller.param.ActivityCreateParam;
 import com.kevinqiu.lotterysystem.controller.param.PageParam;
+import com.kevinqiu.lotterysystem.controller.param.ShowWinningRecordParam;
 import com.kevinqiu.lotterysystem.controller.result.ActivityCreateResult;
 import com.kevinqiu.lotterysystem.controller.result.ActivityDetailResult;
 import com.kevinqiu.lotterysystem.controller.result.ActivityListPageResult;
+import com.kevinqiu.lotterysystem.controller.result.WinningRecordResult;
+import com.kevinqiu.lotterysystem.dao.dataobject.WinningRecordDO;
 import com.kevinqiu.lotterysystem.service.ActivityService;
+import com.kevinqiu.lotterysystem.service.DrawPrizeService;
 import com.kevinqiu.lotterysystem.service.dto.ActivityCreateDTO;
 import com.kevinqiu.lotterysystem.service.dto.ActivityDetailDTO;
 import com.kevinqiu.lotterysystem.service.dto.ActivityListPageDTO;
@@ -30,6 +34,7 @@ public class ActivityController {
 
     @Autowired
     private ActivityService activityService;
+
 
     @RequestMapping("/activity/create")
     public CommonResult<ActivityCreateResult> activityCreate(@Validated @RequestBody
@@ -59,6 +64,8 @@ public class ActivityController {
         ActivityDetailDTO activityDetailDTO = activityService.findActivityDetail(activityId);
         return CommonResult.success(converToActivityDetailResult(activityDetailDTO));
     }
+
+
 
     private ActivityDetailResult converToActivityDetailResult(ActivityDetailDTO activityDetailDTO) {
 

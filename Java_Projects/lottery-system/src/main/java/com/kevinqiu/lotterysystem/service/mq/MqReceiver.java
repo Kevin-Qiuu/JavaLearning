@@ -58,7 +58,14 @@ public class MqReceiver {
 
         try {
             // 校验抽奖请求是否有效
-            drawPrizeService.checkDrawPrizeParam(param);
+            // 不设置抛出异常，为了防止当前端响应慢导致发回两个连续相同数据请求时，
+            // 第二个数据会报异常，进而触发了状态回滚，导致第一个数据也失效
+
+
+            if (!drawPrizeService.checkDrawPrizeParam(param)) {
+                log.warn("中奖参数校验失败，DrawPrizeParam: {}", JacksonUtil.writeValueAsString(param));
+                return;
+            }
 
             // 状态扭转处理（责任链 + 策略模式）
             statusConvert(param);
@@ -74,6 +81,7 @@ public class MqReceiver {
             throw e;
         } catch (Exception e) {
             log.error("发生异常，已触发回滚，e：", e);
+            rollBack(param);
             throw e;
         }
 
@@ -106,7 +114,7 @@ public class MqReceiver {
 
         // 直接判断 winning_record 中是否存在当前活动下奖品的中奖记录
         return winningRecordMapper
-                .countSelectByActivityIdAndPrizeId(param.getActivityId(), param.getPrizeId()) == 0;
+                .countSelectByActivityIdAndPrizeId(param.getActivityId(), param.getPrizeId()) > 0;
 
     }
 

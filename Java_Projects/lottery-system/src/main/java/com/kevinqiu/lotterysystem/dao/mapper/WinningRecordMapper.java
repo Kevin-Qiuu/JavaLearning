@@ -17,4 +17,6 @@ public interface WinningRecordMapper {
     int countSelectByActivityIdAndPrizeId(@Param("aId") Long activityId, @Param("pId") Long prizeId);
 
     void deleteByActivityIdAndPrizeId(@Param("aId") Long activityId, @Param("pId") Long prizeId);
+
+    List<WinningRecordDO> selectByActivityIdAndPrizeId(@Param("aId") Long activityId, @Param("pId") Long prizeId);
 }

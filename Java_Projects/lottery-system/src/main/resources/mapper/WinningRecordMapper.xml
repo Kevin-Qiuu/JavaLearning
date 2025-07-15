@@ -27,4 +27,12 @@
 
     </delete>
 
+    <select id="selectByActivityIdAndPrizeId" resultType="com.kevinqiu.lotterysystem.dao.dataobject.WinningRecordDO">
+        SELECT * from winning_record
+        where activity_id = #{aId}
+        <if test="pId != null">
+            and prize_id = #{pId}
+        </if>
+    </select>
+
 </mapper>
