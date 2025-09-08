@@ -1245,7 +1245,7 @@ ReentrantLock 是 Java 并发包 JUC 的一个类，是 Java 根据自身代码�
 1. 首先执行 `lock` 方法，获取锁，然后满足条件后执行 `awit` 方法，进而使得当前线程进入阻塞状态，线程释放锁，退出锁竞争。
 2. 唤醒时也要先执行 `lock` 方法，获取锁，然后根据条件执行 `signalAll` 方法，唤醒阻塞的线程，使得其重新进入锁竞争。
 
-所有的条件变量的阻塞与唤醒操作以及这些操作会对相应线程产生的影响，都要通过 `ReentrantLock`，所以与对 `synchronized` 理解相似，都是把锁看成一个中间商或者平台，来管理上锁、阻塞、唤醒等操作，如下图。
+所有的条件变量的阻塞与唤醒操作以及这些操作会对相应线程产生的影响，都要通过 `ReentrantLock`，所以与对  `synchronized` 理解相似，都是把锁看成一个中间商或者平台，来管理上锁、阻塞、唤醒等操作，如下图。
 
 <img src="JavaEE 学习笔记_markdown_img/image-20250311151829692.png" alt="image-20250311151829692" style="zoom:50%;" />
 
@@ -2587,6 +2587,10 @@ userServiceProxy.createUser(" 张三", 25); // 自动触发增强逻辑
 | **InvocationHandler** |             处理代理方法的实际调用逻辑              | 开发者自定义实现（如 `new JDKInvocationHandler(objectController)`） |
 
 **总结：**Spring AOP 是通过 JDK 动态代理和 CGLib 动态代理实现的，但是从 SpringBoot 2.X 开始，默认使用 CGLib 动态代理，我认为是 CGLib 既可以实现接口的代理，也可以实现类的代理，同时性能也更好，所以 Spring 最终选择了 CGLib。
+
+
+
+#### Spring的异常处理器与 Spring AOP 之间的关系：
 
 
 
